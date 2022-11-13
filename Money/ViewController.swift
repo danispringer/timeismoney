@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         }
 
         numberFormatterCurrency.numberStyle = .currency
+        numberFormatterCurrency.roundingMode = .down
 
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
     }
