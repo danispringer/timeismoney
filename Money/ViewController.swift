@@ -66,8 +66,8 @@ class ViewController: UIViewController {
 
 
     func updateLabelsDuringWorkDay() {
-        timeWorkableHelperLabel.text = "Time left to work today:"
-        moneyHelperLabel.text = "Money you can IY\"H still make today:"
+        timeWorkableHelperLabel.text = "Time till workday ends:"
+        moneyHelperLabel.text = "Money you can g-d willing still make today:"
         let todayAt6PM = calendar.date(bySettingHour: workdayEndsHour, minute: 0, second: 0, of: Date())!
         let now = Date()
 
@@ -93,10 +93,10 @@ class ViewController: UIViewController {
 
 
     func updateLabelsAfterHours() {
-        timeWorkableHelperLabel.text = "Time left till work starts:"
+        timeWorkableHelperLabel.text = "Time till workday begins:"
         moneyHelperLabel.text = """
         (Outside working hours)
-        Money you can IY"H make in a full workday:
+        Money you can G-d willing make in a full workday:
         """
         var upcoming9AM: Date!
         let now = Date()
