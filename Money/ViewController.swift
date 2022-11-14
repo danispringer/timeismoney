@@ -20,10 +20,12 @@ class ViewController: UIViewController {
     // MARK: Properties
 
     var timer = Timer()
-    let hourlyRate = 26.7
+    let hourlyRate = 24.0
     let calendar = Calendar.current
-    let hourWorkdayStarts = 9
-    let hourWorkdayEnds = 18
+    let workdayStartHour = 9
+    let workdayStartMinute = 0 // use
+    let workdayEndsHour = 18
+    let workdayEndsMinute = 0 // use
     let numberFormatterCurrency = NumberFormatter()
 
 
@@ -49,8 +51,8 @@ class ViewController: UIViewController {
     func isNowWorkHours() -> Bool {
         let now = Date()
 
-        let componentsNow: Int = calendar.dateComponents([.hour], from: now).hour!
-        return (componentsNow >= hourWorkdayStarts) && (componentsNow < hourWorkdayEnds)
+        let componentsNow = calendar.dateComponents([.hour], from: now).hour!
+        return (componentsNow >= workdayStartHour) && (componentsNow < workdayEndsHour)
     }
 
 
@@ -65,8 +67,8 @@ class ViewController: UIViewController {
 
     func updateLabelsDuringWorkDay() {
         timeWorkableHelperLabel.text = "Time left to work today:"
-        moneyHelperLabel.text = "Money you can IY\"H still make today"
-        let todayAt6PM = calendar.date(bySettingHour: hourWorkdayEnds, minute: 0, second: 0, of: Date())!
+        moneyHelperLabel.text = "Money you can IY\"H still make today:"
+        let todayAt6PM = calendar.date(bySettingHour: workdayEndsHour, minute: 0, second: 0, of: Date())!
         let now = Date()
 
         let componentsNowTo6PM = calendar.dateComponents([.hour, .minute, .second],
@@ -79,7 +81,6 @@ class ViewController: UIViewController {
         let secondsAsPercent: Double = secondsLeft / 60 / 60
         let totalHoursLeftAsPercent = hoursLeft+minutesAsPercent+secondsAsPercent
         let moneyLeft = hourlyRate * totalHoursLeftAsPercent
-
         let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
         moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
 
@@ -93,19 +94,25 @@ class ViewController: UIViewController {
 
     func updateLabelsAfterHours() {
         timeWorkableHelperLabel.text = "Time left till work starts:"
-        moneyHelperLabel.text = "Outside working hours"
+        moneyHelperLabel.text = """
+        (Outside working hours)
+        Money you can IY"H make in a full workday:
+        """
         var upcoming9AM: Date!
         let now = Date()
         if isNowBetweenEndOfWorkdayAnd12AM() {
-            upcoming9AM = calendar.date(bySettingHour: hourWorkdayStarts, minute: 0, second: 0, of: Date())!
+            upcoming9AM = calendar.date(bySettingHour: workdayStartHour, minute: workdayStartMinute, second: 0, of: Date())!
             upcoming9AM = calendar.date(byAdding: .day, value: 1, to: upcoming9AM)!
         } else {
-            upcoming9AM = calendar.date(bySettingHour: hourWorkdayStarts, minute: 0, second: 0, of: Date())!
+            upcoming9AM = calendar.date(bySettingHour: workdayStartHour, minute: workdayStartMinute, second: 0, of: Date())!
         }
 
         let componentsNowTo9AM = calendar.dateComponents([.hour, .minute, .second],
                                                          from: now, to: upcoming9AM)
-        moneyMakeableLabel.text = "💤"
+
+        let moneyLeft = hourlyRate * Double(workdayEndsHour-workdayStartHour)
+        let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
+        moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
 
         let formattedMins = String(format: "%02d", componentsNowTo9AM.minute!)
         let formattedSecs = String(format: "%02d", componentsNowTo9AM.second!)
@@ -118,7 +125,7 @@ class ViewController: UIViewController {
     func isNowBetweenEndOfWorkdayAnd12AM() -> Bool {
         let now = Date()
 
-        let componentsNowHour: Int = calendar.dateComponents([.hour], from: now).hour!
+        let componentsNowHour = calendar.dateComponents([.hour], from: now).hour!
         return (componentsNowHour >= 18) && (componentsNowHour <= 23)
     }
 
