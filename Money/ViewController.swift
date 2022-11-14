@@ -94,17 +94,17 @@ class ViewController: UIViewController {
     func updateLabelsAfterHours() {
         timeWorkableHelperLabel.text = "Time left till work starts:"
         moneyHelperLabel.text = "Outside working hours"
-        var todayAt9AM: Date!
+        var upcoming9AM: Date!
         let now = Date()
         if isNowBetweenEndOfWorkdayAnd12AM() {
-            todayAt9AM = calendar.date(bySettingHour: hourWorkdayStarts, minute: 0, second: 0, of: Date())!
-            todayAt9AM = calendar.date(byAdding: .day, value: 1, to: todayAt9AM)!
+            upcoming9AM = calendar.date(bySettingHour: hourWorkdayStarts, minute: 0, second: 0, of: Date())!
+            upcoming9AM = calendar.date(byAdding: .day, value: 1, to: upcoming9AM)!
         } else {
-            todayAt9AM = calendar.date(bySettingHour: hourWorkdayStarts, minute: 0, second: 0, of: Date())!
+            upcoming9AM = calendar.date(bySettingHour: hourWorkdayStarts, minute: 0, second: 0, of: Date())!
         }
 
         let componentsNowTo9AM = calendar.dateComponents([.hour, .minute, .second],
-                                                         from: now, to: todayAt9AM)
+                                                         from: now, to: upcoming9AM)
         moneyMakeableLabel.text = "💤"
 
         let formattedMins = String(format: "%02d", componentsNowTo9AM.minute!)
