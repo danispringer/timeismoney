@@ -23,19 +23,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-7c-JzR">
-                                <rect key="frame" x="16" y="587.33333333333337" width="361" height="48"/>
+                                <rect key="frame" x="16" y="615.66666666666663" width="361" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time left till start/end of workday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyb-5F-4sQ">
-                                <rect key="frame" x="16" y="550.33333333333337" width="361" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time left till start/end of workday" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyb-5F-4sQ">
+                                <rect key="frame" x="32" y="550.33333333333337" width="329" height="57.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money you can still make today:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-8K-2K0">
-                                <rect key="frame" x="16" y="330" width="361" height="28.666666666666686"/>
+                                <rect key="frame" x="32" y="330" width="329" height="28.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,15 +45,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Bcy-7n-CIm" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="06Y-S0-v9y"/>
-                            <constraint firstItem="wkO-8K-2K0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="06i-PS-4st"/>
+                            <constraint firstItem="wkO-8K-2K0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="06i-PS-4st"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="Bcy-7n-CIm" secondAttribute="leading" constant="-16" id="DZi-zt-jYc"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wkO-8K-2K0" secondAttribute="trailing" constant="16" id="EP3-bG-61F"/>
-                            <constraint firstItem="Xyb-5F-4sQ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="Ofm-xX-Lbf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wkO-8K-2K0" secondAttribute="trailing" constant="32" id="EP3-bG-61F"/>
+                            <constraint firstItem="Xyb-5F-4sQ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-32" id="Ofm-xX-Lbf"/>
                             <constraint firstItem="LOi-7c-JzR" firstAttribute="top" secondItem="Xyb-5F-4sQ" secondAttribute="bottom" constant="8" id="Sgf-mc-WH0"/>
                             <constraint firstItem="LOi-7c-JzR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bAP-hF-T2h"/>
                             <constraint firstItem="Bcy-7n-CIm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="bOA-Ke-Lel"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LOi-7c-JzR" secondAttribute="trailing" constant="16" id="fnW-Ia-Ie0"/>
-                            <constraint firstItem="Xyb-5F-4sQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="h2x-Kz-kos"/>
+                            <constraint firstItem="Xyb-5F-4sQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="h2x-Kz-kos"/>
                             <constraint firstItem="Bcy-7n-CIm" firstAttribute="top" secondItem="wkO-8K-2K0" secondAttribute="bottom" constant="32" id="piD-pu-HqN"/>
                             <constraint firstItem="Xyb-5F-4sQ" firstAttribute="top" secondItem="Bcy-7n-CIm" secondAttribute="bottom" constant="64" id="xAS-1a-JXU"/>
                         </constraints>
