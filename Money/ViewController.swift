@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     func updateLabelsAfterHours() {
         timeWorkableHelperLabel.text = "Time till workday begins:"
         moneyHelperLabel.text = """
-        (Outside working hours)
+        (💤 Outside working hours 💤)
         Money you can G-d willing make in a full workday:
         """
         var upcoming9AM: Date!
