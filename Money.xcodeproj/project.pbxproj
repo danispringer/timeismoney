@@ -26,16 +26,6 @@
 		339B82AB2920B3BB0032061E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		339B82972920B3B90032061E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
 		339B82912920B3B90032061E = {
 			isa = PBXGroup;
@@ -75,8 +65,8 @@
 			buildConfigurationList = 339B82AE2920B3BB0032061E /* Build configuration list for PBXNativeTarget "Money" */;
 			buildPhases = (
 				339B82962920B3B90032061E /* Sources */,
-				339B82972920B3B90032061E /* Frameworks */,
 				339B82982920B3B90032061E /* Resources */,
+				33F5090629232C1C00DB52AD /* Swiftlint Script Phase */,
 			);
 			buildRules = (
 			);
@@ -132,6 +122,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		33F5090629232C1C00DB52AD /* Swiftlint Script Phase */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swiftlint Script Phase";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		339B82962920B3B90032061E /* Sources */ = {

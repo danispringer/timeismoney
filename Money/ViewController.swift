@@ -42,7 +42,9 @@ class ViewController: UIViewController {
         numberFormatterCurrency.numberStyle = .currency
         numberFormatterCurrency.roundingMode = .down
 
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(
+            timeInterval: 1.0, target: self,
+            selector: #selector(self.tick), userInfo: nil, repeats: true)
     }
 
 
@@ -96,15 +98,18 @@ class ViewController: UIViewController {
         timeWorkableHelperLabel.text = "Time till workday begins:"
         moneyHelperLabel.text = """
         (💤 Outside working hours 💤)
+
         Money you can G-d willing make in a full workday:
         """
         var upcoming9AM: Date!
         let now = Date()
         if isNowBetweenEndOfWorkdayAnd12AM() {
-            upcoming9AM = calendar.date(bySettingHour: workdayStartHour, minute: workdayStartMinute, second: 0, of: Date())!
+            upcoming9AM = calendar.date(bySettingHour: workdayStartHour,
+                                        minute: workdayStartMinute, second: 0, of: Date())!
             upcoming9AM = calendar.date(byAdding: .day, value: 1, to: upcoming9AM)!
         } else {
-            upcoming9AM = calendar.date(bySettingHour: workdayStartHour, minute: workdayStartMinute, second: 0, of: Date())!
+            upcoming9AM = calendar.date(bySettingHour: workdayStartHour,
+                                        minute: workdayStartMinute, second: 0, of: Date())!
         }
 
         let componentsNowTo9AM = calendar.dateComponents([.hour, .minute, .second],
@@ -130,4 +135,3 @@ class ViewController: UIViewController {
     }
 
 }
-
