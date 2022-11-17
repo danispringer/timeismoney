@@ -7,7 +7,7 @@
 
 import UIKit
 // swiftlint:disable identifier_name
-let UD: UserDefaults = UserDefaults(suiteName: "JMVGHP3288.danispringer.money")!
+let UD: UserDefaults = UserDefaults.standard
 let NC = NotificationCenter.default
 // swiftlint:enable identifier_name
 let calendar = Calendar.current

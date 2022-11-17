@@ -44,8 +44,6 @@
 		339B82A62920B3BB0032061E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		339B82A92920B3BB0032061E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		339B82AB2920B3BB0032061E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		33CBF74F2924765A00DC716F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		33CBF7512924765A00DC716F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -98,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				339B829C2920B3B90032061E /* Money */,
-				33CBF74E2924765A00DC716F /* Frameworks */,
 				339B829B2920B3B90032061E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,15 +119,6 @@
 				3311530D2925FC7D0051C145 /* Controller */,
 			);
 			path = Money;
-			sourceTree = "<group>";
-		};
-		33CBF74E2924765A00DC716F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				33CBF74F2924765A00DC716F /* WidgetKit.framework */,
-				33CBF7512924765A00DC716F /* SwiftUI.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
