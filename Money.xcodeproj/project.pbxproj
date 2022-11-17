@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		331153132926261F0051C145 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331153122926261F0051C145 /* Constants.swift */; };
 		3311531529264D0A0051C145 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3311531429264D0A0051C145 /* Notification+Extensions.swift */; };
+		3377354B292699E000A91D6F /* MoneyScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3377354A292699E000A91D6F /* MoneyScreenshots.swift */; };
+		3377355429269A3300A91D6F /* screenshots.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3377355329269A2A00A91D6F /* screenshots.sh */; };
 		339B03CE2925EEE70022EC5B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B03CD2925EEE70022EC5B /* SettingsViewController.swift */; };
 		339B829E2920B3B90032061E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B829D2920B3B90032061E /* AppDelegate.swift */; };
 		339B82A02920B3B90032061E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B829F2920B3B90032061E /* SceneDelegate.swift */; };
@@ -17,6 +19,16 @@
 		339B82A72920B3BB0032061E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A62920B3BB0032061E /* Assets.xcassets */; };
 		339B82AA2920B3BB0032061E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A82920B3BB0032061E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3377354E292699E000A91D6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 339B82922920B3B90032061E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 339B82992920B3B90032061E;
+			remoteInfo = Money;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		33CBF7602924765B00DC716F /* Embed Foundation Extensions */ = {
@@ -35,6 +47,9 @@
 		331153122926261F0051C145 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3311531429264D0A0051C145 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		33115316292670010051C145 /* Money.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Money.entitlements; sourceTree = "<group>"; };
+		33773548292699E000A91D6F /* MoneyScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3377354A292699E000A91D6F /* MoneyScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyScreenshots.swift; sourceTree = "<group>"; };
+		3377355329269A2A00A91D6F /* screenshots.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = screenshots.sh; sourceTree = "<group>"; };
 		339B03CD2925EEE70022EC5B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		339B829A2920B3B90032061E /* Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Money.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339B829D2920B3B90032061E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +60,16 @@
 		339B82A92920B3BB0032061E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		339B82AB2920B3BB0032061E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33773545292699E000A91D6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		3311530D2925FC7D0051C145 /* Controller */ = {
@@ -92,10 +117,20 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		33773549292699E000A91D6F /* MoneyScreenshots */ = {
+			isa = PBXGroup;
+			children = (
+				3377354A292699E000A91D6F /* MoneyScreenshots.swift */,
+				3377355329269A2A00A91D6F /* screenshots.sh */,
+			);
+			path = MoneyScreenshots;
+			sourceTree = "<group>";
+		};
 		339B82912920B3B90032061E = {
 			isa = PBXGroup;
 			children = (
 				339B829C2920B3B90032061E /* Money */,
+				33773549292699E000A91D6F /* MoneyScreenshots */,
 				339B829B2920B3B90032061E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				339B829A2920B3B90032061E /* Money.app */,
+				33773548292699E000A91D6F /* MoneyScreenshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,6 +160,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		33773547292699E000A91D6F /* MoneyScreenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33773550292699E000A91D6F /* Build configuration list for PBXNativeTarget "MoneyScreenshots" */;
+			buildPhases = (
+				33773544292699E000A91D6F /* Sources */,
+				33773545292699E000A91D6F /* Frameworks */,
+				33773546292699E000A91D6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3377354F292699E000A91D6F /* PBXTargetDependency */,
+			);
+			name = MoneyScreenshots;
+			productName = MoneyScreenshots;
+			productReference = 33773548292699E000A91D6F /* MoneyScreenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		339B82992920B3B90032061E /* Money */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 339B82AE2920B3BB0032061E /* Build configuration list for PBXNativeTarget "Money" */;
@@ -152,6 +206,10 @@
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					33773547292699E000A91D6F = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 339B82992920B3B90032061E;
+					};
 					339B82992920B3B90032061E = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -171,11 +229,20 @@
 			projectRoot = "";
 			targets = (
 				339B82992920B3B90032061E /* Money */,
+				33773547292699E000A91D6F /* MoneyScreenshots */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		33773546292699E000A91D6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3377355429269A3300A91D6F /* screenshots.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		339B82982920B3B90032061E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +278,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		33773544292699E000A91D6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3377354B292699E000A91D6F /* MoneyScreenshots.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		339B82962920B3B90032061E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,6 +300,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3377354F292699E000A91D6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 339B82992920B3B90032061E /* Money */;
+			targetProxy = 3377354E292699E000A91D6F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		339B82A32920B3B90032061E /* Main.storyboard */ = {
@@ -246,6 +329,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		33773551292699E000A91D6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JMVGHP3288;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = id.MoneyScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Money;
+			};
+			name = Debug;
+		};
+		33773552292699E000A91D6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JMVGHP3288;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = id.MoneyScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Money;
+			};
+			name = Release;
+		};
 		339B82AC2920B3BB0032061E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -425,6 +550,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		33773550292699E000A91D6F /* Build configuration list for PBXNativeTarget "MoneyScreenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33773551292699E000A91D6F /* Debug */,
+				33773552292699E000A91D6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		339B82952920B3B90032061E /* Build configuration list for PBXProject "Money" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

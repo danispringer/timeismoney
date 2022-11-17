@@ -28,6 +28,12 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if CommandLine.arguments.contains("--moneyScreenshots") {
+            // We are in testing mode, make arrangements if needed
+            UIView.setAnimationsEnabled(false)
+        }
+
+
         if !UIAccessibility.isReduceTransparencyEnabled {
             view.backgroundColor = .clear
             let blurEffect = UIBlurEffect(style: .regular)

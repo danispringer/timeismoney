@@ -33,6 +33,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if CommandLine.arguments.contains("--moneyScreenshots") {
+            // We are in testing mode, make arrangements if needed
+            UIView.setAnimationsEnabled(false)
+        }
+
         dateFormatterHM.dateFormat = "HH:mm"
         dateFormatterHMS.dateFormat = "HH:mm:ss"
         numberFormatterCurrency.numberStyle = .currency
