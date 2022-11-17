@@ -20,12 +20,11 @@ class HomeViewController: UIViewController {
     // MARK: Properties
 
     var timer = Timer()
-    let calendar = Calendar.current
-    let workdayStartHour = 9
-    let workdayStartMinute = 0 // use
-    let workdayEndsHour = 18
-    let workdayEndsMinute = 0 // use
     let numberFormatterCurrency = NumberFormatter()
+    let dateFormatterHM = DateFormatter()
+    let dateFormatterHMS = DateFormatter()
+    var startTime: Date!
+    var endTime: Date!
 
 
     // MARK: Life Cycle
@@ -33,13 +32,20 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dateFormatterHM.dateFormat = "HH:mm"
+        dateFormatterHMS.dateFormat = "HH:mm:ss"
+        numberFormatterCurrency.numberStyle = .currency
+        numberFormatterCurrency.roundingMode = .down
+
         for label: UILabel in [moneyHelperLabel, timeWorkableHelperLabel,
                                moneyMakeableLabel, timeWorkableLabel] {
             label.text = " "
         }
 
-        numberFormatterCurrency.numberStyle = .currency
-        numberFormatterCurrency.roundingMode = .down
+        fetchWorkHours()
+
+        NC.addObserver(self, selector: #selector(fetchWorkHours),
+                       name: .hoursDidChange, object: nil)
 
         timer = Timer.scheduledTimer(
             timeInterval: 1.0, target: self,
@@ -49,11 +55,31 @@ class HomeViewController: UIViewController {
 
     // MARK: Helpers
 
-    func isNowWorkHours() -> Bool {
+    @objc func fetchWorkHours() {
+        let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
+        let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
+
+        let startTimeH = startTimeString.prefix(2)
+        let startTimeM = startTimeString.suffix(2)
+        let endTimeH = endTimeString.prefix(2)
+        let endTimeM = endTimeString.suffix(2)
+        let startTimeHourInt: Int = Int(startTimeH)!
+        let startTimeMinInt: Int = Int(startTimeM)!
+        let endTimeHourInt: Int = Int(endTimeH)!
+        let endTimeMinInt: Int = Int(endTimeM)!
+
         let now = Date()
 
-        let componentsNow = calendar.dateComponents([.hour], from: now).hour!
-        return (componentsNow >= workdayStartHour) && (componentsNow < workdayEndsHour)
+        startTime = calendar.date(bySettingHour: startTimeHourInt, minute: startTimeMinInt, second: 0, of: now)!
+        endTime = calendar.date(bySettingHour: endTimeHourInt, minute: endTimeMinInt, second: 0, of: now)!
+
+        print("startTime: \(startTime!)")
+    }
+
+
+    func isNowWorkHours() -> Bool {
+        let now = Date()
+        return now >= startTime && now < endTime
     }
 
 
@@ -69,11 +95,10 @@ class HomeViewController: UIViewController {
     func updateLabelsDuringWorkDay() {
         timeWorkableHelperLabel.text = Const.UIMsg.timeTillWorkdayEnds
         moneyHelperLabel.text = Const.UIMsg.dailyMakeableRemaining
-        let todayAt6PM = calendar.date(bySettingHour: workdayEndsHour, minute: 0, second: 0, of: Date())!
         let now = Date()
 
         let componentsNowTo6PM = calendar.dateComponents([.hour, .minute, .second],
-                                                         from: now, to: todayAt6PM)
+                                                         from: now, to: startTime)
 
         let hoursLeft: Double = Double(componentsNowTo6PM.hour!)
         let minutesLeft: Double = Double(componentsNowTo6PM.minute!)
@@ -81,7 +106,7 @@ class HomeViewController: UIViewController {
         let minutesAsPercent: Double = minutesLeft / 60
         let secondsAsPercent: Double = secondsLeft / 60 / 60
         let totalHoursLeftAsPercent = hoursLeft+minutesAsPercent+secondsAsPercent
-        let hourlyRate: Double = UserDefaults.standard.double(forKey: Const.UDef.hourlyRate)
+        let hourlyRate: Double = UD.double(forKey: Const.UDef.hourlyRate)
         let moneyLeft = hourlyRate * totalHoursLeftAsPercent
         let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
         moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
@@ -101,38 +126,23 @@ class HomeViewController: UIViewController {
 
         Your Daily Makeable:
         """
-        var upcoming9AM: Date!
-        let now = Date()
-        if isNowBetweenEndOfWorkdayAnd12AM() {
-            upcoming9AM = calendar.date(bySettingHour: workdayStartHour,
-                                        minute: workdayStartMinute, second: 0, of: Date())!
-            upcoming9AM = calendar.date(byAdding: .day, value: 1, to: upcoming9AM)!
-        } else {
-            upcoming9AM = calendar.date(bySettingHour: workdayStartHour,
-                                        minute: workdayStartMinute, second: 0, of: Date())!
-        }
 
-        let componentsNowTo9AM = calendar.dateComponents([.hour, .minute, .second],
-                                                         from: now, to: upcoming9AM)
-
-        let hourlyRate: Double = UserDefaults.standard.double(forKey: Const.UDef.hourlyRate)
-        let moneyLeft = hourlyRate * Double(workdayEndsHour-workdayStartHour)
+        let hourlyRate: Double = UD.double(forKey: Const.UDef.hourlyRate)
+        let secsDiff = endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970
+        let moneyLeft = hourlyRate * secsDiff / 3600.0
         let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
         moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
 
-        let formattedMins = String(format: "%02d", componentsNowTo9AM.minute!)
-        let formattedSecs = String(format: "%02d", componentsNowTo9AM.second!)
-        timeWorkableLabel.text =  """
-        \(componentsNowTo9AM.hour!):\(formattedMins):\(formattedSecs)
-        """
+        timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsDiff))
     }
 
 
-    func isNowBetweenEndOfWorkdayAnd12AM() -> Bool {
-        let now = Date()
-
-        let componentsNowHour = calendar.dateComponents([.hour], from: now).hour!
-        return (componentsNowHour >= 18) && (componentsNowHour <= 23)
+    func secondsToHoursMinutesSeconds(_ seconds: Int) -> String {
+        return """
+        \(seconds / 3600):\
+        \((seconds % 3600) / 60):\
+        \((seconds % 3600) % 60)
+        """
     }
 
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		331153132926261F0051C145 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331153122926261F0051C145 /* Constants.swift */; };
+		3311531529264D0A0051C145 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3311531429264D0A0051C145 /* Notification+Extensions.swift */; };
 		339B03CE2925EEE70022EC5B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B03CD2925EEE70022EC5B /* SettingsViewController.swift */; };
 		339B829E2920B3B90032061E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B829D2920B3B90032061E /* AppDelegate.swift */; };
 		339B82A02920B3B90032061E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B829F2920B3B90032061E /* SceneDelegate.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		331153122926261F0051C145 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3311531429264D0A0051C145 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		339B03CD2925EEE70022EC5B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		339B829A2920B3B90032061E /* Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Money.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339B829D2920B3B90032061E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				331153122926261F0051C145 /* Constants.swift */,
+				3311531429264D0A0051C145 /* Notification+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,8 +149,8 @@
 		339B829C2920B3B90032061E /* Money */ = {
 			isa = PBXGroup;
 			children = (
-				33115311292626130051C145 /* Model */,
 				331153102925FCC80051C145 /* AppDelegate */,
+				33115311292626130051C145 /* Model */,
 				3311530F2925FCB40051C145 /* Assets */,
 				3311530E2925FC9F0051C145 /* Storyboard */,
 				3311530D2925FC7D0051C145 /* Controller */,
@@ -303,6 +306,7 @@
 				339B82A22920B3B90032061E /* HomeViewController.swift in Sources */,
 				339B829E2920B3B90032061E /* AppDelegate.swift in Sources */,
 				339B82A02920B3B90032061E /* SceneDelegate.swift in Sources */,
+				3311531529264D0A0051C145 /* Notification+Extensions.swift in Sources */,
 				339B03CE2925EEE70022EC5B /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

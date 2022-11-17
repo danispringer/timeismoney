@@ -6,6 +6,11 @@
 //
 
 import UIKit
+// swiftlint:disable identifier_name
+let UD = UserDefaults.standard
+let NC = NotificationCenter.default
+// swiftlint:enable identifier_name
+let calendar = Calendar.current
 
 struct Const {
     struct UDef {

@@ -33,8 +33,10 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         hourlyRateTextField.delegate = self
         hourlyRateTextField.inputAccessoryView = addAccessoryView()
-        let hourlyRate = UserDefaults.standard.double(forKey: Const.UDef.hourlyRate)
+        let hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
         hourlyRateTextField.text = numberFormatterCurrency.string(from: hourlyRate as NSNumber)
+
+        fetchWorkHours()
 
         startTimeDatePicker.addTarget(
             self,
@@ -61,6 +63,34 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         } else {
 
         }
+    }
+
+
+    // MARK: Helpers
+
+    // how to not have this func here AND in homevc?
+    @objc func fetchWorkHours() {
+        let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
+        let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
+
+        let startTimeH = startTimeString.prefix(2)
+        let startTimeM = startTimeString.suffix(2)
+        let endTimeH = endTimeString.prefix(2)
+        let endTimeM = endTimeString.suffix(2)
+        let startTimeHourInt: Int = Int(startTimeH)!
+        let startTimeMinInt: Int = Int(startTimeM)!
+        let endTimeHourInt: Int = Int(endTimeH)!
+        let endTimeMinInt: Int = Int(endTimeM)!
+
+        let now = Date()
+
+        startTimeDatePicker.date = calendar.date(
+            bySettingHour: startTimeHourInt,
+            minute: startTimeMinInt, second: 0, of: now)!
+        endTimeDatePicker.date = calendar.date(
+            bySettingHour: endTimeHourInt,
+            minute: endTimeMinInt, second: 0, of: now)!
+
     }
 
 
@@ -102,7 +132,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        UserDefaults.standard.set(rateAsDouble, forKey: Const.UDef.hourlyRate)
+        UD.set(rateAsDouble, forKey: Const.UDef.hourlyRate)
 
         hourlyRateTextField.text = rateAsCurrency
 
@@ -111,7 +141,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     func restoreOldRateCuzNewFailed() {
         // alert user?
-        let oldHourlyRate = UserDefaults.standard.double(forKey: Const.UDef.hourlyRate)
+        let oldHourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
         hourlyRateTextField.text = numberFormatterCurrency.string(from: oldHourlyRate as NSNumber)
     }
 
@@ -123,6 +153,16 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         dateFormatter.dateFormat = "HH:mm"
         let formatted = dateFormatter.string(from: time)
         print("formatted: \(formatted)")
+
+        switch sender.tag {
+            case 0:
+                UD.set(formatted, forKey: Const.UDef.startTime)
+            case 1:
+                UD.set(formatted, forKey: Const.UDef.endTime)
+            default:
+                fatalError()
+        }
+        NC.post(name: .hoursDidChange, object: nil)
 
     }
 
