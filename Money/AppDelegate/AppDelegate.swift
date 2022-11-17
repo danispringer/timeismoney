@@ -14,6 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        if CommandLine.arguments.contains("--moneyScreenshots") {
+            // We are in testing mode, make arrangements if needed
+            UD.set(15, forKey: Const.UDef.hourlyRate)
+            UD.set("09:00", forKey: Const.UDef.startTime)
+            UD.set("17:00", forKey: Const.UDef.endTime)
+        }
+
         UD.register(defaults: [
             Const.UDef.hourlyRate: 15.0,
             Const.UDef.startTime: "09:00",
