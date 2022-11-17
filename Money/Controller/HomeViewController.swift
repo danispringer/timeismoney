@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
 
     func updateLabelsDuringWorkDay() {
         timeWorkableHelperLabel.text = Const.UIMsg.timeTillWorkdayEnds
-        moneyHelperLabel.text = "Daily Makeable Remaining:"
+        moneyHelperLabel.text = Const.UIMsg.dailyMakeableRemaining
         let todayAt6PM = calendar.date(bySettingHour: workdayEndsHour, minute: 0, second: 0, of: Date())!
         let now = Date()
 

@@ -16,5 +16,6 @@ struct Const {
     struct UIMsg {
         static let timeTillWorkdayEnds = "Time till workday ends:"
         static let timeTillWorkdayBegins = "Time till workday begins:"
+        static let dailyMakeableRemaining = "Daily Makeable Remaining:"
     }
 }
