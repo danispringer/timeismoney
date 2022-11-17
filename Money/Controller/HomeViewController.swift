@@ -81,8 +81,6 @@ class HomeViewController: UIViewController {
 
         startTime = calendar.date(bySettingHour: startTimeHourInt, minute: startTimeMinInt, second: 0, of: now)!
         endTime = calendar.date(bySettingHour: endTimeHourInt, minute: endTimeMinInt, second: 0, of: now)!
-
-        print("startTime: \(startTime!)")
     }
 
 

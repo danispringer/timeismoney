@@ -55,7 +55,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         if !UIAccessibility.isReduceTransparencyEnabled {
             view.backgroundColor = .clear
-            let blurEffect = UIBlurEffect(style: .dark)
+            let blurEffect = UIBlurEffect(style: .regular)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             blurEffectView.frame = self.view.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
