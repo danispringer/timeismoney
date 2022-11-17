@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     let numberFormatterCurrency = NumberFormatter()
     let numberFormatterReset = NumberFormatter()
-    let dateFormatter = DateFormatter()
+    let dateFormatterHM = DateFormatter()
 
 
     // MARK: Life Cycle
@@ -30,6 +30,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         numberFormatterCurrency.numberStyle = .currency
         numberFormatterReset.numberStyle = .none
+
+        dateFormatterHM.dateFormat = "HH:mm"
 
         hourlyRateTextField.delegate = self
         hourlyRateTextField.inputAccessoryView = addAccessoryView()
@@ -151,9 +153,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         // Start time tag: 0
         // End time tag: 1
         let time = sender.date
-        dateFormatter.dateFormat = "HH:mm"
-        let formatted = dateFormatter.string(from: time)
-        print("formatted: \(formatted)")
+        let formatted = dateFormatterHM.string(from: time)
 
         switch sender.tag {
             case 0:
