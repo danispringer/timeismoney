@@ -128,11 +128,14 @@ class HomeViewController: UIViewController {
         Your Daily Makeable:
         """
 
-        let secsDiff = endTime
+        let secsBetweenStartAndEndTime = endTime
             .timeIntervalSince1970 - startTime.timeIntervalSince1970
-        updateMoneyMakeableLabel(seconds: secsDiff)
+        updateMoneyMakeableLabel(seconds: secsBetweenStartAndEndTime)
 
-        timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsDiff))
+        let secsTillWorkdayBegins = startTime
+            .timeIntervalSince1970 - Date().timeIntervalSince1970
+
+        timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsTillWorkdayBegins))
     }
 
 
