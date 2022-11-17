@@ -130,8 +130,16 @@ class HomeViewController: UIViewController {
             .timeIntervalSince1970 - startTime.timeIntervalSince1970
         updateMoneyMakeableLabel(seconds: secsBetweenStartAndEndTime)
 
-        let secsTillWorkdayBegins = startTime
-            .timeIntervalSince1970.advanced(by: secondsInADay) - Date().timeIntervalSince1970
+        var secsTillWorkdayBegins = 0.0
+
+        if Date() < startTime { // if before work (as opposed to after)
+            secsTillWorkdayBegins = startTime
+                .timeIntervalSince1970 - Date().timeIntervalSince1970
+        } else {
+            secsTillWorkdayBegins = startTime
+                .timeIntervalSince1970.advanced(by: secondsInADay) - Date().timeIntervalSince1970
+        }
+
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsTillWorkdayBegins))
     }
