@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
 
     func updateLabelsDuringWorkDay() {
         timeWorkableHelperLabel.text = "Time till workday ends:"
-        moneyHelperLabel.text = "Money you can G-d willing still make today:"
+        moneyHelperLabel.text = "Daily Makeable Remaining:"
         let todayAt6PM = calendar.date(bySettingHour: workdayEndsHour, minute: 0, second: 0, of: Date())!
         let now = Date()
 
@@ -99,7 +99,7 @@ class HomeViewController: UIViewController {
         moneyHelperLabel.text = """
         (💤 Outside working hours 💤)
 
-        Money you can G-d willing make in a full workday:
+        Your Daily Makeable:
         """
         var upcoming9AM: Date!
         let now = Date()
@@ -133,6 +133,16 @@ class HomeViewController: UIViewController {
 
         let componentsNowHour = calendar.dateComponents([.hour], from: now).hour!
         return (componentsNowHour >= 18) && (componentsNowHour <= 23)
+    }
+
+
+    @IBAction func settingsTapped(_ sender: Any) {
+        let toPresent = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "SettingsViewController")
+        as! SettingsViewController
+        toPresent.modalPresentationStyle = .pageSheet
+        toPresent.sheetPresentationController?.detents = [.medium()]
+        present(toPresent, animated: true)
     }
 
 }

@@ -37,14 +37,30 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     }
 
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if !UIAccessibility.isReduceTransparencyEnabled {
+            view.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: .dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.insertSubview(blurEffectView, at: 0)
+        } else {
+
+        }
+    }
+
+
     func addAccessoryView() -> UIToolbar {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
         let doneButton = UIBarButtonItem(
             title: "Done",
             style: .done, target: self,
             action: #selector(self.doneButtonTapped))
-        toolBar.items = [doneButton]
-        toolBar.tintColor = UIColor.red
+        let spacer = UIBarButtonItem.flexibleSpace()
+        toolBar.items = [spacer, doneButton]
         return toolBar
     }
 

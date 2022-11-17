@@ -40,15 +40,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHC-FA-Va2">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHC-FA-Va2">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="com-bZ-oaw"/>
                                     <barButtonItem title="Settings" id="hYy-Vx-rvl">
                                         <connections>
-                                            <segue destination="6kV-H3-dgG" kind="popoverPresentation" popoverAnchorBarButtonItem="hYy-Vx-rvl" id="Nfx-oo-BKu">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
+                                            <action selector="settingsTapped:" destination="BYZ-38-t0r" id="0ov-gI-vnz"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -88,13 +86,13 @@
         <!--Settings View Controller-->
         <scene sceneID="ghS-bZ-05F">
             <objects>
-                <viewController id="6kV-H3-dgG" customClass="SettingsViewController" customModule="Money" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="6kV-H3-dgG" customClass="SettingsViewController" customModule="Money" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zS0-jD-bAH">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="e85-B2-PPG">
-                                <rect key="frame" x="159" y="68" width="218" height="35"/>
+                                <rect key="frame" x="160" y="68" width="217" height="35"/>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-WN-Eh7">
                                 <rect key="frame" x="152" y="121" width="225" height="35"/>
@@ -144,6 +142,7 @@
                             <constraint firstItem="IKG-Hh-lpC" firstAttribute="leading" secondItem="LOt-HA-RR0" secondAttribute="leading" constant="16" id="xt6-ca-asr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Tj9-ed-9ps"/>
                     <connections>
                         <outlet property="endTimeDatePicker" destination="JCe-WN-Eh7" id="XzA-Pn-aio"/>
                         <outlet property="hourlyRateTextField" destination="ENQ-61-7wK" id="aUI-FW-eWD"/>
