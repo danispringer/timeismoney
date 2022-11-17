@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     let numberFormatterCurrency = NumberFormatter()
     let numberFormatterReset = NumberFormatter()
+    let dateFormatter = DateFormatter()
 
 
     // MARK: Life Cycle
@@ -32,8 +33,18 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         hourlyRateTextField.delegate = self
         hourlyRateTextField.inputAccessoryView = addAccessoryView()
-        let hourlyRate = UserDefaults.standard.double(forKey: "hourlyRate")
+        let hourlyRate = UserDefaults.standard.double(forKey: Const.UDef.hourlyRate)
         hourlyRateTextField.text = numberFormatterCurrency.string(from: hourlyRate as NSNumber)
+
+        startTimeDatePicker.addTarget(
+            self,
+            action: #selector(workScheduleChanged(sender:)),
+            for: .valueChanged)
+        endTimeDatePicker.addTarget(
+            self,
+            action: #selector(workScheduleChanged(sender:)),
+            for: .valueChanged)
+
     }
 
 
@@ -91,7 +102,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        UserDefaults.standard.set(rateAsDouble, forKey: "hourlyRate")
+        UserDefaults.standard.set(rateAsDouble, forKey: Const.UDef.hourlyRate)
 
         hourlyRateTextField.text = rateAsCurrency
 
@@ -100,8 +111,19 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     func restoreOldRateCuzNewFailed() {
         // alert user?
-        let oldHourlyRate = UserDefaults.standard.double(forKey: "hourlyRate")
+        let oldHourlyRate = UserDefaults.standard.double(forKey: Const.UDef.hourlyRate)
         hourlyRateTextField.text = numberFormatterCurrency.string(from: oldHourlyRate as NSNumber)
+    }
+
+
+    @objc func workScheduleChanged(sender: UIDatePicker) {
+        // Start time tag: 0
+        // End time tag: 1
+        let time = sender.date
+        dateFormatter.dateFormat = "HH:mm"
+        let formatted = dateFormatter.string(from: time)
+        print("formatted: \(formatted)")
+
     }
 
 }

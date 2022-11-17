@@ -67,7 +67,7 @@ class HomeViewController: UIViewController {
 
 
     func updateLabelsDuringWorkDay() {
-        timeWorkableHelperLabel.text = "Time till workday ends:"
+        timeWorkableHelperLabel.text = Const.UIMsg.timeTillWorkdayEnds
         moneyHelperLabel.text = "Daily Makeable Remaining:"
         let todayAt6PM = calendar.date(bySettingHour: workdayEndsHour, minute: 0, second: 0, of: Date())!
         let now = Date()
@@ -81,7 +81,7 @@ class HomeViewController: UIViewController {
         let minutesAsPercent: Double = minutesLeft / 60
         let secondsAsPercent: Double = secondsLeft / 60 / 60
         let totalHoursLeftAsPercent = hoursLeft+minutesAsPercent+secondsAsPercent
-        let hourlyRate: Double = UserDefaults.standard.double(forKey: "hourlyRate")
+        let hourlyRate: Double = UserDefaults.standard.double(forKey: Const.UDef.hourlyRate)
         let moneyLeft = hourlyRate * totalHoursLeftAsPercent
         let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
         moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
@@ -95,7 +95,7 @@ class HomeViewController: UIViewController {
 
 
     func updateLabelsAfterHours() {
-        timeWorkableHelperLabel.text = "Time till workday begins:"
+        timeWorkableHelperLabel.text = Const.UIMsg.timeTillWorkdayBegins
         moneyHelperLabel.text = """
         (💤 Outside working hours 💤)
 
@@ -115,7 +115,7 @@ class HomeViewController: UIViewController {
         let componentsNowTo9AM = calendar.dateComponents([.hour, .minute, .second],
                                                          from: now, to: upcoming9AM)
 
-        let hourlyRate: Double = UserDefaults.standard.double(forKey: "hourlyRate")
+        let hourlyRate: Double = UserDefaults.standard.double(forKey: Const.UDef.hourlyRate)
         let moneyLeft = hourlyRate * Double(workdayEndsHour-workdayStartHour)
         let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
         moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
