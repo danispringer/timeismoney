@@ -81,8 +81,8 @@
 		3311530D2925FC7D0051C145 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				339B03CD2925EEE70022EC5B /* SettingsViewController.swift */,
 				339B82A12920B3B90032061E /* HomeViewController.swift */,
+				339B03CD2925EEE70022EC5B /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

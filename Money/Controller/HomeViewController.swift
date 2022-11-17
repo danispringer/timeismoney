@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
 
         for label: UILabel in [moneyHelperLabel, timeWorkableHelperLabel,
                                moneyMakeableLabel, timeWorkableLabel] {
-            label.text = ""
+            label.text = " "
         }
 
         numberFormatterCurrency.numberStyle = .currency
