@@ -12,6 +12,8 @@ let NC = NotificationCenter.default
 // swiftlint:enable identifier_name
 let calendar = Calendar.current
 
+let secondsInADay: Double = 24 * 60 * 60
+
 struct Const {
     struct UDef {
         static let hourlyRate = "hourlyRate"
