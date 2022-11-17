@@ -133,6 +133,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         }
 
         UD.set(rateAsDouble, forKey: Const.UDef.hourlyRate)
+        NC.post(name: .hourlyRateDidChange, object: nil)
 
         hourlyRateTextField.text = rateAsCurrency
 

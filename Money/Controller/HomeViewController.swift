@@ -25,6 +25,7 @@ class HomeViewController: UIViewController {
     let dateFormatterHMS = DateFormatter()
     var startTime: Date!
     var endTime: Date!
+    var hourlyRate: Double!
 
 
     // MARK: Life Cycle
@@ -43,9 +44,12 @@ class HomeViewController: UIViewController {
         }
 
         fetchWorkHours()
+        fetchHourlyRate()
 
         NC.addObserver(self, selector: #selector(fetchWorkHours),
                        name: .hoursDidChange, object: nil)
+        NC.addObserver(self, selector: #selector(fetchHourlyRate),
+                       name: .hourlyRateDidChange, object: nil)
 
         timer = Timer.scheduledTimer(
             timeInterval: 1.0, target: self,
@@ -54,6 +58,11 @@ class HomeViewController: UIViewController {
 
 
     // MARK: Helpers
+
+    @objc func fetchHourlyRate() {
+        hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
+    }
+
 
     @objc func fetchWorkHours() {
         let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
@@ -97,25 +106,17 @@ class HomeViewController: UIViewController {
         moneyHelperLabel.text = Const.UIMsg.dailyMakeableRemaining
         let now = Date()
 
-        let componentsNowTo6PM = calendar.dateComponents([.hour, .minute, .second],
-                                                         from: now, to: startTime)
+        let secsDiff = endTime.timeIntervalSince1970 - now.timeIntervalSince1970
+        updateMoneyMakeableLabel(seconds: secsDiff)
 
-        let hoursLeft: Double = Double(componentsNowTo6PM.hour!)
-        let minutesLeft: Double = Double(componentsNowTo6PM.minute!)
-        let secondsLeft: Double = Double(componentsNowTo6PM.second!)
-        let minutesAsPercent: Double = minutesLeft / 60
-        let secondsAsPercent: Double = secondsLeft / 60 / 60
-        let totalHoursLeftAsPercent = hoursLeft+minutesAsPercent+secondsAsPercent
-        let hourlyRate: Double = UD.double(forKey: Const.UDef.hourlyRate)
-        let moneyLeft = hourlyRate * totalHoursLeftAsPercent
+        timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsDiff))
+    }
+
+
+    func updateMoneyMakeableLabel(seconds: Double) {
+        let moneyLeft: Double = hourlyRate * seconds / 3600.0
         let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
         moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
-
-        let formattedMins = String(format: "%02d", componentsNowTo6PM.minute!)
-        let formattedSecs = String(format: "%02d", componentsNowTo6PM.second!)
-        timeWorkableLabel.text =  """
-        \(componentsNowTo6PM.hour!):\(formattedMins):\(formattedSecs)
-        """
     }
 
 
@@ -127,22 +128,19 @@ class HomeViewController: UIViewController {
         Your Daily Makeable:
         """
 
-        let hourlyRate: Double = UD.double(forKey: Const.UDef.hourlyRate)
-        let secsDiff = endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970
-        let moneyLeft = hourlyRate * secsDiff / 3600.0
-        let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
-        moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
+        let secsDiff = endTime
+            .timeIntervalSince1970 - startTime.timeIntervalSince1970
+        updateMoneyMakeableLabel(seconds: secsDiff)
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsDiff))
     }
 
 
     func secondsToHoursMinutesSeconds(_ seconds: Int) -> String {
-        return """
-        \(seconds / 3600):\
-        \((seconds % 3600) / 60):\
-        \((seconds % 3600) % 60)
-        """
+        let hours = String(format: "%02d", seconds / 3600)
+        let mins = String(format: "%02d", (seconds % 3600) / 60)
+        let secs = String(format: "%02d", (seconds % 3600) % 60)
+        return "\(hours):\(mins):\(secs)"
     }
 
 
