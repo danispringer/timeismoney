@@ -11,7 +11,7 @@ import SwiftUI
 struct Provider: TimelineProvider {
 
     let title = "Daily Makeable:"
-    let moneyMakeable = "$\(24.0 * Double(18-9))" // use vars. later: use minutes
+    let moneyMakeable = "$\(24.0 * Double(18-9))" // TODO: use vars. later: use minutes
 
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), title: title, moneyMakeable: moneyMakeable)

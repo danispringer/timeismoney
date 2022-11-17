@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Money
 //
 //  Created by dani on 11/13/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     // MARK: Outlets
 
@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     // MARK: Properties
 
     var timer = Timer()
-    let hourlyRate = 24.0
     let calendar = Calendar.current
     let workdayStartHour = 9
     let workdayStartMinute = 0 // use
@@ -82,6 +81,7 @@ class ViewController: UIViewController {
         let minutesAsPercent: Double = minutesLeft / 60
         let secondsAsPercent: Double = secondsLeft / 60 / 60
         let totalHoursLeftAsPercent = hoursLeft+minutesAsPercent+secondsAsPercent
+        let hourlyRate: Double = UserDefaults.standard.double(forKey: "hourlyRate")
         let moneyLeft = hourlyRate * totalHoursLeftAsPercent
         let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
         moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
@@ -115,6 +115,7 @@ class ViewController: UIViewController {
         let componentsNowTo9AM = calendar.dateComponents([.hour, .minute, .second],
                                                          from: now, to: upcoming9AM)
 
+        let hourlyRate: Double = UserDefaults.standard.double(forKey: "hourlyRate")
         let moneyLeft = hourlyRate * Double(workdayEndsHour-workdayStartHour)
         let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
         moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
