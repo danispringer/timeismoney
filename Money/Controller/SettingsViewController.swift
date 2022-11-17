@@ -28,6 +28,17 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if !UIAccessibility.isReduceTransparencyEnabled {
+            view.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: .regular)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.insertSubview(blurEffectView, at: 0)
+        } else {
+
+        }
+
         numberFormatterCurrency.numberStyle = .currency
         numberFormatterReset.numberStyle = .none
 
@@ -49,22 +60,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             action: #selector(workScheduleChanged(sender:)),
             for: .valueChanged)
 
-    }
-
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if !UIAccessibility.isReduceTransparencyEnabled {
-            view.backgroundColor = .clear
-            let blurEffect = UIBlurEffect(style: .regular)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            view.insertSubview(blurEffectView, at: 0)
-        } else {
-
-        }
     }
 
 
@@ -92,7 +87,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         endTimeDatePicker.date = calendar.date(
             bySettingHour: endTimeHourInt,
             minute: endTimeMinInt, second: 0, of: now)!
-
     }
 
 
@@ -121,9 +115,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        let droppedCurrencySymbol: String = userInput.replacing(
-            numberFormatterCurrency.currencySymbol, with: "")
-
+        let droppedCurrencySymbol: String = userInput.replacingOccurrences(
+            of: numberFormatterCurrency.currencySymbol, with: "")
         guard let rateAsDouble = Double(droppedCurrencySymbol) else {
             restoreOldRateCuzNewFailed()
             return
@@ -166,5 +159,11 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         NC.post(name: .hoursDidChange, object: nil)
 
     }
+
+
+    @IBAction func doneTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
 
 }

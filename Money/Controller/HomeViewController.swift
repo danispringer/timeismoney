@@ -157,8 +157,6 @@ class HomeViewController: UIViewController {
         let toPresent = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "SettingsViewController")
         as! SettingsViewController
-        toPresent.modalPresentationStyle = .pageSheet
-        toPresent.sheetPresentationController?.detents = [.medium()]
         present(toPresent, animated: true)
     }
 
