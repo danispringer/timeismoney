@@ -8,6 +8,7 @@
 import UIKit
 
 class SettingsHourlyRateTableViewCell: UITableViewCell {
+
     @IBOutlet weak var hourlyRateLabel: UILabel!
     @IBOutlet weak var hourlyRateTextField: UITextField!
 
