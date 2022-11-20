@@ -12,9 +12,9 @@ class HomeViewController: UIViewController {
     // MARK: Outlets
 
     @IBOutlet weak var moneyMakeableLabel: UILabel!
+    @IBOutlet weak var moneyHelperLabel: UILabel!
     @IBOutlet weak var timeWorkableLabel: UILabel!
     @IBOutlet weak var timeWorkableHelperLabel: UILabel!
-    @IBOutlet weak var moneyHelperLabel: UILabel!
 
 
     // MARK: Properties
@@ -37,6 +37,7 @@ class HomeViewController: UIViewController {
             // We are in testing mode, make arrangements if needed
             UIView.setAnimationsEnabled(false)
         }
+
 
         dateFormatterHM.dateFormat = "HH:mm"
         dateFormatterHMS.dateFormat = "HH:mm:ss"
@@ -84,8 +85,10 @@ class HomeViewController: UIViewController {
 
         let now = Date()
 
-        startTime = calendar.date(bySettingHour: startTimeHourInt, minute: startTimeMinInt, second: 0, of: now)!
-        endTime = calendar.date(bySettingHour: endTimeHourInt, minute: endTimeMinInt, second: 0, of: now)!
+        startTime = calendar.date(bySettingHour: startTimeHourInt,
+                                  minute: startTimeMinInt, second: 0, of: now)!
+        endTime = calendar.date(bySettingHour: endTimeHourInt,
+                                minute: endTimeMinInt, second: 0, of: now)!
     }
 
 
@@ -142,7 +145,8 @@ class HomeViewController: UIViewController {
                 .timeIntervalSince1970 - Date().timeIntervalSince1970
         } else {
             secsTillWorkdayBegins = startTime
-                .timeIntervalSince1970.advanced(by: secondsInADay) - Date().timeIntervalSince1970
+                .timeIntervalSince1970.advanced(by: secondsInADay)
+            - Date().timeIntervalSince1970
         }
 
 
@@ -158,11 +162,11 @@ class HomeViewController: UIViewController {
     }
 
 
-    @IBAction func settingsTapped(_ sender: Any) {
+    @IBAction func settingsTapped() {
         let toPresent = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "SettingsViewController")
         as! SettingsViewController
-        present(toPresent, animated: true)
+        self.navigationController?.pushViewController(toPresent, animated: true)
     }
 
 }

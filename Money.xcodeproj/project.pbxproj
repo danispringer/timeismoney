@@ -18,6 +18,8 @@
 		339B82A52920B3B90032061E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A32920B3B90032061E /* Main.storyboard */; };
 		339B82A72920B3BB0032061E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A62920B3BB0032061E /* Assets.xcassets */; };
 		339B82AA2920B3BB0032061E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A82920B3BB0032061E /* LaunchScreen.storyboard */; };
+		33D0E5532929B46500DA5FD4 /* SettingsTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D0E5522929B46500DA5FD4 /* SettingsTimeTableViewCell.swift */; };
+		33D0E5552929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D0E5542929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		339B82A62920B3BB0032061E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		339B82A92920B3BB0032061E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		339B82AB2920B3BB0032061E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33D0E5522929B46500DA5FD4 /* SettingsTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimeTableViewCell.swift; sourceTree = "<group>"; };
+		33D0E5542929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHourlyRateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,11 +154,21 @@
 				33115316292670010051C145 /* Money.entitlements */,
 				331153102925FCC80051C145 /* AppDelegate */,
 				33115311292626130051C145 /* Model */,
+				33D0E5512929B43500DA5FD4 /* View */,
+				3311530D2925FC7D0051C145 /* Controller */,
 				3311530F2925FCB40051C145 /* Assets */,
 				3311530E2925FC9F0051C145 /* Storyboard */,
-				3311530D2925FC7D0051C145 /* Controller */,
 			);
 			path = Money;
+			sourceTree = "<group>";
+		};
+		33D0E5512929B43500DA5FD4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				33D0E5522929B46500DA5FD4 /* SettingsTimeTableViewCell.swift */,
+				33D0E5542929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,9 +307,11 @@
 				331153132926261F0051C145 /* Constants.swift in Sources */,
 				339B82A22920B3B90032061E /* HomeViewController.swift in Sources */,
 				339B829E2920B3B90032061E /* AppDelegate.swift in Sources */,
+				33D0E5552929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift in Sources */,
 				339B82A02920B3B90032061E /* SceneDelegate.swift in Sources */,
 				3311531529264D0A0051C145 /* Notification+Extensions.swift in Sources */,
 				339B03CE2925EEE70022EC5B /* SettingsViewController.swift in Sources */,
+				33D0E5532929B46500DA5FD4 /* SettingsTimeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

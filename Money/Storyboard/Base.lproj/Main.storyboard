@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yhA-bU-Ao8">
+    <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -9,48 +9,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Motivator-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Money" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcy-7n-CIm">
-                                <rect key="frame" x="16" y="366.33333333333331" width="361" height="95.666666666666686"/>
+                                <rect key="frame" x="16" y="317.66666666666669" width="382" height="95.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="80"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-7c-JzR">
-                                <rect key="frame" x="16" y="591.33333333333337" width="361" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:35:24" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-7c-JzR">
+                                <rect key="frame" x="16" y="514" width="382" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time left till start/end of workday" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyb-5F-4sQ">
-                                <rect key="frame" x="32" y="526" width="329" height="57.333333333333371"/>
+                                <rect key="frame" x="32" y="477.33333333333331" width="350" height="28.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money you can still make today:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-8K-2K0">
-                                <rect key="frame" x="32" y="305.66666666666669" width="329" height="28.666666666666686"/>
+                                <rect key="frame" x="32" y="257" width="350" height="28.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9d-ii-YOE">
-                                <rect key="frame" x="290" y="75" width="87" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Settings">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="settingsTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p3m-cQ-v5G"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -61,11 +51,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wkO-8K-2K0" secondAttribute="trailing" constant="32" id="EP3-bG-61F"/>
                             <constraint firstItem="Xyb-5F-4sQ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-32" id="Ofm-xX-Lbf"/>
                             <constraint firstItem="LOi-7c-JzR" firstAttribute="top" secondItem="Xyb-5F-4sQ" secondAttribute="bottom" constant="8" id="Sgf-mc-WH0"/>
-                            <constraint firstItem="h9d-ii-YOE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Uks-5h-XQf"/>
                             <constraint firstItem="LOi-7c-JzR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bAP-hF-T2h"/>
                             <constraint firstItem="Bcy-7n-CIm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="bOA-Ke-Lel"/>
-                            <constraint firstItem="h9d-ii-YOE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="buD-9R-pfu"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="h9d-ii-YOE" secondAttribute="trailing" constant="16" id="d2i-be-bUY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LOi-7c-JzR" secondAttribute="trailing" constant="16" id="fnW-Ia-Ie0"/>
                             <constraint firstItem="Xyb-5F-4sQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="h2x-Kz-kos"/>
                             <constraint firstItem="Bcy-7n-CIm" firstAttribute="top" secondItem="wkO-8K-2K0" secondAttribute="bottom" constant="32" id="piD-pu-HqN"/>
@@ -73,12 +60,19 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Motivator" largeTitleDisplayMode="always" id="A5f-HS-Fzt">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="XtG-ah-lSi">
+                            <connections>
+                                <action selector="settingsTapped" destination="BYZ-38-t0r" id="9CH-C3-1a7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="moneyHelperLabel" destination="wkO-8K-2K0" id="WL4-vM-66d"/>
-                        <outlet property="moneyMakeableLabel" destination="Bcy-7n-CIm" id="xgE-LX-GNJ"/>
-                        <outlet property="timeWorkableHelperLabel" destination="Xyb-5F-4sQ" id="PxN-9U-55d"/>
-                        <outlet property="timeWorkableLabel" destination="LOi-7c-JzR" id="Eh1-bs-V5l"/>
+                        <outlet property="moneyHelperLabel" destination="wkO-8K-2K0" id="h9Q-dp-0lU"/>
+                        <outlet property="moneyMakeableLabel" destination="Bcy-7n-CIm" id="wT8-LM-BbX"/>
+                        <outlet property="timeWorkableHelperLabel" destination="Xyb-5F-4sQ" id="yWD-JY-KAR"/>
+                        <outlet property="timeWorkableLabel" destination="LOi-7c-JzR" id="a3H-8c-OTA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -86,95 +80,109 @@
             <point key="canvasLocation" x="83" y="-2"/>
         </scene>
         <!--Settings View Controller-->
-        <scene sceneID="ghS-bZ-05F">
+        <scene sceneID="KiX-JP-8c8">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="6kV-H3-dgG" customClass="SettingsViewController" customModule="Money" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zS0-jD-bAH">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                <tableViewController storyboardIdentifier="SettingsViewController" id="fWt-pw-ihI" customClass="SettingsViewController" customModule="Money" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="8xF-fQ-Ba9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOd-um-Na6">
-                                <rect key="frame" x="16.000000000000007" y="75" width="120.66666666666669" height="41"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="e85-B2-PPG">
-                                <rect key="frame" x="159.66666666666663" y="173.33333333333334" width="217.33333333333337" height="34.333333333333343"/>
-                            </datePicker>
-                            <datePicker tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JCe-WN-Eh7">
-                                <rect key="frame" x="152" y="226.33333333333334" width="225" height="34.333333333333343"/>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Start Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2f-RE-Kay">
-                                <rect key="frame" x="16.000000000000007" y="180" width="127.66666666666669" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work End Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKG-Hh-lpC">
-                                <rect key="frame" x="16" y="233" width="120" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly Rate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTx-gn-7NE">
-                                <rect key="frame" x="19.000000000000007" y="349" width="93.666666666666686" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here..." adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ENQ-61-7wK">
-                                <rect key="frame" x="128.66666666666663" y="342.66666666666669" width="248.33333333333337" height="34"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLk-Hn-oGf">
-                                <rect key="frame" x="312.66666666666669" y="75" width="64.333333333333314" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Done">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="doneTapped:" destination="6kV-H3-dgG" eventType="touchUpInside" id="pm2-3y-6Zu"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="LOt-HA-RR0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="d2f-RE-Kay" firstAttribute="leading" secondItem="LOt-HA-RR0" secondAttribute="leading" constant="16" id="0KX-Ny-qiB"/>
-                            <constraint firstItem="LOt-HA-RR0" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CTx-gn-7NE" secondAttribute="trailing" constant="16" id="1EC-kJ-iZb"/>
-                            <constraint firstItem="pOd-um-Na6" firstAttribute="leading" secondItem="LOt-HA-RR0" secondAttribute="leading" constant="16" id="1fE-h0-Uzo"/>
-                            <constraint firstItem="ENQ-61-7wK" firstAttribute="leading" secondItem="CTx-gn-7NE" secondAttribute="trailing" constant="16" id="5ak-bt-9F9"/>
-                            <constraint firstItem="IKG-Hh-lpC" firstAttribute="top" secondItem="d2f-RE-Kay" secondAttribute="bottom" constant="32" id="871-qn-eUA"/>
-                            <constraint firstItem="LOt-HA-RR0" firstAttribute="trailing" secondItem="JCe-WN-Eh7" secondAttribute="trailing" constant="16" id="8GF-Qy-jfw"/>
-                            <constraint firstItem="pOd-um-Na6" firstAttribute="top" secondItem="LOt-HA-RR0" secondAttribute="top" constant="16" id="9ag-Ca-JBa"/>
-                            <constraint firstItem="e85-B2-PPG" firstAttribute="centerY" secondItem="d2f-RE-Kay" secondAttribute="centerY" id="Crm-ol-jue"/>
-                            <constraint firstItem="CTx-gn-7NE" firstAttribute="top" secondItem="IKG-Hh-lpC" secondAttribute="bottom" constant="95" id="FDf-vT-UfJ"/>
-                            <constraint firstItem="ENQ-61-7wK" firstAttribute="centerY" secondItem="CTx-gn-7NE" secondAttribute="centerY" id="H5k-Zf-mFs"/>
-                            <constraint firstItem="lLk-Hn-oGf" firstAttribute="top" secondItem="LOt-HA-RR0" secondAttribute="top" constant="16" id="HkE-Kg-C3G"/>
-                            <constraint firstItem="CTx-gn-7NE" firstAttribute="leading" secondItem="LOt-HA-RR0" secondAttribute="leading" constant="19" id="IpB-MD-R8d"/>
-                            <constraint firstItem="JCe-WN-Eh7" firstAttribute="centerY" secondItem="IKG-Hh-lpC" secondAttribute="centerY" id="IwM-oZ-fuf"/>
-                            <constraint firstItem="LOt-HA-RR0" firstAttribute="trailing" secondItem="ENQ-61-7wK" secondAttribute="trailing" constant="16" id="MAf-qz-Yto"/>
-                            <constraint firstItem="LOt-HA-RR0" firstAttribute="trailing" secondItem="e85-B2-PPG" secondAttribute="trailing" constant="16" id="MIa-CT-1M7"/>
-                            <constraint firstItem="d2f-RE-Kay" firstAttribute="top" secondItem="pOd-um-Na6" secondAttribute="bottom" constant="64" id="YRj-1U-x2S"/>
-                            <constraint firstItem="e85-B2-PPG" firstAttribute="leading" secondItem="d2f-RE-Kay" secondAttribute="trailing" constant="16" id="fiN-ze-aNB"/>
-                            <constraint firstItem="JCe-WN-Eh7" firstAttribute="leading" secondItem="IKG-Hh-lpC" secondAttribute="trailing" constant="16" id="foi-PF-2aI"/>
-                            <constraint firstItem="LOt-HA-RR0" firstAttribute="trailing" secondItem="lLk-Hn-oGf" secondAttribute="trailing" constant="16" id="lhY-wV-5OU"/>
-                            <constraint firstItem="lLk-Hn-oGf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pOd-um-Na6" secondAttribute="trailing" constant="16" id="woc-ZQ-QuL"/>
-                            <constraint firstItem="IKG-Hh-lpC" firstAttribute="leading" secondItem="LOt-HA-RR0" secondAttribute="leading" constant="16" id="xt6-ca-asr"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Tj9-ed-9ps"/>
-                    <connections>
-                        <outlet property="endTimeDatePicker" destination="JCe-WN-Eh7" id="XzA-Pn-aio"/>
-                        <outlet property="hourlyRateTextField" destination="ENQ-61-7wK" id="aUI-FW-eWD"/>
-                        <outlet property="startTimeDatePicker" destination="e85-B2-PPG" id="x0D-Bp-ZJb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="suH-10-rt9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTimeCell" id="Hmu-SD-1O0" customClass="SettingsTimeTableViewCell" customModule="Money" customModuleProvider="target">
+                                <rect key="frame" x="20" y="55.333332061767578" width="374" height="53.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hmu-SD-1O0" id="pTn-xD-IpC">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="53.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpA-eo-sZV">
+                                            <rect key="frame" x="16" y="16" width="43" height="21.666666666666671"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="e85-B2-PPG">
+                                            <rect key="frame" x="75" y="16.000000000000004" width="283" height="34.333333333333343"/>
+                                        </datePicker>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="e85-B2-PPG" firstAttribute="top" secondItem="pTn-xD-IpC" secondAttribute="top" constant="16" id="5TY-97-FT0"/>
+                                        <constraint firstAttribute="trailing" secondItem="e85-B2-PPG" secondAttribute="trailing" constant="16" id="AeQ-t5-6EM"/>
+                                        <constraint firstAttribute="bottom" secondItem="e85-B2-PPG" secondAttribute="bottom" constant="16" id="B1S-8O-pLL"/>
+                                        <constraint firstItem="JpA-eo-sZV" firstAttribute="top" secondItem="pTn-xD-IpC" secondAttribute="top" constant="16" id="DOi-wS-nLv"/>
+                                        <constraint firstItem="e85-B2-PPG" firstAttribute="leading" secondItem="JpA-eo-sZV" secondAttribute="trailing" constant="16" id="JW4-cg-bat"/>
+                                        <constraint firstAttribute="bottom" secondItem="JpA-eo-sZV" secondAttribute="bottom" constant="16" id="Nep-1h-ape"/>
+                                        <constraint firstItem="JpA-eo-sZV" firstAttribute="leading" secondItem="pTn-xD-IpC" secondAttribute="leading" constant="16" id="r46-oi-ymR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myTimePicker" destination="e85-B2-PPG" id="SeW-Fd-4LC"/>
+                                    <outlet property="workTimeLabel" destination="JpA-eo-sZV" id="I2t-eB-tWn"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsHourlyRateCell" id="Phs-Qw-Co8" customClass="SettingsHourlyRateTableViewCell" customModule="Money" customModuleProvider="target">
+                                <rect key="frame" x="20" y="109" width="374" height="66.333335876464844"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Phs-Qw-Co8" id="NIJ-HU-i0e">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="66.333335876464844"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hourly rate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBO-O3-oOQ">
+                                            <rect key="frame" x="16" y="16.000000000000004" width="89" height="34.333333333333343"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here..." adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="N1X-La-cDt">
+                                            <rect key="frame" x="121" y="16.000000000000004" width="237" height="34.333333333333343"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="8xF-fQ-Ba9" id="nTH-rG-7aR"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="N1X-La-cDt" firstAttribute="leading" secondItem="sBO-O3-oOQ" secondAttribute="trailing" constant="16" id="15c-JK-vaz"/>
+                                        <constraint firstItem="sBO-O3-oOQ" firstAttribute="leading" secondItem="NIJ-HU-i0e" secondAttribute="leading" constant="16" id="Afv-1j-NeB"/>
+                                        <constraint firstAttribute="bottom" secondItem="sBO-O3-oOQ" secondAttribute="bottom" constant="16" id="LJD-Sh-ahp"/>
+                                        <constraint firstItem="N1X-La-cDt" firstAttribute="top" secondItem="NIJ-HU-i0e" secondAttribute="top" constant="16" id="Rpb-N0-0ju"/>
+                                        <constraint firstItem="sBO-O3-oOQ" firstAttribute="top" secondItem="NIJ-HU-i0e" secondAttribute="top" constant="16" id="W7g-fm-fbG"/>
+                                        <constraint firstAttribute="bottom" secondItem="N1X-La-cDt" secondAttribute="bottom" constant="16" id="hT9-Y3-NPX"/>
+                                        <constraint firstAttribute="trailing" secondItem="N1X-La-cDt" secondAttribute="trailing" constant="16" id="vMt-ZX-SKa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="hourlyRateLabel" destination="sBO-O3-oOQ" id="umx-ib-KgA"/>
+                                    <outlet property="hourlyRateTextField" destination="N1X-La-cDt" id="IB3-5E-gMz"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fWt-pw-ihI" id="32H-lY-GeG"/>
+                            <outlet property="delegate" destination="fWt-pw-ihI" id="vDs-BR-vii"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pB5-BO-Sbi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="874" y="-2"/>
+            <point key="canvasLocation" x="871" y="-2"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="L3F-bY-B4t">
+            <objects>
+                <navigationController id="yhA-bU-Ao8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GiC-yj-IpI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="9aZ-S8-WVf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sXq-ku-12Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-638" y="-2"/>
         </scene>
     </scenes>
     <resources>

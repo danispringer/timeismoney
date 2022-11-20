@@ -7,16 +7,22 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITextFieldDelegate {
-
-    // MARK: Outlets
-
-    @IBOutlet weak var startTimeDatePicker: UIDatePicker!
-    @IBOutlet weak var endTimeDatePicker: UIDatePicker!
-    @IBOutlet weak var hourlyRateTextField: UITextField!
-
+class SettingsViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: Properties
+
+    let settingsTimeCell = "SettingsTimeCell"
+    let settingsHourlyRateCell = "SettingsHourlyRateCell"
+
+    let myDataSourceLabels = [
+        [
+            "Work start time:",
+            "Work end time:"
+        ],
+        [
+            "Hourly rate:"
+        ]
+    ]
 
     let numberFormatterCurrency = NumberFormatter()
     let numberFormatterReset = NumberFormatter()
@@ -28,21 +34,11 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Settings"
+
         if CommandLine.arguments.contains("--moneyScreenshots") {
             // We are in testing mode, make arrangements if needed
             UIView.setAnimationsEnabled(false)
-        }
-
-
-        if !UIAccessibility.isReduceTransparencyEnabled {
-            view.backgroundColor = .clear
-            let blurEffect = UIBlurEffect(style: .regular)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            view.insertSubview(blurEffectView, at: 0)
-        } else {
-
         }
 
         numberFormatterCurrency.numberStyle = .currency
@@ -50,29 +46,12 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         dateFormatterHM.dateFormat = "HH:mm"
 
-        hourlyRateTextField.delegate = self
-        hourlyRateTextField.inputAccessoryView = addAccessoryView()
-        let hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
-        hourlyRateTextField.text = numberFormatterCurrency.string(from: hourlyRate as NSNumber)
-
-        fetchWorkHours()
-
-        startTimeDatePicker.addTarget(
-            self,
-            action: #selector(workScheduleChanged(sender:)),
-            for: .valueChanged)
-        endTimeDatePicker.addTarget(
-            self,
-            action: #selector(workScheduleChanged(sender:)),
-            for: .valueChanged)
-
     }
 
 
     // MARK: Helpers
 
-    // how to not have this func here AND in homevc?
-    @objc func fetchWorkHours() {
+    @objc func fetchWorkHours(aDatePicker: UIDatePicker) {
         let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
         let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
 
@@ -87,17 +66,22 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         let now = Date()
 
-        startTimeDatePicker.date = calendar.date(
-            bySettingHour: startTimeHourInt,
-            minute: startTimeMinInt, second: 0, of: now)!
-        endTimeDatePicker.date = calendar.date(
-            bySettingHour: endTimeHourInt,
-            minute: endTimeMinInt, second: 0, of: now)!
+        if aDatePicker.tag == 0 {
+            aDatePicker.date = calendar.date(
+                bySettingHour: startTimeHourInt,
+                minute: startTimeMinInt, second: 0, of: now)!
+        } else {
+            aDatePicker.date = calendar.date(
+                bySettingHour: endTimeHourInt,
+                minute: endTimeMinInt, second: 0, of: now)!
+        }
+
     }
 
 
     func addAccessoryView() -> UIToolbar {
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
+        let toolBar = UIToolbar(
+            frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
         let doneButton = UIBarButtonItem(
             title: "Done",
             style: .done, target: self,
@@ -114,37 +98,42 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
 
     @objc func doneButtonTapped() {
-        hourlyRateTextField.resignFirstResponder()
 
-        guard let userInput: String = hourlyRateTextField.text else {
-            restoreOldRateCuzNewFailed()
+        let aTextField: UITextField = (tableView.cellForRow(
+            at: IndexPath(row: 0, section: 1)) as! SettingsHourlyRateTableViewCell
+        ).hourlyRateTextField
+
+        aTextField.resignFirstResponder()
+
+        guard let userInput: String = aTextField.text else {
+            restoreOldRateCuzNewFailed(textField: aTextField)
             return
         }
 
         let droppedCurrencySymbol: String = userInput.replacingOccurrences(
             of: numberFormatterCurrency.currencySymbol, with: "")
         guard let rateAsDouble = Double(droppedCurrencySymbol) else {
-            restoreOldRateCuzNewFailed()
+            restoreOldRateCuzNewFailed(textField: aTextField)
             return
         }
 
-        guard let rateAsCurrency: String = numberFormatterCurrency.string(from: rateAsDouble as NSNumber) else {
-            restoreOldRateCuzNewFailed()
+        guard let rateAsCurrency: String = numberFormatterCurrency.string(
+            from: rateAsDouble as NSNumber) else {
+            restoreOldRateCuzNewFailed(textField: aTextField)
             return
         }
 
         UD.set(rateAsDouble, forKey: Const.UDef.hourlyRate)
         NC.post(name: .hourlyRateDidChange, object: nil)
 
-        hourlyRateTextField.text = rateAsCurrency
+        aTextField.text = rateAsCurrency
 
     }
 
 
-    func restoreOldRateCuzNewFailed() {
-        // alert user?
+    func restoreOldRateCuzNewFailed(textField: UITextField) {
         let oldHourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
-        hourlyRateTextField.text = numberFormatterCurrency.string(from: oldHourlyRate as NSNumber)
+        textField.text = numberFormatterCurrency.string(from: oldHourlyRate as NSNumber)
     }
 
 
@@ -163,13 +152,73 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
                 fatalError()
         }
         NC.post(name: .hoursDidChange, object: nil)
-
     }
 
 
-    @IBAction func doneTapped(_ sender: Any) {
-        dismiss(animated: true)
+    // MARK: TableView
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2 // work start/end times, hourly rate
     }
 
+
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
+        switch section {
+            case 0:
+                return 2 // start time, end time
+            case 1:
+                return 1 // hourly rate
+            default:
+                fatalError()
+        }
+    }
+
+
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        switch indexPath.section {
+            case 0:
+                switch indexPath.row {
+                    case 0:
+                        let cell = tableView.dequeueReusableCell(
+                            withIdentifier: settingsTimeCell) as! SettingsTimeTableViewCell
+                        cell.workTimeLabel.text =
+                        myDataSourceLabels[indexPath.section][indexPath.row]
+                        cell.myTimePicker.tag = indexPath.row
+                        fetchWorkHours(aDatePicker: cell.myTimePicker)
+                        cell.myTimePicker.addTarget(
+                            self,
+                            action: #selector(workScheduleChanged(sender:)), for: .valueChanged)
+                        return cell
+                    case 1:
+                        let cell = tableView.dequeueReusableCell(
+                            withIdentifier: settingsTimeCell) as! SettingsTimeTableViewCell
+                        cell.workTimeLabel.text =
+                        myDataSourceLabels[indexPath.section][indexPath.row]
+                        cell.myTimePicker.tag = indexPath.row
+                        fetchWorkHours(aDatePicker: cell.myTimePicker)
+                        cell.myTimePicker.addTarget(
+                            self,
+                            action: #selector(workScheduleChanged(sender:)), for: .valueChanged)
+                        return cell
+                    default:
+                        fatalError()
+                }
+            case 1:
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: settingsHourlyRateCell) as! SettingsHourlyRateTableViewCell
+                cell.hourlyRateLabel.text = myDataSourceLabels[indexPath.section][indexPath.row]
+                cell.hourlyRateTextField.inputAccessoryView = addAccessoryView()
+                let hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
+                cell.hourlyRateTextField.text = numberFormatterCurrency.string(
+                    from: hourlyRate as NSNumber)
+                return cell
+            default:
+                fatalError()
+        }
+
+    }
 
 }
