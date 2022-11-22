@@ -24,6 +24,11 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         ]
     ]
 
+    let myDataSourceTitles = [
+        "Enter what times you start and end work",
+        "Enter how much you get paid per hour"
+    ]
+
     let numberFormatterCurrency = NumberFormatter()
     let numberFormatterReset = NumberFormatter()
     let dateFormatterHM = DateFormatter()
@@ -33,6 +38,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         self.title = "Settings"
 
@@ -93,6 +100,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        doneButtonTapped()
         return true
     }
 
@@ -162,6 +170,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     }
 
 
+    override func tableView(
+        _ tableView: UITableView,
+        titleForHeaderInSection section: Int) -> String? {
+            return myDataSourceTitles[section]
+        }
+
+
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         switch section {
@@ -214,6 +229,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
                 let hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
                 cell.hourlyRateTextField.text = numberFormatterCurrency.string(
                     from: hourlyRate as NSNumber)
+                cell.hourlyRateTextField.delegate = self
                 return cell
             default:
                 fatalError()

@@ -38,6 +38,8 @@ class HomeViewController: UIViewController {
             UIView.setAnimationsEnabled(false)
         }
 
+        navigationController?.navigationBar.prefersLargeTitles = true
+
 
         dateFormatterHM.dateFormat = "HH:mm"
         dateFormatterHMS.dateFormat = "HH:mm:ss"
