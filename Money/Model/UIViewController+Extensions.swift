@@ -26,6 +26,8 @@ extension UIViewController {
 
         UISwitch.appearance().onTintColor = myThemeColor
 
+        UIDatePicker.appearance().tintColor = myThemeColor
+
         for state: UIControl.State in [.application, .highlighted, .normal, .selected] {
             UIBarButtonItem.appearance().setTitleTextAttributes([
                 NSAttributedString.Key.foregroundColor: myThemeColor

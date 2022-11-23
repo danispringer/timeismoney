@@ -39,8 +39,6 @@ class HomeViewController: UIViewController {
             UIView.setAnimationsEnabled(false)
         }
 
-        navigationController?.navigationBar.prefersLargeTitles = true
-
 
         dateFormatterHM.dateFormat = "HH:mm"
         dateFormatterHMS.dateFormat = "HH:mm:ss"
@@ -64,14 +62,16 @@ class HomeViewController: UIViewController {
             timeInterval: 1.0, target: self,
             selector: #selector(self.tick), userInfo: nil, repeats: true)
 
-        aboutButton.menu = infoMenu()
     }
 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        navigationController?.navigationBar.prefersLargeTitles = true
+
         setThemeColorTo(myThemeColor: .systemGreen)
+        aboutButton.menu = infoMenu()
     }
 
 

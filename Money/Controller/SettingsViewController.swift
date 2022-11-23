@@ -39,10 +39,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.prefersLargeTitles = true
-
-        self.title = "Settings"
-
         if CommandLine.arguments.contains("--moneyScreenshots") {
             // We are in testing mode, make arrangements if needed
             UIView.setAnimationsEnabled(false)
@@ -50,8 +46,17 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 
         numberFormatterCurrency.numberStyle = .currency
         numberFormatterReset.numberStyle = .none
-
         dateFormatterHM.dateFormat = "HH:mm"
+
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+        self.title = "Settings"
 
     }
 
