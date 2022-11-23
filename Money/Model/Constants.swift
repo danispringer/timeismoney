@@ -26,6 +26,11 @@ struct Const {
         static let timeTillWorkdayEnds = "Time till workday ends:"
         static let timeTillWorkdayBegins = "Time till workday begins:"
         static let dailyMakeableRemaining = "Daily Makeable Remaining:"
+        static let dailyOutsideWorkingHours = """
+        (💤 Outside working hours 💤)
+
+        Your Daily Makeable:
+        """
         static let shareTitleMessage = "Tell a friend"
         static let leaveReview = "Leave a review"
         static let showAppsButtonTitle = "More apps"

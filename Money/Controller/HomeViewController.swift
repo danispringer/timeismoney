@@ -134,14 +134,20 @@ class HomeViewController: UIViewController {
 
     func updateLabelsAfterHours() {
         timeWorkableHelperLabel.text = Const.UIMsg.timeTillWorkdayBegins
-        moneyHelperLabel.text = """
-        (💤 Outside working hours 💤)
-
-        Your Daily Makeable:
-        """
+        moneyHelperLabel.text = Const.UIMsg.dailyOutsideWorkingHours
 
         let secsBetweenStartAndEndTime = endTime
             .timeIntervalSince1970 - startTime.timeIntervalSince1970
+
+        guard secsBetweenStartAndEndTime > 0 else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            alert.message?.append("error: func \(#function), line \(#line)")
+            alert.message?.append("startTime: \(startTime.timeIntervalSince1970), endTime: \(endTime.timeIntervalSince1970)")
+            timer.invalidate()
+            present(alert, animated: true)
+            return
+        }
+
         updateMoneyMakeableLabel(seconds: secsBetweenStartAndEndTime)
 
         var secsTillWorkdayBegins = 0.0
@@ -149,12 +155,26 @@ class HomeViewController: UIViewController {
         if Date() < startTime { // if before work (as opposed to after)
             secsTillWorkdayBegins = startTime
                 .timeIntervalSince1970 - Date().timeIntervalSince1970
-        } else {
+        } else if Date() >= endTime {
             secsTillWorkdayBegins = startTime
                 .timeIntervalSince1970.advanced(by: secondsInADay)
             - Date().timeIntervalSince1970
+        } else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            alert.message?.append("error: func \(#function), line \(#line)")
+            alert.message?.append("startTime: \(startTime.timeIntervalSince1970), endTime: \(endTime.timeIntervalSince1970)")
+            timer.invalidate()
+            present(alert, animated: true)
+            return
         }
 
+        if secsTillWorkdayBegins < 0 {
+            let alert = createAlert(alertReasonParam: .unknown)
+            alert.message?.append("error: func \(#function), line \(#line)")
+            alert.message?.append("startTime: \(startTime.timeIntervalSince1970), endTime: \(endTime.timeIntervalSince1970)")
+            timer.invalidate()
+            present(alert, animated: true)
+        }
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsTillWorkdayBegins))
     }
@@ -239,6 +259,7 @@ class HomeViewController: UIViewController {
     }
 
 }
+
 
 extension HomeViewController {
 

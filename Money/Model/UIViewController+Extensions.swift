@@ -50,7 +50,8 @@ extension UIViewController {
             default:
                 alertTitle = "Unknown error"
                 alertMessage = """
-            An unknown error occurred. Please try again
+            Please let me know the steps or events that occurred before this error (visit the App Store page for this app, then tap on App Support).
+            You may quit and relaunch the app to try again.
             """
         }
 
