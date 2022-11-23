@@ -39,6 +39,10 @@ class HomeViewController: UIViewController {
             UIView.setAnimationsEnabled(false)
         }
 
+        timer = Timer.scheduledTimer(
+            timeInterval: 1.0, target: self,
+            selector: #selector(self.tick), userInfo: nil, repeats: true)
+
 
         dateFormatterHM.dateFormat = "HH:mm"
         dateFormatterHMS.dateFormat = "HH:mm:ss"
@@ -57,16 +61,6 @@ class HomeViewController: UIViewController {
                        name: .hoursDidChange, object: nil)
         NC.addObserver(self, selector: #selector(fetchHourlyRate),
                        name: .hourlyRateDidChange, object: nil)
-
-        timer = Timer.scheduledTimer(
-            timeInterval: 1.0, target: self,
-            selector: #selector(self.tick), userInfo: nil, repeats: true)
-
-    }
-
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
 
         navigationController?.navigationBar.prefersLargeTitles = true
 

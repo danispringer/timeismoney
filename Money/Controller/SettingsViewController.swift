@@ -48,12 +48,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         numberFormatterReset.numberStyle = .none
         dateFormatterHM.dateFormat = "HH:mm"
 
-    }
-
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
         navigationController?.navigationBar.prefersLargeTitles = true
 
         self.title = "Settings"
