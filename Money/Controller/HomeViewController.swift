@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var moneyHelperLabel: UILabel!
     @IBOutlet weak var timeWorkableLabel: UILabel!
     @IBOutlet weak var timeWorkableHelperLabel: UILabel!
+    @IBOutlet weak var aboutButton: UIBarButtonItem!
 
 
     // MARK: Properties
@@ -62,6 +63,15 @@ class HomeViewController: UIViewController {
         timer = Timer.scheduledTimer(
             timeInterval: 1.0, target: self,
             selector: #selector(self.tick), userInfo: nil, repeats: true)
+
+        aboutButton.menu = infoMenu()
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setThemeColorTo(myThemeColor: .systemGreen)
     }
 
 
@@ -171,4 +181,94 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(toPresent, animated: true)
     }
 
+
+    func infoMenu() -> UIMenu {
+        let shareApp = UIAction(title: Const.UIMsg.shareTitleMessage,
+                                image: UIImage(systemName: "heart"),
+                                state: .off) { _ in
+            self.shareApp()
+        }
+        let review = UIAction(title: Const.UIMsg.leaveReview,
+                              image: UIImage(systemName: "hand.thumbsup"), state: .off) { _ in
+            self.requestReview()
+        }
+        let moreApps = UIAction(title: Const.UIMsg.showAppsButtonTitle,
+                                image: UIImage(systemName: "apps.iphone"),
+                                state: .off) { _ in
+            self.showApps()
+        }
+
+
+        let version: String? = Bundle.main.infoDictionary![Const.UIMsg.appVersion] as? String
+        var myTitle = Const.UIMsg.appName
+        if let safeVersion = version {
+            myTitle += " \(Const.UIMsg.version) \(safeVersion)"
+        }
+
+        let infoMenu = UIMenu(title: myTitle, image: nil, identifier: .none,
+                              options: .displayInline,
+                              children: [review, shareApp, moreApps])
+        return infoMenu
+    }
+
+
+    func showApps() {
+
+        let myURL = URL(string: Const.UIMsg.appsLink)
+        guard let safeURL = myURL else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            present(alert, animated: true)
+            return
+        }
+        UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
+    }
+
+
+    func shareApp() {
+        let message = Const.UIMsg.appsLink
+        let activityController = UIActivityViewController(activityItems: [message],
+                                                          applicationActivities: nil)
+        activityController.popoverPresentationController?.barButtonItem = aboutButton
+        activityController
+            .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
+                guard error == nil else {
+                    let alert = self.createAlert(alertReasonParam: .unknown)
+                    alert.view.layoutIfNeeded()
+                    self.present(alert, animated: true)
+                    return
+                }
+            }
+        DispatchQueue.main.async {
+            self.present(activityController, animated: true)
+        }
+
+    }
+
 }
+
+extension HomeViewController {
+
+
+    func requestReview() {
+        // Note: Replace the XXXXXXXXXX below with the App Store ID for your app
+        //       You can find the App Store ID in your app's product URL
+        guard let writeReviewURL = URL(string: Const.UIMsg.reviewLink)
+        else {
+            fatalError("expected valid URL")
+
+        }
+        UIApplication.shared.open(
+            writeReviewURL,
+            options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
+            completionHandler: nil)
+    }
+}
+
+
+// Helper function inserted by Swift 4.2 migrator.
+
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(
+    _ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map { key, value in
+            (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    }

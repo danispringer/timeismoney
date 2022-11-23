@@ -61,6 +61,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Motivator" largeTitleDisplayMode="always" id="A5f-HS-Fzt">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" image="ellipsis.circle" catalog="system" id="xFZ-g0-3qP"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="XtG-ah-lSi">
                             <connections>
                                 <action selector="settingsTapped" destination="BYZ-38-t0r" id="9CH-C3-1a7"/>
@@ -69,6 +70,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="aboutButton" destination="xFZ-g0-3qP" id="qpj-8G-HDD"/>
                         <outlet property="moneyHelperLabel" destination="wkO-8K-2K0" id="h9Q-dp-0lU"/>
                         <outlet property="moneyMakeableLabel" destination="Bcy-7n-CIm" id="wT8-LM-BbX"/>
                         <outlet property="timeWorkableHelperLabel" destination="Xyb-5F-4sQ" id="yWD-JY-KAR"/>
@@ -186,6 +188,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
