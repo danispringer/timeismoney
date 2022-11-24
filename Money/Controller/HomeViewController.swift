@@ -324,6 +324,7 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
         }
     }
 
+
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the
@@ -346,6 +347,7 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
         let alert = createAlert(alertReasonParam: .emailError)
         present(alert, animated: true)
     }
+
 
     // MARK: MFMailComposeViewControllerDelegate
 
