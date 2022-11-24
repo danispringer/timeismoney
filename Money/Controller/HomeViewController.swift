@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MessageUI
+
 
 class HomeViewController: UIViewController {
 
@@ -141,9 +143,10 @@ class HomeViewController: UIViewController {
 
         guard secsBetweenStartAndEndTime > 0 else {
             let alert = createAlert(alertReasonParam: .unknown)
-            alert.message?.append("error: func \(#function), line \(#line)")
-            alert.message?.append("startTime: \(startTime.timeIntervalSince1970), endTime: \(endTime.timeIntervalSince1970)")
+
             timer.invalidate()
+            appendTo(alert: alert, condition: "secsBetweenStartAndEndTime > 0",
+                     someFunc: #function, someLine: #line)
             present(alert, animated: true)
             return
         }
@@ -161,8 +164,9 @@ class HomeViewController: UIViewController {
             - Date().timeIntervalSince1970
         } else {
             let alert = createAlert(alertReasonParam: .unknown)
-            alert.message?.append("error: func \(#function), line \(#line)")
-            alert.message?.append("startTime: \(startTime.timeIntervalSince1970), endTime: \(endTime.timeIntervalSince1970)")
+            appendTo(alert: alert, condition: """
+            updateLabelAfterHours called but Date() seems to be outside working hours
+            """, someFunc: #function, someLine: #line)
             timer.invalidate()
             present(alert, animated: true)
             return
@@ -170,13 +174,23 @@ class HomeViewController: UIViewController {
 
         if secsTillWorkdayBegins < 0 {
             let alert = createAlert(alertReasonParam: .unknown)
-            alert.message?.append("error: func \(#function), line \(#line)")
-            alert.message?.append("startTime: \(startTime.timeIntervalSince1970), endTime: \(endTime.timeIntervalSince1970)")
+            appendTo(alert: alert, condition: "secsTillWorkdayBegins < 0", someFunc: #function,
+                     someLine: #line)
             timer.invalidate()
             present(alert, animated: true)
         }
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsTillWorkdayBegins))
+    }
+
+
+    func appendTo(alert: UIAlertController, condition: String,
+                  someFunc: String, someLine: Int) {
+        alert.message?.append("\n\n\(someFunc), \(someLine)")
+        alert.message?.append("\n\(condition)")
+        alert.message?.append("\nstartTime: \(String(describing: startTime))")
+        alert.message?.append("\nendTime: \(String(describing: endTime))")
+        alert.message?.append("\nnow: \(Date())")
     }
 
 
@@ -212,6 +226,12 @@ class HomeViewController: UIViewController {
             self.showApps()
         }
 
+        let emailAction = UIAction(title: Const.UIMsg.contact,
+                                   image: UIImage(systemName: "envelope.badge"),
+                                   state: .off) { _ in
+            self.sendEmailTapped()
+        }
+
 
         let version: String? = Bundle.main.infoDictionary![Const.UIMsg.appVersion] as? String
         var myTitle = Const.UIMsg.appName
@@ -221,7 +241,7 @@ class HomeViewController: UIViewController {
 
         let infoMenu = UIMenu(title: myTitle, image: nil, identifier: .none,
                               options: .displayInline,
-                              children: [review, shareApp, moreApps])
+                              children: [emailAction, review, shareApp, moreApps])
         return infoMenu
     }
 
@@ -231,6 +251,8 @@ class HomeViewController: UIViewController {
         let myURL = URL(string: Const.UIMsg.appsLink)
         guard let safeURL = myURL else {
             let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(alert: alert, condition: "safeURL = myURL", someFunc: #function,
+                     someLine: #line)
             present(alert, animated: true)
             return
         }
@@ -248,6 +270,8 @@ class HomeViewController: UIViewController {
                 guard error == nil else {
                     let alert = self.createAlert(alertReasonParam: .unknown)
                     alert.view.layoutIfNeeded()
+                    self.appendTo(alert: alert, condition: "error == nil", someFunc: #function,
+                                  someLine: #line)
                     self.present(alert, animated: true)
                     return
                 }
@@ -287,3 +311,47 @@ private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(
         return Dictionary(uniqueKeysWithValues: input.map { key, value in
             (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
     }
+
+
+extension HomeViewController: MFMailComposeViewControllerDelegate {
+
+    func sendEmailTapped() {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the
+        // --mailComposeDelegate-- property, NOT the --delegate-- property
+
+        mailComposerVC.setToRecipients([Const.UIMsg.emailString])
+        let version: String? = Bundle.main.infoDictionary![Const.UIMsg.appVersion] as? String
+        var myTitle = Const.UIMsg.appName
+        if let safeVersion = version {
+            myTitle += " \(Const.UIMsg.version) \(safeVersion)"
+        }
+        mailComposerVC.setSubject(myTitle)
+        mailComposerVC.setMessageBody("Hi, I have a question about your app.", isHTML: false)
+
+        return mailComposerVC
+    }
+
+
+    func showSendMailErrorAlert() {
+        let alert = createAlert(alertReasonParam: .emailError)
+        present(alert, animated: true)
+    }
+
+    // MARK: MFMailComposeViewControllerDelegate
+
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+
+}

@@ -37,6 +37,7 @@ extension UIViewController {
 
     enum AlertReason {
         case unknown
+        case emailError
     }
 
 
@@ -47,11 +48,20 @@ extension UIViewController {
         var alertTitle = ""
         var alertMessage = ""
         switch alertReasonParam {
+            case .emailError:
+                alertTitle = "Email Not Sent"
+                alertMessage = """
+                Your device could not send e-mail. Please check e-mail configuration and \
+                try again.
+                """
             default:
                 alertTitle = "Unknown error"
                 alertMessage = """
-            Please let me know the steps or events that occurred before this error (visit the App Store page for this app, then tap on App Support).
-            You may quit and relaunch the app to try again.
+            Please screenshot this message and email it to me:
+            Tap on the top left button, then tap "\(Const.UIMsg.contact)", \
+            and add the screenshot to your message.
+
+            Please relaunch the app to retry.
             """
         }
 

@@ -33,6 +33,8 @@ struct Const {
         """
         static let shareTitleMessage = "Tell a friend"
         static let leaveReview = "Leave a review"
+        static let contact = "Email Me"
+        static let emailString = "00.segue_affix@icloud.com"
         static let showAppsButtonTitle = "More apps"
         static let appsLink = "https://apps.apple.com/developer/id1402417666"
         static let appVersion = "CFBundleShortVersionString"
