@@ -194,12 +194,12 @@ class HomeViewController: UIViewController {
 
     func appendTo(alert: UIAlertController, condition: String,
                   someFunc: String, someLine: Int) {
-        alert.message?.append("\n\nBelow is stuff for the code people to know what happened 😊")
-        alert.message?.append("\n\n\n\(someFunc), \(someLine)")
+        alert.message?.append("\n\n(Notes for the devs)")
+        alert.message?.append("\n\(someFunc), \(someLine)")
         alert.message?.append("\n\(condition)")
-        alert.message?.append("\nstartTime: \(String(describing: startTime))")
-        alert.message?.append("\nendTime: \(String(describing: endTime))")
-        alert.message?.append("\nnow: \(Date())")
+        alert.message?.append("\ns: \(startTime!)")
+        alert.message?.append("\ne: \(endTime!)")
+        alert.message?.append("\nn: \(Date())")
     }
 
 
