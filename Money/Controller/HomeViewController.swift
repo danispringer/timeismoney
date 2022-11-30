@@ -155,6 +155,11 @@ class HomeViewController: UIViewController {
 
         var secsTillWorkdayBegins = 0.0
 
+        guard Date() < startTime || Date() >= endTime else {
+            fetchWorkHours()
+            return
+        }
+
         if Date() < startTime { // if before work (as opposed to after)
             secsTillWorkdayBegins = startTime
                 .timeIntervalSince1970 - Date().timeIntervalSince1970
@@ -164,20 +169,16 @@ class HomeViewController: UIViewController {
             - Date().timeIntervalSince1970
         } else {
             let alert = createAlert(alertReasonParam: .unknown)
-            appendTo(alert: alert, condition: """
-            updateLabelAfterHours called but Date() seems to be outside working hours
-            """, someFunc: #function, someLine: #line)
+            appendTo(alert: alert, condition: "else past guard", someFunc: #function,
+                     someLine: #line)
             timer.invalidate()
             present(alert, animated: true)
             return
         }
 
-        if secsTillWorkdayBegins < 0 {
-            let alert = createAlert(alertReasonParam: .unknown)
-            appendTo(alert: alert, condition: "secsTillWorkdayBegins < 0", someFunc: #function,
-                     someLine: #line)
-            timer.invalidate()
-            present(alert, animated: true)
+        guard secsTillWorkdayBegins >= 0 else {
+            fetchWorkHours()
+            return
         }
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsTillWorkdayBegins))
