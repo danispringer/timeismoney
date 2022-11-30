@@ -346,8 +346,16 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
             myTitle += " \(Const.UIMsg.version) \(safeVersion)"
         }
         mailComposerVC.setSubject(myTitle)
-        mailComposerVC.setMessageBody("Hi, I have a question about your app.", isHTML: false)
-
+        mailComposerVC.setMessageBody("""
+        Hi, I have a question/suggestion for your app.
+        \n\n\n\n
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        startTime: \(startTime!)
+        endTime: \(endTime!)
+        now: \(Date())
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        """, isHTML: false)
+// TODO: test body when sending email
         return mailComposerVC
     }
 

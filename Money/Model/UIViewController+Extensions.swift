@@ -55,10 +55,11 @@ extension UIViewController {
                 try again.
                 """
             default:
-                alertTitle = "Unknown Error"
+                alertTitle = "An Error Occurred"
                 alertMessage = """
-            Please email us a screenshot of this: tap on the top left "Info" button, then \
-            tap "\(Const.UIMsg.contact)".
+            Please take a s screenshot of this error. Here is how to email it it us:
+            Tap on the top left "Info" button, then tap "\(Const.UIMsg.contact)", \
+            and attach the screenshot to the email.
 
             TIP: Ensure you set the work hours correctly, then quit and relaunch the app \
             to retry.
