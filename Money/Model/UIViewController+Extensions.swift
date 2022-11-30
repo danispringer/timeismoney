@@ -57,7 +57,7 @@ extension UIViewController {
             default:
                 alertTitle = "Unknown error"
                 alertMessage = """
-            Please email me a screenshot of this: tap on the top left button, then tap \
+            Please email me a screenshot of this: tap on Info, then tap \
             "\(Const.UIMsg.contact)".
 
             TIP: Ensure the work start/end times are set correctly, then quit and relaunch \
@@ -73,5 +73,21 @@ extension UIViewController {
         return alert
     }
 
+
+    func showViaGCD(alert: UIAlertController,
+                    completionHandler: ((Bool) -> Void)?) {
+        DispatchQueue.main.async {
+            if self.navigationController?.topViewController == self {
+                self.navigationController?.present(alert, animated: true)
+                if let safeCompletionHandler = completionHandler {
+                    safeCompletionHandler(true)
+                }
+            } else {
+                if let safeCompletionHandler = completionHandler {
+                    safeCompletionHandler(false)
+                }
+            }
+        }
+    }
 
 }

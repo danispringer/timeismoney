@@ -142,13 +142,14 @@ class HomeViewController: UIViewController {
             .timeIntervalSince1970 - startTime.timeIntervalSince1970
 
         guard secsBetweenStartAndEndTime > 0 else {
-            timer.invalidate()
             let alert = createAlert(alertReasonParam: .unknown)
 
             appendTo(alert: alert, condition: "secsBetweenStartAndEndTime > 0",
                      someFunc: #function, someLine: #line)
-            DispatchQueue.main.async {
-                self.navigationController?.present(alert, animated: true)
+            showViaGCD(alert: alert) { shown in
+                if shown {
+                    self.timer.invalidate()
+                }
             }
             return
         }
@@ -170,13 +171,14 @@ class HomeViewController: UIViewController {
                 .timeIntervalSince1970.advanced(by: secondsInADay)
             - Date().timeIntervalSince1970
         } else {
-            timer.invalidate()
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "else past guard", someFunc: #function,
                      someLine: #line)
 
-            DispatchQueue.main.async {
-                self.navigationController?.present(alert, animated: true)
+            showViaGCD(alert: alert) { shown in
+                if shown {
+                    self.timer.invalidate()
+                }
             }
             return
         }
@@ -260,9 +262,7 @@ class HomeViewController: UIViewController {
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "safeURL = myURL", someFunc: #function,
                      someLine: #line)
-            DispatchQueue.main.async {
-                self.navigationController?.present(alert, animated: true)
-            }
+            showViaGCD(alert: alert, completionHandler: nil)
             return
         }
         UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
@@ -281,9 +281,7 @@ class HomeViewController: UIViewController {
                     alert.view.layoutIfNeeded()
                     self.appendTo(alert: alert, condition: "error == nil", someFunc: #function,
                                   someLine: #line)
-                    DispatchQueue.main.async {
-                        self.navigationController?.present(alert, animated: true)
-                    }
+                    self.showViaGCD(alert: alert, completionHandler: nil)
                     return
                 }
             }
@@ -356,9 +354,7 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
 
     func showSendMailErrorAlert() {
         let alert = createAlert(alertReasonParam: .emailError)
-        DispatchQueue.main.async {
-            self.navigationController?.present(alert, animated: true)
-        }
+        showViaGCD(alert: alert, completionHandler: nil)
     }
 
 

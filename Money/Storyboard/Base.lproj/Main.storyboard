@@ -61,7 +61,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Motivator" largeTitleDisplayMode="always" id="A5f-HS-Fzt">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" image="ellipsis.circle" catalog="system" id="xFZ-g0-3qP"/>
+                        <barButtonItem key="leftBarButtonItem" title="Info" id="xFZ-g0-3qP"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="XtG-ah-lSi">
                             <connections>
                                 <action selector="settingsTapped" destination="BYZ-38-t0r" id="9CH-C3-1a7"/>
@@ -91,14 +91,14 @@
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTimeCell" id="Hmu-SD-1O0" customClass="SettingsTimeTableViewCell" customModule="Money" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.333332061767578" width="374" height="53"/>
+                                <rect key="frame" x="20" y="55.333332061767578" width="374" height="53.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hmu-SD-1O0" id="pTn-xD-IpC">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="53"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="53.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpA-eo-sZV">
-                                            <rect key="frame" x="16" y="16" width="43" height="21"/>
+                                            <rect key="frame" x="16" y="16" width="43" height="21.666666666666671"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -123,7 +123,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsHourlyRateCell" id="Phs-Qw-Co8" customClass="SettingsHourlyRateTableViewCell" customModule="Money" customModuleProvider="target">
-                                <rect key="frame" x="20" y="108.33333206176758" width="374" height="66.333335876464844"/>
+                                <rect key="frame" x="20" y="109" width="374" height="66.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Phs-Qw-Co8" id="NIJ-HU-i0e">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="66.333335876464844"/>
@@ -188,7 +188,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
