@@ -57,11 +57,11 @@ extension UIViewController {
             default:
                 alertTitle = "Unknown error"
                 alertMessage = """
-            Please screenshot this message and email it to me:
-            Tap on the top left button, then tap "\(Const.UIMsg.contact)", \
-            and add the screenshot to your message.
+            Please email me a screenshot of this: tap on the top left button, then tap \
+            "\(Const.UIMsg.contact)".
 
-            Please relaunch the app to retry.
+            TIP: Ensure the work start/end times are set correctly, then quit and relaunch \
+            the app to retry.
             """
         }
 

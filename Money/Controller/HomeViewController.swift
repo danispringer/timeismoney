@@ -142,12 +142,14 @@ class HomeViewController: UIViewController {
             .timeIntervalSince1970 - startTime.timeIntervalSince1970
 
         guard secsBetweenStartAndEndTime > 0 else {
+            timer.invalidate()
             let alert = createAlert(alertReasonParam: .unknown)
 
-            timer.invalidate()
             appendTo(alert: alert, condition: "secsBetweenStartAndEndTime > 0",
                      someFunc: #function, someLine: #line)
-            present(alert, animated: true)
+            DispatchQueue.main.async {
+                self.navigationController?.present(alert, animated: true)
+            }
             return
         }
 
@@ -168,11 +170,14 @@ class HomeViewController: UIViewController {
                 .timeIntervalSince1970.advanced(by: secondsInADay)
             - Date().timeIntervalSince1970
         } else {
+            timer.invalidate()
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "else past guard", someFunc: #function,
                      someLine: #line)
-            timer.invalidate()
-            present(alert, animated: true)
+
+            DispatchQueue.main.async {
+                self.navigationController?.present(alert, animated: true)
+            }
             return
         }
 
@@ -187,7 +192,8 @@ class HomeViewController: UIViewController {
 
     func appendTo(alert: UIAlertController, condition: String,
                   someFunc: String, someLine: Int) {
-        alert.message?.append("\n\n\(someFunc), \(someLine)")
+        alert.message?.append("\n\nBelow is stuff for the code people to know what happened 😊")
+        alert.message?.append("\n\n\n\(someFunc), \(someLine)")
         alert.message?.append("\n\(condition)")
         alert.message?.append("\nstartTime: \(String(describing: startTime))")
         alert.message?.append("\nendTime: \(String(describing: endTime))")
@@ -254,7 +260,9 @@ class HomeViewController: UIViewController {
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "safeURL = myURL", someFunc: #function,
                      someLine: #line)
-            present(alert, animated: true)
+            DispatchQueue.main.async {
+                self.navigationController?.present(alert, animated: true)
+            }
             return
         }
         UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
@@ -273,7 +281,9 @@ class HomeViewController: UIViewController {
                     alert.view.layoutIfNeeded()
                     self.appendTo(alert: alert, condition: "error == nil", someFunc: #function,
                                   someLine: #line)
-                    self.present(alert, animated: true)
+                    DispatchQueue.main.async {
+                        self.navigationController?.present(alert, animated: true)
+                    }
                     return
                 }
             }
@@ -346,7 +356,9 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
 
     func showSendMailErrorAlert() {
         let alert = createAlert(alertReasonParam: .emailError)
-        present(alert, animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.present(alert, animated: true)
+        }
     }
 
 
