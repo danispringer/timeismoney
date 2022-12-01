@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yhA-bU-Ao8">
-    <device id="retina6_72" orientation="portrait" appearance="light"/>
+    <device id="retina6_72" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -18,26 +18,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$200.00" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcy-7n-CIm">
-                                <rect key="frame" x="16" y="524.66666666666663" width="398" height="95.666666666666629"/>
+                                <rect key="frame" x="16" y="161.33333333333334" width="398" height="95.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="80"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:35:24" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-7c-JzR">
-                                <rect key="frame" x="16" y="785" width="398" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:35:24" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-7c-JzR">
+                                <rect key="frame" x="324.66666666666669" y="806.66666666666663" width="89.333333333333314" height="26.333333333333371"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time left till start/end of workday" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyb-5F-4sQ">
-                                <rect key="frame" x="16" y="748.33333333333337" width="398" height="28.666666666666629"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Works starts in:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyb-5F-4sQ">
+                                <rect key="frame" x="16" y="808" width="135" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money you can still make today:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-8K-2K0">
-                                <rect key="frame" x="16" y="480" width="398" height="28.666666666666686"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money you can still make today:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-8K-2K0">
+                                <rect key="frame" x="16" y="118.99999999999999" width="398" height="26.333333333333329"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -47,16 +47,15 @@
                         <constraints>
                             <constraint firstItem="wkO-8K-2K0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="06i-PS-4st"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LOi-7c-JzR" secondAttribute="bottom" constant="16" id="8J0-tI-Ewm"/>
+                            <constraint firstItem="LOi-7c-JzR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xyb-5F-4sQ" secondAttribute="trailing" constant="8" id="9OQ-9x-N3H"/>
                             <constraint firstItem="Bcy-7n-CIm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DZi-zt-jYc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wkO-8K-2K0" secondAttribute="trailing" constant="16" id="EP3-bG-61F"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xyb-5F-4sQ" secondAttribute="trailing" constant="16" id="Ofm-xX-Lbf"/>
-                            <constraint firstItem="LOi-7c-JzR" firstAttribute="top" secondItem="Xyb-5F-4sQ" secondAttribute="bottom" constant="8" id="Sgf-mc-WH0"/>
-                            <constraint firstItem="LOi-7c-JzR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bAP-hF-T2h"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bcy-7n-CIm" secondAttribute="trailing" constant="16" id="bOA-Ke-Lel"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LOi-7c-JzR" secondAttribute="trailing" constant="16" id="fnW-Ia-Ie0"/>
+                            <constraint firstItem="Xyb-5F-4sQ" firstAttribute="centerY" secondItem="LOi-7c-JzR" secondAttribute="centerY" id="h1S-SP-hAK"/>
                             <constraint firstItem="Xyb-5F-4sQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="h2x-Kz-kos"/>
+                            <constraint firstItem="wkO-8K-2K0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="omL-oZ-mEK"/>
                             <constraint firstItem="Bcy-7n-CIm" firstAttribute="top" secondItem="wkO-8K-2K0" secondAttribute="bottom" constant="16" id="piD-pu-HqN"/>
-                            <constraint firstItem="Xyb-5F-4sQ" firstAttribute="top" secondItem="Bcy-7n-CIm" secondAttribute="bottom" constant="128" id="xAS-1a-JXU"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -91,14 +90,14 @@
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTimeCell" id="Hmu-SD-1O0" customClass="SettingsTimeTableViewCell" customModule="Money" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.333332061767578" width="390" height="53.333332061767578"/>
+                                <rect key="frame" x="20" y="55.333332061767578" width="390" height="53.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hmu-SD-1O0" id="pTn-xD-IpC">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="53.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="53.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpA-eo-sZV">
-                                            <rect key="frame" x="16" y="15.999999999999998" width="43" height="21.333333333333329"/>
+                                            <rect key="frame" x="16" y="16" width="43" height="21.666666666666671"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -123,7 +122,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsHourlyRateCell" id="Phs-Qw-Co8" customClass="SettingsHourlyRateTableViewCell" customModule="Money" customModuleProvider="target">
-                                <rect key="frame" x="20" y="108.66666412353516" width="390" height="66.333335876464844"/>
+                                <rect key="frame" x="20" y="109" width="390" height="66.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Phs-Qw-Co8" id="NIJ-HU-i0e">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="66.333335876464844"/>

@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
         NC.addObserver(self, selector: #selector(fetchHourlyRate),
                        name: .hourlyRateDidChange, object: nil)
 
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
 
         setThemeColorTo(myThemeColor: .systemGreen)
         aboutButton.menu = infoMenu()
@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
 
 
     func updateLabelsDuringWorkDay() {
-        timeWorkableHelperLabel.text = Const.UIMsg.timeTillWorkdayEnds
+        timeWorkableHelperLabel.text = Const.UIMsg.timeToWorkEnd
         moneyHelperLabel.text = Const.UIMsg.dailyMakeableRemaining
         let now = Date()
 
@@ -135,7 +135,7 @@ class HomeViewController: UIViewController {
 
 
     func updateLabelsAfterHours() {
-        timeWorkableHelperLabel.text = Const.UIMsg.timeTillWorkdayBegins
+        timeWorkableHelperLabel.text = Const.UIMsg.timeToWorkStart
         moneyHelperLabel.text = Const.UIMsg.dailyOutsideWorkingHours
 
         let secsFromStartToEndTime = endTime

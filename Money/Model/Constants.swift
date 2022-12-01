@@ -23,14 +23,10 @@ struct Const {
     }
 
     struct UIMsg {
-        static let timeTillWorkdayEnds = "Time till workday ends:"
-        static let timeTillWorkdayBegins = "Time till workday begins:"
-        static let dailyMakeableRemaining = "Daily Makeable Remaining:"
-        static let dailyOutsideWorkingHours = """
-        (💤 Outside working hours 💤)
-
-        Your Daily Makeable:
-        """
+        static let timeToWorkEnd = "Workday ends in:"
+        static let timeToWorkStart = "Workday starts in:"
+        static let dailyMakeableRemaining = "How Much More You Can Make Today:"
+        static let dailyOutsideWorkingHours = "How Much You Can Make Daily:"
         static let shareTitleMessage = "Tell a friend"
         static let leaveReview = "Leave a review"
         static let contact = "Email Me"
