@@ -138,13 +138,13 @@ class HomeViewController: UIViewController {
         timeWorkableHelperLabel.text = Const.UIMsg.timeTillWorkdayBegins
         moneyHelperLabel.text = Const.UIMsg.dailyOutsideWorkingHours
 
-        let secsBetweenStartAndEndTime = endTime
+        let secsFromStartToEndTime = endTime
             .timeIntervalSince1970 - startTime.timeIntervalSince1970
 
-        guard secsBetweenStartAndEndTime > 0 else {
+        guard secsFromStartToEndTime > 0 else {
             let alert = createAlert(alertReasonParam: .unknown)
 
-            appendTo(alert: alert, condition: "secsBetweenStartAndEndTime > 0",
+            appendTo(alert: alert, condition: "secsFromStartToEndTime > 0",
                      someFunc: #function, someLine: #line)
             showViaGCD(alert: alert) { shown in
                 if shown {
@@ -154,7 +154,7 @@ class HomeViewController: UIViewController {
             return
         }
 
-        updateMoneyMakeableLabel(seconds: secsBetweenStartAndEndTime)
+        updateMoneyMakeableLabel(seconds: secsFromStartToEndTime)
 
         var secsTillWorkdayBegins = 0.0
 
@@ -347,15 +347,14 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
         }
         mailComposerVC.setSubject(myTitle)
         mailComposerVC.setMessageBody("""
-        Hi, I have a question/suggestion for your app.
-        \n\n\n\n
+        Hi, I have a question about your app:
+        \n\n\n\n\n\n\n
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         startTime: \(startTime!)
         endTime: \(endTime!)
         now: \(Date())
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         """, isHTML: false)
-// TODO: test body when sending email
         return mailComposerVC
     }
 
