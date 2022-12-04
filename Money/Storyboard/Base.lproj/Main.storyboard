@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="99O-cv-IJm">
-                                <rect key="frame" x="0.0" y="59" width="430" height="752.33333333333337"/>
+                                <rect key="frame" x="0.0" y="148" width="430" height="665"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsTimeCell" id="wfG-Uz-7Uq" customClass="SettingsTimesCell" customModule="Money" customModuleProvider="target">
@@ -150,7 +150,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here..." adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="qvA-dk-2Wj">
                                                     <rect key="frame" x="73.333333333333343" y="9.3333333333333357" width="300.66666666666663" height="34"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -173,27 +173,37 @@
                                     <outlet property="delegate" destination="cBl-XC-8y1" id="FVt-Pp-BLF"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfl-qQ-dxx">
-                                <rect key="frame" x="312" y="827.33333333333337" width="102" height="54.666666666666629"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Done">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
-                                </buttonConfiguration>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfl-qQ-dxx">
+                                <rect key="frame" x="336" y="829" width="78" height="53"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" systemColor="tintColor"/>
+                                </state>
                                 <connections>
                                     <action selector="doneTapped:" destination="cBl-XC-8y1" eventType="touchUpInside" id="tX2-of-1SR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znb-7v-qAG">
+                                <rect key="frame" x="16.000000000000007" y="75" width="120.66666666666669" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Vg-vS-70o"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="znb-7v-qAG" firstAttribute="leading" secondItem="8Vg-vS-70o" secondAttribute="leading" constant="16" id="3eX-jz-FkT"/>
                             <constraint firstItem="mfl-qQ-dxx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Vg-vS-70o" secondAttribute="leading" constant="16" id="ALY-Fr-cFJ"/>
                             <constraint firstItem="8Vg-vS-70o" firstAttribute="trailing" secondItem="99O-cv-IJm" secondAttribute="trailing" id="IMh-RT-jfh"/>
+                            <constraint firstItem="99O-cv-IJm" firstAttribute="top" secondItem="znb-7v-qAG" secondAttribute="bottom" constant="32" id="V3Q-4v-1HB"/>
+                            <constraint firstItem="8Vg-vS-70o" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="znb-7v-qAG" secondAttribute="trailing" constant="16" id="We2-VU-r2C"/>
                             <constraint firstItem="8Vg-vS-70o" firstAttribute="trailing" secondItem="mfl-qQ-dxx" secondAttribute="trailing" constant="16" id="aEr-3w-jiE"/>
                             <constraint firstItem="8Vg-vS-70o" firstAttribute="bottom" secondItem="mfl-qQ-dxx" secondAttribute="bottom" constant="16" id="hYt-6N-unt"/>
                             <constraint firstItem="99O-cv-IJm" firstAttribute="leading" secondItem="8Vg-vS-70o" secondAttribute="leading" id="ohH-Ze-iYX"/>
                             <constraint firstItem="mfl-qQ-dxx" firstAttribute="top" secondItem="99O-cv-IJm" secondAttribute="bottom" constant="16" id="p3y-0K-8yF"/>
-                            <constraint firstItem="99O-cv-IJm" firstAttribute="top" secondItem="8Vg-vS-70o" secondAttribute="top" id="wHA-l9-6RE"/>
+                            <constraint firstItem="znb-7v-qAG" firstAttribute="top" secondItem="8Vg-vS-70o" secondAttribute="top" constant="16" id="vUz-cS-KsN"/>
                         </constraints>
                     </view>
                     <connections>
@@ -219,7 +229,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsS-gh-LIH">
-                                <rect key="frame" x="16" y="148" width="398" height="647.33333333333337"/>
+                                <rect key="frame" x="16" y="148" width="398" height="649"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Here is how this app works:
 
@@ -249,14 +259,13 @@ Ready? Tap Settings to get started!</string>
                                     <outlet property="delegate" destination="NIq-OA-7cs" id="zXi-5U-UYA"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Un-RC-Oc3">
-                                <rect key="frame" x="269.33333333333331" y="827.33333333333337" width="144.66666666666669" height="54.666666666666629"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Un-RC-Oc3">
+                                <rect key="frame" x="293" y="829" width="121" height="53"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="OK"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Settings">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
-                                </buttonConfiguration>
+                                <state key="normal" title="Settings">
+                                    <color key="titleColor" systemColor="tintColor"/>
+                                </state>
                                 <connections>
                                     <action selector="doneTapped:" destination="NIq-OA-7cs" eventType="touchUpInside" id="Tgk-Md-BjU"/>
                                 </connections>
@@ -295,6 +304,9 @@ Ready? Tap Settings to get started!</string>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

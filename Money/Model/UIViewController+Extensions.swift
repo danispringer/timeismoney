@@ -74,14 +74,4 @@ extension UIViewController {
         return alert
     }
 
-
-    func showViaGCD(alert: UIAlertController,
-                    completionHandler: ((Bool) -> Void)?) {
-        DispatchQueue.main.async {
-            if let safeCompletionHandler = completionHandler {
-                safeCompletionHandler(false)
-            }
-        }
-    }
-
 }

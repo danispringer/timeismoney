@@ -165,11 +165,8 @@ class HomeViewController: UIViewController, SettingsPresenter {
 
             appendTo(alert: alert, condition: "secsFromStartToEndTime > 0",
                      someFunc: #function, someLine: #line)
-            showViaGCD(alert: alert) { shown in
-                if shown {
-                    self.timer.invalidate()
-                }
-            }
+            present(alert, animated: true)
+            self.timer.invalidate()
             return
         }
 
@@ -194,11 +191,9 @@ class HomeViewController: UIViewController, SettingsPresenter {
             appendTo(alert: alert, condition: "else past guard", someFunc: #function,
                      someLine: #line)
 
-            showViaGCD(alert: alert) { shown in
-                if shown {
-                    self.timer.invalidate()
-                }
-            }
+            present(alert, animated: true)
+            self.timer.invalidate()
+
             return
         }
 
@@ -292,7 +287,7 @@ class HomeViewController: UIViewController, SettingsPresenter {
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "safeURL = myURL", someFunc: #function,
                      someLine: #line)
-            showViaGCD(alert: alert, completionHandler: nil)
+            present(alert, animated: true)
             return
         }
         UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
@@ -311,7 +306,7 @@ class HomeViewController: UIViewController, SettingsPresenter {
                     alert.view.layoutIfNeeded()
                     self.appendTo(alert: alert, condition: "error == nil", someFunc: #function,
                                   someLine: #line)
-                    self.showViaGCD(alert: alert, completionHandler: nil)
+                    self.present(alert, animated: true)
                     return
                 }
             }
@@ -399,7 +394,7 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
 
     func showSendMailErrorAlert() {
         let alert = createAlert(alertReasonParam: .emailError)
-        showViaGCD(alert: alert, completionHandler: nil)
+        present(alert, animated: true)
     }
 
 
