@@ -48,7 +48,8 @@ for simulator in "${simulators[@]}"; do
             # Boot up the new simulator and set it to
             # the correct appearance
             xcrun simctl boot "$simulator"
-            xcrun simctl ui "$simulator" appearance $appearance
+            xcrun simctl ui appearance "$appearance"
+            #xcrun simctl ui "$simulator" appearance "$appearance"
 
             # Build and Test
             xcodebuild -testLanguage $language -scheme $schemeName -project $projectName -derivedDataPath '/tmp/MoneyDerivedData/' -destination "platform=iOS Simulator,name=$simulator" build test
