@@ -17,18 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daniel Springer" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlo-f7-uFw">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="irZ-xl-10j">
+                                <rect key="frame" x="0.0" y="43" width="393" height="718.33333333333337"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Daniel Springer" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlo-f7-uFw">
                                 <rect key="frame" x="16" y="745.33333333333337" width="361" height="40.666666666666629"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="irZ-xl-10j">
-                                <rect key="frame" x="0.0" y="229.66666666666663" width="393" height="393"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="irZ-xl-10j" secondAttribute="height" multiplier="1:1" id="QaF-QV-aBn"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xRf-FL-lKp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -36,7 +33,8 @@
                             <constraint firstItem="xRf-FL-lKp" firstAttribute="trailing" secondItem="Hlo-f7-uFw" secondAttribute="trailing" constant="16" id="3mp-ei-2bb"/>
                             <constraint firstItem="irZ-xl-10j" firstAttribute="leading" secondItem="xRf-FL-lKp" secondAttribute="leading" id="Jis-53-3Pi"/>
                             <constraint firstItem="xRf-FL-lKp" firstAttribute="trailing" secondItem="irZ-xl-10j" secondAttribute="trailing" id="KOD-a0-AeM"/>
-                            <constraint firstItem="irZ-xl-10j" firstAttribute="centerY" secondItem="t6H-og-Y3O" secondAttribute="centerY" id="m38-Tt-1Bl"/>
+                            <constraint firstItem="xRf-FL-lKp" firstAttribute="top" secondItem="irZ-xl-10j" secondAttribute="top" constant="16" id="YxU-we-bIS"/>
+                            <constraint firstItem="Hlo-f7-uFw" firstAttribute="top" secondItem="irZ-xl-10j" secondAttribute="bottom" constant="-16" id="hyG-CB-fja"/>
                             <constraint firstItem="xRf-FL-lKp" firstAttribute="bottom" secondItem="Hlo-f7-uFw" secondAttribute="bottom" constant="32" id="pqR-Zw-xHb"/>
                             <constraint firstItem="Hlo-f7-uFw" firstAttribute="leading" secondItem="xRf-FL-lKp" secondAttribute="leading" constant="16" id="tPl-2V-jFU"/>
                         </constraints>
@@ -44,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pri-uf-Qf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-213.04347826086959" y="345.53571428571428"/>
+            <point key="canvasLocation" x="-213.38028169014086" y="344.27480916030532"/>
         </scene>
     </scenes>
     <resources>

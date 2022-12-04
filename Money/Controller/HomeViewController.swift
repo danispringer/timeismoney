@@ -346,9 +346,8 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 protocol SettingsPresenter {
 
-//    var someVariable: String { get set }
-
     func presentSettings()
+
 }
 
 protocol DeclaresVisibility {
