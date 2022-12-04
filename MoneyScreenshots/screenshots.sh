@@ -32,6 +32,7 @@ languages=(
 # All the appearances we want to screenshot
 # (options are "light" and "dark")
 appearances=(
+    "dark"
     "light"
 )
 
@@ -48,11 +49,9 @@ for simulator in "${simulators[@]}"; do
             # Boot up the new simulator and set it to
             # the correct appearance
             xcrun simctl boot "$simulator"
-            xcrun simctl ui appearance "$appearance"
-            #xcrun simctl ui "$simulator" appearance "$appearance"
-
+            xcrun simctl ui booted appearance "$appearance"
             # Build and Test
-            xcodebuild -testLanguage $language -scheme $schemeName -project $projectName -derivedDataPath '/tmp/MoneyDerivedData/' -destination "platform=iOS Simulator,name=$simulator" build test
+            xcodebuild -testLanguage "$language" -scheme $schemeName -project $projectName -derivedDataPath '/tmp/MoneyDerivedData/' -destination "platform=iOS Simulator,name=$simulator" build test
             echo "Collecting Results..."
             mkdir -p "$targetFolder/$simulator/"
             find /tmp/MoneyDerivedData/Logs/Test -maxdepth 1 -type d -exec xcparse screenshots {} "$targetFolder/$simulator/" \;
