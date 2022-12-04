@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
         NC.addObserver(self, selector: #selector(fetchHourlyRate),
                        name: .hourlyRateDidChange, object: nil)
 
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         setThemeColorTo(myThemeColor: .systemGreen)
         aboutButton.menu = infoMenu()
@@ -88,7 +88,9 @@ class HomeViewController: UIViewController {
         let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
             withIdentifier: Const.IDIB.tutorialViewController) as! TutorialViewController
 
-        present(tutorialVC, animated: true)
+        present(tutorialVC, animated: true) {
+            self.settingsTapped()
+        }
     }
 
 
