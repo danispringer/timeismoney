@@ -26,11 +26,17 @@ final class MoneyScreenshots: XCTestCase {
         // UI tests must launch the application that they test.
         app.launch()
 
-        XCTAssertTrue(app.staticTexts["OK"].firstMatch
+        XCTAssertTrue(app.staticTexts["Welcome"].firstMatch
             .waitForExistence(timeout: 5))
         takeScreenshot(named: "2-tutorial")
 
-        app.buttons["OK"].firstMatch.tap()
+        app.staticTexts["Settings"].tap()
+
+        XCTAssertTrue(app.staticTexts["Settings"].firstMatch.waitForExistence(timeout: 5))
+        takeScreenshot(named: "3-settings")
+
+        XCTAssertTrue(app.buttons["Done"].firstMatch.waitForExistence(timeout: 5))
+        app.buttons["Done"].firstMatch.tap()
 
         XCTAssertTrue(app.staticTexts[Const.UIMsg.dailyOutsideWorkingHours].firstMatch
             .waitForExistence(timeout: 5))
@@ -41,9 +47,6 @@ final class MoneyScreenshots: XCTestCase {
         takeScreenshot(named: "4-help")
         app.tap()
 
-        app.buttons["Settings"].firstMatch.tap()
-        XCTAssertTrue(app.buttons[Const.UIMsg.appName].firstMatch.waitForExistence(timeout: 5))
-        takeScreenshot(named: "3-settings")
     }
 
 
