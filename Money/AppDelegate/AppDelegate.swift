@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UD.set(15, forKey: Const.UDef.hourlyRate)
             UD.set("09:00", forKey: Const.UDef.startTime)
             UD.set("17:00", forKey: Const.UDef.endTime)
+            UD.set(false, forKey: Const.UDef.userSawTutorial)
         }
 
         UD.register(defaults: [
