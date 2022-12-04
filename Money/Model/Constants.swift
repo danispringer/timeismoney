@@ -16,10 +16,15 @@ let secondsInADay: Double = 24 * 60 * 60
 
 struct Const {
 
+    struct IDIB {
+        static let tutorialViewController = "TutorialViewController"
+    }
+
     struct UDef {
         static let hourlyRate = "hourlyRate"
         static let startTime = "startTime"
         static let endTime = "endTime"
+        static let userSawTutorial = "userSawTutorial"
     }
 
     struct UIMsg {
@@ -37,5 +42,6 @@ struct Const {
         static let version = "v."
         static let appName = "Motivator"
         static let reviewLink = "https://apps.apple.com/app/id6444535220?action=write-review"
+        static let tutorial = "Tutorial"
     }
 }

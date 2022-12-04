@@ -60,7 +60,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Motivator" largeTitleDisplayMode="always" id="A5f-HS-Fzt">
-                        <barButtonItem key="leftBarButtonItem" title="Info" id="xFZ-g0-3qP"/>
+                        <barButtonItem key="leftBarButtonItem" title="Help" id="xFZ-g0-3qP"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="XtG-ah-lSi">
                             <connections>
                                 <action selector="settingsTapped" destination="BYZ-38-t0r" id="9CH-C3-1a7"/>
@@ -169,6 +169,81 @@
             </objects>
             <point key="canvasLocation" x="871" y="-2"/>
         </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="7Bs-c2-sCi">
+            <objects>
+                <viewController storyboardIdentifier="TutorialViewController" id="NIq-OA-7cs" customClass="TutorialViewController" customModule="Money" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wdy-eP-P9J">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4j-Ye-kcm">
+                                <rect key="frame" x="16" y="75" width="136.66666666666666" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsS-gh-LIH">
+                                <rect key="frame" x="16" y="148" width="398" height="647.33333333333337"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">Here is how this app works:
+
+WHAT
+Motivator aims to help you get to work on time ⏰
+
+HOW
+By showing you exactly how much you can make in a day if you go to work right *now* 💰
+
+WHEN
+Any time you open the app 👋
+
+WHY
+Sometimes we feel like not going to work. This app aims to help changing that 💪
+
+WHO
+This app is designed for anyone who gets paid hourly (not salary) ⏱️
+
+WHERE
+Wherever you go, the app will be right there with you ❤️
+
+Ready? Tap OK, then tap Settings to get started!</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Un-RC-Oc3">
+                                <rect key="frame" x="343.66666666666669" y="827.33333333333337" width="70.333333333333314" height="54.666666666666629"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="OK"/>
+                                <buttonConfiguration key="configuration" style="plain" title="OK">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="doneTapped:" destination="NIq-OA-7cs" eventType="touchUpInside" id="Tgk-Md-BjU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q0f-b8-QBI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hsS-gh-LIH" firstAttribute="top" secondItem="a4j-Ye-kcm" secondAttribute="bottom" constant="32" id="3rK-NM-nA9"/>
+                            <constraint firstItem="hsS-gh-LIH" firstAttribute="leading" secondItem="Q0f-b8-QBI" secondAttribute="leading" constant="16" id="43A-wd-I5t"/>
+                            <constraint firstItem="Q0f-b8-QBI" firstAttribute="bottom" secondItem="3Un-RC-Oc3" secondAttribute="bottom" constant="16" id="4Ze-pP-ynJ"/>
+                            <constraint firstItem="Q0f-b8-QBI" firstAttribute="trailing" secondItem="hsS-gh-LIH" secondAttribute="trailing" constant="16" id="F2l-Kp-dCe"/>
+                            <constraint firstItem="Q0f-b8-QBI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a4j-Ye-kcm" secondAttribute="trailing" constant="16" id="TcB-PT-Q9t"/>
+                            <constraint firstItem="a4j-Ye-kcm" firstAttribute="leading" secondItem="Q0f-b8-QBI" secondAttribute="leading" constant="16" id="X4u-aH-alp"/>
+                            <constraint firstItem="Q0f-b8-QBI" firstAttribute="trailing" secondItem="3Un-RC-Oc3" secondAttribute="trailing" constant="16" id="ZhH-zf-fiY"/>
+                            <constraint firstItem="3Un-RC-Oc3" firstAttribute="top" secondItem="hsS-gh-LIH" secondAttribute="bottom" constant="32" id="alZ-VZ-HvH"/>
+                            <constraint firstItem="3Un-RC-Oc3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q0f-b8-QBI" secondAttribute="leading" constant="16" id="aoD-5J-Kt2"/>
+                            <constraint firstItem="a4j-Ye-kcm" firstAttribute="top" secondItem="Q0f-b8-QBI" secondAttribute="top" constant="16" id="o4l-0g-Ton"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eGi-aY-Etf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1687" y="-3"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="L3F-bY-B4t">
             <objects>
@@ -187,6 +262,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

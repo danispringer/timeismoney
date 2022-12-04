@@ -71,7 +71,26 @@ class HomeViewController: UIViewController {
     }
 
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if !UD.bool(forKey: Const.UDef.userSawTutorial) {
+            showHelp()
+            UD.set(true, forKey: Const.UDef.userSawTutorial)
+        }
+    }
+
+
     // MARK: Helpers
+
+    func showHelp() {
+
+        let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+            withIdentifier: Const.IDIB.tutorialViewController) as! TutorialViewController
+
+        present(tutorialVC, animated: true)
+    }
+
 
     @objc func fetchHourlyRate() {
         hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
@@ -241,6 +260,12 @@ class HomeViewController: UIViewController {
             self.sendEmailTapped()
         }
 
+        let tutorial = UIAction(title: Const.UIMsg.tutorial,
+                                image: UIImage(systemName: "info.circle"),
+                                state: .off) { _ in
+            self.showHelp()
+        }
+
 
         let version: String? = Bundle.main.infoDictionary![Const.UIMsg.appVersion] as? String
         var myTitle = Const.UIMsg.appName
@@ -250,7 +275,7 @@ class HomeViewController: UIViewController {
 
         let infoMenu = UIMenu(title: myTitle, image: nil, identifier: .none,
                               options: .displayInline,
-                              children: [emailAction, review, shareApp, moreApps])
+                              children: [emailAction, tutorial, review, shareApp, moreApps])
         return infoMenu
     }
 

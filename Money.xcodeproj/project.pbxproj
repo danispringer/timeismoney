@@ -19,6 +19,7 @@
 		339B82A52920B3B90032061E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A32920B3B90032061E /* Main.storyboard */; };
 		339B82A72920B3BB0032061E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A62920B3BB0032061E /* Assets.xcassets */; };
 		339B82AA2920B3BB0032061E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A82920B3BB0032061E /* LaunchScreen.storyboard */; };
+		33BAE6AA293C14CC0041B9B1 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAE6A9293C14CC0041B9B1 /* TutorialViewController.swift */; };
 		33C5BAE5292F6BA100F60F4C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331153122926261F0051C145 /* Constants.swift */; };
 		33D0E5532929B46500DA5FD4 /* SettingsTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D0E5522929B46500DA5FD4 /* SettingsTimeTableViewCell.swift */; };
 		33D0E5552929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D0E5542929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift */; };
@@ -64,6 +65,7 @@
 		339B82A62920B3BB0032061E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		339B82A92920B3BB0032061E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		339B82AB2920B3BB0032061E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33BAE6A9293C14CC0041B9B1 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		33D0E5522929B46500DA5FD4 /* SettingsTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimeTableViewCell.swift; sourceTree = "<group>"; };
 		33D0E5542929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHourlyRateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 			children = (
 				339B82A12920B3B90032061E /* HomeViewController.swift */,
 				339B03CD2925EEE70022EC5B /* SettingsViewController.swift */,
+				33BAE6A9293C14CC0041B9B1 /* TutorialViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				331153132926261F0051C145 /* Constants.swift in Sources */,
 				339B82A22920B3B90032061E /* HomeViewController.swift in Sources */,
+				33BAE6AA293C14CC0041B9B1 /* TutorialViewController.swift in Sources */,
 				339B829E2920B3B90032061E /* AppDelegate.swift in Sources */,
 				33D0E5552929B4F600DA5FD4 /* SettingsHourlyRateTableViewCell.swift in Sources */,
 				331DB79A292DAE6B00A5CB80 /* UIViewController+Extensions.swift in Sources */,
@@ -529,7 +533,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = io.danispringer.github.money;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -560,7 +564,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = io.danispringer.github.money;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

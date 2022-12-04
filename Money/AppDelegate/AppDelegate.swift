@@ -25,8 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UD.register(defaults: [
             Const.UDef.hourlyRate: 15.0,
             Const.UDef.startTime: "09:00",
-            Const.UDef.endTime: "17:00"
+            Const.UDef.endTime: "17:00",
+            Const.UDef.userSawTutorial: false
         ])
+
         return true
     }
 

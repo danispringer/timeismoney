@@ -89,7 +89,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         let toolBar = UIToolbar(
             frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
         let doneButton = UIBarButtonItem(
-            title: "Done",
+            title: "Save",
             style: .done, target: self,
             action: #selector(self.doneButtonTapped))
         let spacer = UIBarButtonItem.flexibleSpace()
