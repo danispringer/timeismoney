@@ -9,7 +9,7 @@ import UIKit
 import MessageUI
 
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, SettingsPresenter {
 
     // MARK: Outlets
 
@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var moneyHelperLabel: UILabel!
     @IBOutlet weak var timeWorkableLabel: UILabel!
     @IBOutlet weak var timeWorkableHelperLabel: UILabel!
-    @IBOutlet weak var aboutButton: UIBarButtonItem!
+    @IBOutlet weak var helpButton: UIBarButtonItem!
 
 
     // MARK: Properties
@@ -64,10 +64,8 @@ class HomeViewController: UIViewController {
         NC.addObserver(self, selector: #selector(fetchHourlyRate),
                        name: .hourlyRateDidChange, object: nil)
 
-        navigationController?.navigationBar.prefersLargeTitles = true
-
         setThemeColorTo(myThemeColor: .systemGreen)
-        aboutButton.menu = infoMenu()
+        helpButton.menu = infoMenu()
     }
 
 
@@ -88,9 +86,9 @@ class HomeViewController: UIViewController {
         let tutorialVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
             withIdentifier: Const.IDIB.tutorialViewController) as! TutorialViewController
 
-        present(tutorialVC, animated: true) {
-            self.settingsTapped()
-        }
+        tutorialVC.delegate = self
+
+        present(tutorialVC, animated: true)
     }
 
 
@@ -233,10 +231,15 @@ class HomeViewController: UIViewController {
 
 
     @IBAction func settingsTapped() {
+        presentSettings()
+    }
+
+
+    func presentSettings() {
         let toPresent = UIStoryboard(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "SettingsViewController")
+            .instantiateViewController(withIdentifier: Const.IDIB.settingsViewController)
         as! SettingsViewController
-        self.navigationController?.pushViewController(toPresent, animated: true)
+        present(toPresent, animated: true)
     }
 
 
@@ -300,7 +303,7 @@ class HomeViewController: UIViewController {
         let message = Const.UIMsg.appsLink
         let activityController = UIActivityViewController(activityItems: [message],
                                                           applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = aboutButton
+        activityController.popoverPresentationController?.barButtonItem = helpButton
         activityController
             .completionWithItemsHandler = { (_, _: Bool, _: [Any]?, error: Error?) in
                 guard error == nil else {
@@ -318,6 +321,14 @@ class HomeViewController: UIViewController {
 
     }
 
+}
+
+
+protocol SettingsPresenter {
+
+//    var someVariable: String { get set }
+
+    func presentSettings()
 }
 
 

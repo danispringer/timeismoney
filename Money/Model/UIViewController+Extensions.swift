@@ -12,7 +12,7 @@ extension UIViewController {
 
     func setThemeColorTo(myThemeColor: UIColor) {
         UIProgressView.appearance().progressTintColor = myThemeColor
-        self.navigationController!.navigationBar.tintColor = myThemeColor
+        self.navigationController?.navigationBar.tintColor = myThemeColor
         UINavigationBar.appearance().tintColor = myThemeColor
         UIView.appearance(
             whenContainedInInstancesOf: [
@@ -78,15 +78,8 @@ extension UIViewController {
     func showViaGCD(alert: UIAlertController,
                     completionHandler: ((Bool) -> Void)?) {
         DispatchQueue.main.async {
-            if self.navigationController?.topViewController == self {
-                self.navigationController?.present(alert, animated: true)
-                if let safeCompletionHandler = completionHandler {
-                    safeCompletionHandler(true)
-                }
-            } else {
-                if let safeCompletionHandler = completionHandler {
-                    safeCompletionHandler(false)
-                }
+            if let safeCompletionHandler = completionHandler {
+                safeCompletionHandler(false)
             }
         }
     }

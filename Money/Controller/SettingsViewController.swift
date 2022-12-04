@@ -7,12 +7,18 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController, UITextFieldDelegate {
+class SettingsViewController: UIViewController, UITextFieldDelegate,
+                              UITableViewDelegate, UITableViewDataSource {
+
+    // MARK: Outlets
+
+    @IBOutlet weak var settingsTableView: UITableView!
+
 
     // MARK: Properties
 
     let settingsTimeCell = "SettingsTimeCell"
-    let settingsHourlyRateCell = "SettingsHourlyRateCell"
+    let settingsHourlyCell = "SettingsHourlyCell"
 
     let myDataSourceLabels = [
         [
@@ -48,14 +54,17 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         numberFormatterReset.numberStyle = .none
         dateFormatterHM.dateFormat = "HH:mm"
 
-        navigationController?.navigationBar.prefersLargeTitles = true
-
         self.title = "Settings"
 
     }
 
 
     // MARK: Helpers
+
+    @IBAction func doneTapped(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
 
     @objc func fetchWorkHours(aDatePicker: UIDatePicker) {
         let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
@@ -88,27 +97,27 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     func addAccessoryView() -> UIToolbar {
         let toolBar = UIToolbar(
             frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
-        let doneButton = UIBarButtonItem(
+        let textFieldSaveButton = UIBarButtonItem(
             title: "Save",
             style: .done, target: self,
-            action: #selector(self.doneButtonTapped))
+            action: #selector(self.textFieldSaveTapped))
         let spacer = UIBarButtonItem.flexibleSpace()
-        toolBar.items = [spacer, doneButton]
+        toolBar.items = [spacer, textFieldSaveButton]
         return toolBar
     }
 
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        doneButtonTapped()
+        textFieldSaveTapped()
         return true
     }
 
 
-    @objc func doneButtonTapped() {
+    @objc func textFieldSaveTapped() {
 
-        let aTextField: UITextField = (tableView.cellForRow(
-            at: IndexPath(row: 0, section: 1)) as! SettingsHourlyRateTableViewCell
-        ).hourlyRateTextField
+        let aTextField: UITextField = (settingsTableView.cellForRow(
+            at: IndexPath(row: 0, section: 1)) as! SettingsHourlyCell
+        ).myTextField
 
         aTextField.resignFirstResponder()
 
@@ -164,20 +173,20 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: TableView
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2 // work start/end times, hourly rate
     }
 
 
-    override func tableView(
+    func tableView(
         _ tableView: UITableView,
         titleForHeaderInSection section: Int) -> String? {
             return myDataSourceTitles[section]
         }
 
 
-    override func tableView(_ tableView: UITableView,
-                            numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         switch section {
             case 0:
                 return 2 // start time, end time
@@ -189,31 +198,31 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     }
 
 
-    override func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch indexPath.section {
             case 0:
                 switch indexPath.row {
                     case 0:
                         let cell = tableView.dequeueReusableCell(
-                            withIdentifier: settingsTimeCell) as! SettingsTimeTableViewCell
-                        cell.workTimeLabel.text =
+                            withIdentifier: settingsTimeCell) as! SettingsTimesCell
+                        cell.myLabel.text =
                         myDataSourceLabels[indexPath.section][indexPath.row]
-                        cell.myTimePicker.tag = indexPath.row
-                        fetchWorkHours(aDatePicker: cell.myTimePicker)
-                        cell.myTimePicker.addTarget(
+                        cell.myPicker.tag = indexPath.row
+                        fetchWorkHours(aDatePicker: cell.myPicker)
+                        cell.myPicker.addTarget(
                             self,
                             action: #selector(workScheduleChanged(sender:)), for: .valueChanged)
                         return cell
                     case 1:
                         let cell = tableView.dequeueReusableCell(
-                            withIdentifier: settingsTimeCell) as! SettingsTimeTableViewCell
-                        cell.workTimeLabel.text =
+                            withIdentifier: settingsTimeCell) as! SettingsTimesCell
+                        cell.myLabel.text =
                         myDataSourceLabels[indexPath.section][indexPath.row]
-                        cell.myTimePicker.tag = indexPath.row
-                        fetchWorkHours(aDatePicker: cell.myTimePicker)
-                        cell.myTimePicker.addTarget(
+                        cell.myPicker.tag = indexPath.row
+                        fetchWorkHours(aDatePicker: cell.myPicker)
+                        cell.myPicker.addTarget(
                             self,
                             action: #selector(workScheduleChanged(sender:)), for: .valueChanged)
                         return cell
@@ -222,13 +231,13 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
                 }
             case 1:
                 let cell = tableView.dequeueReusableCell(
-                    withIdentifier: settingsHourlyRateCell) as! SettingsHourlyRateTableViewCell
-                cell.hourlyRateLabel.text = myDataSourceLabels[indexPath.section][indexPath.row]
-                cell.hourlyRateTextField.inputAccessoryView = addAccessoryView()
+                    withIdentifier: settingsHourlyCell) as! SettingsHourlyCell
+                cell.myLabel.text = myDataSourceLabels[indexPath.section][indexPath.row]
+                cell.myTextField.inputAccessoryView = addAccessoryView()
                 let hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
-                cell.hourlyRateTextField.text = numberFormatterCurrency.string(
+                cell.myTextField.text = numberFormatterCurrency.string(
                     from: hourlyRate as NSNumber)
-                cell.hourlyRateTextField.delegate = self
+                cell.myTextField.delegate = self
                 return cell
             default:
                 fatalError()

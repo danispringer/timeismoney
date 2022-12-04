@@ -9,8 +9,14 @@ import UIKit
 
 class TutorialViewController: UIViewController {
 
+    // MARK: Outlets
+
     @IBOutlet weak var tutorialTextView: UITextView!
 
+
+    // MARK: Properties
+
+    var delegate: SettingsPresenter?
 
     // MARK: Life Cycle
 
@@ -35,7 +41,9 @@ class TutorialViewController: UIViewController {
     // MARK: Helpers
 
     @IBAction func doneTapped(_ sender: Any) {
-        dismiss(animated: true)
+        dismiss(animated: true) {
+            self.delegate?.presentSettings()
+        }
     }
 
 }

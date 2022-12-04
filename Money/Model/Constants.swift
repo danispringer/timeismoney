@@ -18,6 +18,7 @@ struct Const {
 
     struct IDIB {
         static let tutorialViewController = "TutorialViewController"
+        static let settingsViewController = "SettingsViewController"
     }
 
     struct UDef {
