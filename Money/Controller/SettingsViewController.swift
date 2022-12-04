@@ -17,6 +17,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
 
     // MARK: Properties
 
+    var delegate: DeclaresVisibility?
+
     let settingsTimeCell = "SettingsTimeCell"
     let settingsHourlyCell = "SettingsHourlyCell"
 
@@ -62,7 +64,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
     // MARK: Helpers
 
     @IBAction func doneTapped(_ sender: Any) {
-        dismiss(animated: true)
+        dismiss(animated: true) {
+            self.delegate?.is😎Visible = true
+        }
     }
 
 

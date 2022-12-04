@@ -9,7 +9,7 @@ import UIKit
 import MessageUI
 
 
-class HomeViewController: UIViewController, SettingsPresenter {
+class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibility {
 
     // MARK: Outlets
 
@@ -21,6 +21,10 @@ class HomeViewController: UIViewController, SettingsPresenter {
 
 
     // MARK: Properties
+
+    // swiftlint:disable identifier_name
+    var is😎Visible: Bool = false
+    // swiftlint:enable identifier_name
 
     var timer = Timer()
     let numberFormatterCurrency = NumberFormatter()
@@ -72,10 +76,19 @@ class HomeViewController: UIViewController, SettingsPresenter {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        is😎Visible = true
+
         if !UD.bool(forKey: Const.UDef.userSawTutorial) {
             showHelp()
             UD.set(true, forKey: Const.UDef.userSawTutorial)
         }
+    }
+
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        is😎Visible = false
     }
 
 
@@ -165,8 +178,12 @@ class HomeViewController: UIViewController, SettingsPresenter {
 
             appendTo(alert: alert, condition: "secsFromStartToEndTime > 0",
                      someFunc: #function, someLine: #line)
-            present(alert, animated: true)
-            self.timer.invalidate()
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.timer.invalidate()
+                }
+            }
             return
         }
 
@@ -191,8 +208,11 @@ class HomeViewController: UIViewController, SettingsPresenter {
             appendTo(alert: alert, condition: "else past guard", someFunc: #function,
                      someLine: #line)
 
-            present(alert, animated: true)
-            self.timer.invalidate()
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.timer.invalidate()
+                }
+            }
 
             return
         }
@@ -231,10 +251,12 @@ class HomeViewController: UIViewController, SettingsPresenter {
 
 
     func presentSettings() {
-        let toPresent = UIStoryboard(name: "Main", bundle: nil)
+        let settingsVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: Const.IDIB.settingsViewController)
         as! SettingsViewController
-        present(toPresent, animated: true)
+        is😎Visible = false
+        settingsVC.delegate = self
+        present(settingsVC, animated: true)
     }
 
 
@@ -287,7 +309,8 @@ class HomeViewController: UIViewController, SettingsPresenter {
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "safeURL = myURL", someFunc: #function,
                      someLine: #line)
-            present(alert, animated: true)
+            showViaGCD(caller: self, alert: alert) { _ in
+            }
             return
         }
         UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
@@ -306,7 +329,9 @@ class HomeViewController: UIViewController, SettingsPresenter {
                     alert.view.layoutIfNeeded()
                     self.appendTo(alert: alert, condition: "error == nil", someFunc: #function,
                                   someLine: #line)
-                    self.present(alert, animated: true)
+                    self.showViaGCD(caller: self, alert: alert) { _ in
+
+                    }
                     return
                 }
             }
@@ -324,6 +349,12 @@ protocol SettingsPresenter {
 //    var someVariable: String { get set }
 
     func presentSettings()
+}
+
+protocol DeclaresVisibility {
+    // swiftlint:disable identifier_name
+    var is😎Visible: Bool { get set }
+    // swiftlint:enable identifier_name
 }
 
 
@@ -394,7 +425,8 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
 
     func showSendMailErrorAlert() {
         let alert = createAlert(alertReasonParam: .emailError)
-        present(alert, animated: true)
+        showViaGCD(caller: self, alert: alert) { _ in
+        }
     }
 
 

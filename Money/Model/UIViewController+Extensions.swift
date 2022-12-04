@@ -51,7 +51,7 @@ extension UIViewController {
             case .emailError:
                 alertTitle = "Email Not Sent"
                 alertMessage = """
-                Your device could not send e-mail. Please check e-mail configuration and \
+                Your device could not send email. Please check email configuration and \
                 try again.
                 """
             default:
@@ -72,6 +72,23 @@ extension UIViewController {
         alert.addAction(alertAction)
 
         return alert
+    }
+
+
+    func showViaGCD(caller: HomeViewController, alert: UIAlertController,
+                    completionHandler: ((Bool) -> Void)?) {
+        DispatchQueue.main.async {
+            if caller.is😎Visible {
+                self.present(alert, animated: true)
+                if let safeCompletionHandler = completionHandler {
+                    safeCompletionHandler(true)
+                }
+            } else {
+                if let safeCompletionHandler = completionHandler {
+                    safeCompletionHandler(false)
+                }
+            }
+        }
     }
 
 }
