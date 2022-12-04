@@ -55,9 +55,12 @@ final class MoneyScreenshots: XCTestCase {
         // and give it a name consisting of the "named"
         // parameter and the device name, so we can find
         // it later.
+
+        let theme = UITraitCollection.current.userInterfaceStyle == .dark ? "dark" : "light"
+
         let screenshotAttachment = XCTAttachment(
             uniformTypeIdentifier: "public.png",
-            name: "Screenshot-\(UIDevice.current.name)-\(name).png",
+            name: "Screenshot-\(UIDevice.current.name)-\(theme)-\(name).png",
             payload: fullScreenshot.pngRepresentation,
             userInfo: nil)
 
