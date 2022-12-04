@@ -9,6 +9,9 @@ import UIKit
 
 class TutorialViewController: UIViewController {
 
+    @IBOutlet weak var tutorialTextView: UITextView!
+
+
     // MARK: Life Cycle
 
     override func viewDidLoad() {
@@ -18,6 +21,13 @@ class TutorialViewController: UIViewController {
             // We are in testing mode, make arrangements if needed
             UIView.setAnimationsEnabled(false)
         }
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        tutorialTextView.flashScrollIndicators()
 
     }
 

@@ -90,14 +90,14 @@
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTimeCell" id="Hmu-SD-1O0" customClass="SettingsTimeTableViewCell" customModule="Money" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.333332061767578" width="390" height="53.666667938232422"/>
+                                <rect key="frame" x="20" y="55.333332061767578" width="390" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hmu-SD-1O0" id="pTn-xD-IpC">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="53.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpA-eo-sZV">
-                                            <rect key="frame" x="16" y="16" width="43" height="21.666666666666671"/>
+                                            <rect key="frame" x="16" y="16" width="43" height="21"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -122,7 +122,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsHourlyRateCell" id="Phs-Qw-Co8" customClass="SettingsHourlyRateTableViewCell" customModule="Money" customModuleProvider="target">
-                                <rect key="frame" x="20" y="109" width="390" height="66.333335876464844"/>
+                                <rect key="frame" x="20" y="108.33333206176758" width="390" height="66.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Phs-Qw-Co8" id="NIJ-HU-i0e">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="66.333335876464844"/>
@@ -186,7 +186,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsS-gh-LIH">
                                 <rect key="frame" x="16" y="148" width="398" height="647.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Here is how this app works:
+                                <string key="text">Here is how this app works:
 
 WHAT
 Motivator aims to help you get to work on time ⏰
@@ -206,7 +206,7 @@ This app is designed for anyone who gets paid hourly (not salary) ⏱️
 WHERE
 Wherever you go, the app will be right there with you ❤️
 
-Ready? Tap OK, then tap Settings to get started!</mutableString>
+Ready? Tap OK, then tap Settings to get started!</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -239,6 +239,9 @@ Ready? Tap OK, then tap Settings to get started!</mutableString>
                             <constraint firstItem="a4j-Ye-kcm" firstAttribute="top" secondItem="Q0f-b8-QBI" secondAttribute="top" constant="16" id="o4l-0g-Ton"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tutorialTextView" destination="hsS-gh-LIH" id="bBH-pj-mtZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGi-aY-Etf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
