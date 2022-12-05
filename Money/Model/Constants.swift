@@ -26,6 +26,7 @@ struct Const {
         static let startTime = "startTime"
         static let endTime = "endTime"
         static let userSawTutorial = "userSawTutorial"
+        static let weekdaysIWorkOn = "weekdaysIWorkOn"
     }
 
     struct UIMsg {
@@ -44,5 +45,9 @@ struct Const {
         static let appName = "Motivator"
         static let reviewLink = "https://apps.apple.com/app/id6444535220?action=write-review"
         static let tutorial = "Tutorial"
+        static let weekdaysNamesArr = ["S", "M", "T", "W", "T", "F", "S"]
+        static let aWeekdayAttr: [NSAttributedString.Key: Any] = [
+            .font: UIFont.preferredFont(for: .body, weight: .bold)
+        ]
     }
 }

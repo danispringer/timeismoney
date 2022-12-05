@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
 
     let settingsTimeCell = "SettingsTimeCell"
     let settingsHourlyCell = "SettingsHourlyCell"
+    let settingsWeekdayCell = "SettingsWeekdayCell"
 
     let myDataSourceLabels = [
         [
@@ -34,7 +35,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
 
     let myDataSourceTitles = [
         "Enter what times you start and end work",
-        "Enter how much you get paid per hour"
+        "Enter how much you get paid per hour",
+        "Select what weekdays you work on"
     ]
 
     let numberFormatterCurrency = NumberFormatter()
@@ -178,7 +180,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
     // MARK: TableView
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2 // work start/end times, hourly rate
+        return 3 // work start/end times, hourly rate, weekdays
     }
 
 
@@ -196,6 +198,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                 return 2 // start time, end time
             case 1:
                 return 1 // hourly rate
+            case 2: // weekdays
+                return 1
             default:
                 fatalError()
         }
@@ -243,10 +247,37 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                     from: hourlyRate as NSNumber)
                 cell.myTextField.delegate = self
                 return cell
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: settingsWeekdayCell)
+                as! SettingsWeekdayCell
+
+                let weekdaysArr: [Bool] = UD.value(forKey: Const.UDef.weekdaysIWorkOn)
+                as! [Bool]
+
+                for (myIndex, button) in [
+                    cell.sundayButton,
+                    cell.mondayButton,
+                    cell.tuesdayButton,
+                    cell.wednesdayButton,
+                    cell.thursdayButton,
+                    cell.fridayButton,
+                    cell.saturdayButton
+                ].enumerated() {
+                    let anAttrTitle = NSAttributedString(
+                        string: Const.UIMsg.weekdaysNamesArr[myIndex],
+                        attributes: Const.UIMsg.aWeekdayAttr)
+                    button?.setAttributedTitle(anAttrTitle, for: .normal)
+
+                    button?.layer.cornerRadius = (button?.frame.width ?? 1)/2
+                    button?.backgroundColor = weekdaysArr[myIndex] ? .systemGreen
+                    : .clear
+                    button?.tintColor = .label
+
+                }
+                return cell
             default:
                 fatalError()
         }
-
     }
 
 }

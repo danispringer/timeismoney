@@ -10,8 +10,10 @@
 		331153132926261F0051C145 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331153122926261F0051C145 /* Constants.swift */; };
 		3311531529264D0A0051C145 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3311531429264D0A0051C145 /* Notification+Extensions.swift */; };
 		331DB79A292DAE6B00A5CB80 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331DB799292DAE6B00A5CB80 /* UIViewController+Extensions.swift */; };
+		3372A67D293DC69B00277731 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3372A67C293DC69A00277731 /* UIFont+Extensions.swift */; };
 		3377354B292699E000A91D6F /* MoneyScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3377354A292699E000A91D6F /* MoneyScreenshots.swift */; };
 		3377355429269A3300A91D6F /* screenshots.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3377355329269A2A00A91D6F /* screenshots.sh */; };
+		3395AF19293DB46B00B04A9C /* SettingsWeekdayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3395AF18293DB46B00B04A9C /* SettingsWeekdayCell.swift */; };
 		339B03CE2925EEE70022EC5B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B03CD2925EEE70022EC5B /* SettingsViewController.swift */; };
 		339B829E2920B3B90032061E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B829D2920B3B90032061E /* AppDelegate.swift */; };
 		339B82A02920B3B90032061E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B829F2920B3B90032061E /* SceneDelegate.swift */; };
@@ -53,9 +55,11 @@
 		3311531429264D0A0051C145 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		33115316292670010051C145 /* Money.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Money.entitlements; sourceTree = "<group>"; };
 		331DB799292DAE6B00A5CB80 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		3372A67C293DC69A00277731 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		33773548292699E000A91D6F /* MoneyScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3377354A292699E000A91D6F /* MoneyScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyScreenshots.swift; sourceTree = "<group>"; };
 		3377355329269A2A00A91D6F /* screenshots.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = screenshots.sh; sourceTree = "<group>"; };
+		3395AF18293DB46B00B04A9C /* SettingsWeekdayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWeekdayCell.swift; sourceTree = "<group>"; };
 		339B03CD2925EEE70022EC5B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		339B829A2920B3B90032061E /* Money.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Money.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		339B829D2920B3B90032061E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				331153122926261F0051C145 /* Constants.swift */,
 				3311531429264D0A0051C145 /* Notification+Extensions.swift */,
 				331DB799292DAE6B00A5CB80 /* UIViewController+Extensions.swift */,
+				3372A67C293DC69A00277731 /* UIFont+Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			children = (
 				33D0E5522929B46500DA5FD4 /* SettingsTimesCell.swift */,
 				33D0E5542929B4F600DA5FD4 /* SettingsHourlyCell.swift */,
+				3395AF18293DB46B00B04A9C /* SettingsWeekdayCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,8 +325,10 @@
 				33D0E5552929B4F600DA5FD4 /* SettingsHourlyCell.swift in Sources */,
 				331DB79A292DAE6B00A5CB80 /* UIViewController+Extensions.swift in Sources */,
 				339B82A02920B3B90032061E /* SceneDelegate.swift in Sources */,
+				3395AF19293DB46B00B04A9C /* SettingsWeekdayCell.swift in Sources */,
 				3311531529264D0A0051C145 /* Notification+Extensions.swift in Sources */,
 				339B03CE2925EEE70022EC5B /* SettingsViewController.swift in Sources */,
+				3372A67D293DC69B00277731 /* UIFont+Extensions.swift in Sources */,
 				33D0E5532929B46500DA5FD4 /* SettingsTimesCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

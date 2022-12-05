@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_72" orientation="portrait" appearance="dark"/>
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -101,8 +101,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="99O-cv-IJm">
-                                <rect key="frame" x="0.0" y="148" width="430" height="665"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="147.66666666666669" width="430" height="665.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsTimeCell" id="wfG-Uz-7Uq" customClass="SettingsTimesCell" customModule="Money" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.333332061767578" width="390" height="52.666667938232422"/>
@@ -168,6 +168,99 @@
                                             <outlet property="myTextField" destination="qvA-dk-2Wj" id="sgc-aJ-08l"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsWeekdayCell" id="eye-hL-Y4A" customClass="SettingsWeekdayCell" customModule="Money" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="160.66666793823242" width="390" height="65.333335876464844"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eye-hL-Y4A" id="DeO-8g-H6E">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="65.333335876464844"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="TcN-Fk-WXj">
+                                                    <rect key="frame" x="16" y="16.000000000000004" width="358" height="33.333333333333343"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5P-Gn-xhh">
+                                                            <rect key="frame" x="0.0" y="0.0" width="33.333333333333336" height="33.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="e5P-Gn-xhh" secondAttribute="height" id="0ty-i2-8Y3"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="S"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwV-Bd-UvG">
+                                                            <rect key="frame" x="54" y="0.0" width="33.333333333333343" height="33.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="nwV-Bd-UvG" secondAttribute="height" id="tvV-b8-qrh"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="M"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Sp-57-Ryl">
+                                                            <rect key="frame" x="108.33333333333333" y="0.0" width="33.333333333333329" height="33.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="9Sp-57-Ryl" secondAttribute="height" id="AEV-UI-qyL"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="T"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27a-p9-nHs">
+                                                            <rect key="frame" x="162.33333333333334" y="0.0" width="33.333333333333343" height="33.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="27a-p9-nHs" secondAttribute="height" id="RSe-F8-jCK"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="W"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp5-pM-YMs">
+                                                            <rect key="frame" x="216.33333333333334" y="0.0" width="33.333333333333343" height="33.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="bp5-pM-YMs" secondAttribute="height" id="SSe-LL-JeY"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="T"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvA-dT-kSe">
+                                                            <rect key="frame" x="270.66666666666669" y="0.0" width="33.333333333333314" height="33.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="xvA-dT-kSe" secondAttribute="height" id="pLw-yc-BXL"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="F"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SF0-JQ-6N6">
+                                                            <rect key="frame" x="324.66666666666669" y="0.0" width="33.333333333333314" height="33.333333333333336"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="SF0-JQ-6N6" secondAttribute="height" id="JLT-wj-9pU"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="S"/>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="TcN-Fk-WXj" secondAttribute="bottom" constant="16" id="0TB-FI-x0Y"/>
+                                                <constraint firstItem="TcN-Fk-WXj" firstAttribute="top" secondItem="DeO-8g-H6E" secondAttribute="top" constant="16" id="8zh-IV-ou7"/>
+                                                <constraint firstAttribute="trailing" secondItem="TcN-Fk-WXj" secondAttribute="trailing" constant="16" id="Z0j-EE-om8"/>
+                                                <constraint firstItem="TcN-Fk-WXj" firstAttribute="leading" secondItem="DeO-8g-H6E" secondAttribute="leading" constant="16" id="pvV-EL-TmM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="fridayButton" destination="xvA-dT-kSe" id="o7Z-gm-y4z"/>
+                                            <outlet property="mondayButton" destination="nwV-Bd-UvG" id="TUs-dj-7tR"/>
+                                            <outlet property="saturdayButton" destination="SF0-JQ-6N6" id="EM2-mf-FX2"/>
+                                            <outlet property="sundayButton" destination="e5P-Gn-xhh" id="Lqm-fs-sAO"/>
+                                            <outlet property="thursdayButton" destination="bp5-pM-YMs" id="BrS-9H-Fsr"/>
+                                            <outlet property="tuesdayButton" destination="9Sp-57-Ryl" id="aWd-9K-fNo"/>
+                                            <outlet property="wednesdayButton" destination="27a-p9-nHs" id="tWU-9c-pRF"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="cBl-XC-8y1" id="CoR-0E-U2E"/>
@@ -186,7 +279,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znb-7v-qAG">
-                                <rect key="frame" x="16.000000000000007" y="75" width="120.66666666666669" height="41"/>
+                                <rect key="frame" x="16.000000000000007" y="75" width="120.66666666666669" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -305,6 +398,9 @@ Ready? Tap Settings to get started!</string>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

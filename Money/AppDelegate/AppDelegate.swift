@@ -15,19 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
+        let defaultWorkdaysBoolArr = [false, true, true, true, true, true, false]
+
         if CommandLine.arguments.contains("--moneyScreenshots") {
             // We are in testing mode, make arrangements if needed
             UD.set(15, forKey: Const.UDef.hourlyRate)
             UD.set("09:00", forKey: Const.UDef.startTime)
             UD.set("17:00", forKey: Const.UDef.endTime)
             UD.set(false, forKey: Const.UDef.userSawTutorial)
+            UD.set(defaultWorkdaysBoolArr, forKey: Const.UDef.weekdaysIWorkOn)
         }
 
         UD.register(defaults: [
             Const.UDef.hourlyRate: 15.0,
             Const.UDef.startTime: "09:00",
             Const.UDef.endTime: "17:00",
-            Const.UDef.userSawTutorial: false
+            Const.UDef.userSawTutorial: false,
+            Const.UDef.weekdaysIWorkOn: defaultWorkdaysBoolArr
         ])
 
         return true
