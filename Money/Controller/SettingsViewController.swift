@@ -177,6 +177,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
     }
 
 
+    @objc func weekdaysChanged(sender: UIButton) {
+        var oldWeekdays: [Bool] = UD.value(forKey: Const.UDef.weekdaysIWorkOn) as! [Bool]
+        oldWeekdays[sender.tag].toggle()
+        UD.set(oldWeekdays, forKey: Const.UDef.weekdaysIWorkOn)
+        settingsTableView.reloadSections(IndexSet(integer: 2), with: .none)
+    }
+
+
     // MARK: TableView
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -261,6 +269,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                                           cell.thursdayButton,
                                           cell.fridayButton,
                                           cell.saturdayButton].enumerated() {
+                    button?.tag = myIndex
                     let anAttrTitle = NSAttributedString(
                         string: Const.UIMsg.weekdaysNamesArr[myIndex],
                         attributes: Const.UIMsg.aWeekdayAttr)
@@ -270,6 +279,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                     button?.backgroundColor = weekdaysArr[myIndex] ? .systemGreen
                     : .clear
                     button?.tintColor = .label
+                    button?.addTarget(self, action: #selector(weekdaysChanged), for: .touchUpInside)
 
                 }
                 return cell
