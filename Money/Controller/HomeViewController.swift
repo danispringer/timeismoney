@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     @IBOutlet weak var timeWorkableLabel: UILabel!
     @IBOutlet weak var timeWorkableHelperLabel: UILabel!
     @IBOutlet weak var helpButton: UIBarButtonItem!
+    @IBOutlet weak var myToolbar: UIToolbar!
 
 
     // MARK: Properties
@@ -70,6 +71,9 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         setThemeColorTo(myThemeColor: .systemGreen)
         helpButton.menu = infoMenu()
+
+        myToolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        myToolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
     }
 
 

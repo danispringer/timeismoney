@@ -83,6 +83,7 @@
                         <outlet property="helpButton" destination="Vba-Vi-amC" id="V41-Ae-zKJ"/>
                         <outlet property="moneyHelperLabel" destination="wkO-8K-2K0" id="h9Q-dp-0lU"/>
                         <outlet property="moneyMakeableLabel" destination="Bcy-7n-CIm" id="wT8-LM-BbX"/>
+                        <outlet property="myToolbar" destination="b94-vA-H1a" id="l58-01-fl6"/>
                         <outlet property="timeWorkableHelperLabel" destination="Xyb-5F-4sQ" id="yWD-JY-KAR"/>
                         <outlet property="timeWorkableLabel" destination="LOi-7c-JzR" id="a3H-8c-OTA"/>
                     </connections>
