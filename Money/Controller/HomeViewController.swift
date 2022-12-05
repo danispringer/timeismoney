@@ -113,7 +113,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
     }
 
-
+    // TODO: check if working day: if yes proceed as before, otherwise...boh
     @objc func fetchWorkHours() {
         let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
         let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!

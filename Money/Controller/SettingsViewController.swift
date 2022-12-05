@@ -279,7 +279,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                     button?.backgroundColor = weekdaysArr[myIndex] ? .systemGreen
                     : .clear
                     button?.tintColor = .label
-                    button?.addTarget(self, action: #selector(weekdaysChanged), for: .touchUpInside)
+                    button?.addTarget(self, action: #selector(weekdaysChanged),
+                                      for: .touchUpInside)
 
                 }
                 return cell
