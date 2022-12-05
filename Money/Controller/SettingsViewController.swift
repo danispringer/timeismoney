@@ -254,15 +254,13 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                 let weekdaysArr: [Bool] = UD.value(forKey: Const.UDef.weekdaysIWorkOn)
                 as! [Bool]
 
-                for (myIndex, button) in [
-                    cell.sundayButton,
-                    cell.mondayButton,
-                    cell.tuesdayButton,
-                    cell.wednesdayButton,
-                    cell.thursdayButton,
-                    cell.fridayButton,
-                    cell.saturdayButton
-                ].enumerated() {
+                for (myIndex, button) in [cell.sundayButton,
+                                          cell.mondayButton,
+                                          cell.tuesdayButton,
+                                          cell.wednesdayButton,
+                                          cell.thursdayButton,
+                                          cell.fridayButton,
+                                          cell.saturdayButton].enumerated() {
                     let anAttrTitle = NSAttributedString(
                         string: Const.UIMsg.weekdaysNamesArr[myIndex],
                         attributes: Const.UIMsg.aWeekdayAttr)
