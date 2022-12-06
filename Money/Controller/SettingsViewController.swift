@@ -178,7 +178,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
 
 
     @objc func weekdaysChanged(sender: UIButton) {
-        var oldWeekdays: [Bool] = UD.value(forKey: Const.UDef.weekdaysIWorkOn) as! [Bool]
+        var oldWeekdays = getWeekdaysArrBool()
         oldWeekdays[sender.tag].toggle()
         UD.set(oldWeekdays, forKey: Const.UDef.weekdaysIWorkOn)
         settingsTableView.reloadSections(IndexSet(integer: 2), with: .none)
@@ -259,8 +259,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                 let cell = tableView.dequeueReusableCell(withIdentifier: settingsWeekdayCell)
                 as! SettingsWeekdayCell
 
-                let weekdaysArr: [Bool] = UD.value(forKey: Const.UDef.weekdaysIWorkOn)
-                as! [Bool]
+                let weekdaysArr = getWeekdaysArrBool()
 
                 for (myIndex, button) in [cell.sundayButton,
                                           cell.mondayButton,

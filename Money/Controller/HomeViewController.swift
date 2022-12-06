@@ -35,6 +35,12 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     var endTime: Date!
     var hourlyRate: Double!
 
+    enum WorkHoursStatus {
+        case before
+        case after
+        case during
+    }
+
 
     // MARK: Life Cycle
 
@@ -113,8 +119,9 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         hourlyRate = UD.double(forKey: Const.UDef.hourlyRate)
     }
 
-    // TODO: check if working day: if yes proceed as before, otherwise...boh
+
     @objc func fetchWorkHours() {
+        print(getWeekdayIntFrom(date: Date()))
         let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
         let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
 
@@ -136,22 +143,73 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     }
 
 
-    func isNowWorkHours() -> Bool {
-        let now = Date()
-        return now >= startTime && now < endTime
+    func getWeekdayIntFrom(date: Date) -> Int {
+        let weekday = Calendar.current.component(.weekday, from: Date())-1
+        // ☝️ so sunday is 0
+        return weekday
     }
 
 
-    @objc func tick() {
-        if isNowWorkHours() {
-            updateLabelsDuringWorkDay()
+    func isUpcomingStartTimeAWorkWeekday() -> Bool {
+        let tomorrow = Date().advanced(by: secondsInADay)
+
+        let tomorrowWeekday = getWeekdayIntFrom(date: tomorrow)
+        let workdaysArr = getWeekdaysArrBool()
+        return workdaysArr[tomorrowWeekday]
+    }
+
+
+    func isTodayWorkWeekday() -> Bool {
+        let currentWeekday = getWeekdayIntFrom(date: Date())
+        let workdaysArr = getWeekdaysArrBool()
+        return workdaysArr[currentWeekday]
+    }
+
+    // TODO: refactor to is now work date
+    // if before or during workhours, it's relevant that today is/isn't a workday
+    // if after workhours, it's relevant that tomorrow is/isn't a workday
+    func getWorkHoursStatus() -> WorkHoursStatus {
+        // TODO: if weekday is day off, return false
+        // unless upcoming morning is work weekday
+
+        let now = Date()
+        let todayIsWorkday = isTodayWorkWeekday()
+        let tomorrowIsWorkday = isUpcomingStartTimeAWorkWeekday()
+
+        if now >= startTime && now < endTime {
+            return .during
+        } else if now < startTime {
+            return .before
+        } else if now > endTime {
+            return .after
         } else {
-            updateLabelsAfterHours()
+            fatalError()
         }
     }
 
 
-    func updateLabelsDuringWorkDay() {
+    @objc func tick() {
+        switch getWorkHoursStatus() {
+            case .before:
+                // TODO: change?
+                updateLabelsAfterHours()
+            case .during:
+                updateLabelsDuringWorkHours()
+            case .after:
+                // TODO: change?
+                updateLabelsAfterHours()
+        }
+    }
+
+
+    func updateMoneyMakeableLabel(seconds: Double) {
+        let moneyLeft: Double = hourlyRate * seconds / 3600.0
+        let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
+        moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
+    }
+
+
+    func updateLabelsDuringWorkHours() {
         timeWorkableHelperLabel.text = Const.UIMsg.timeToWorkEnd
         moneyHelperLabel.text = Const.UIMsg.dailyMakeableRemaining
         let now = Date()
@@ -160,13 +218,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         updateMoneyMakeableLabel(seconds: secsDiff)
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsDiff))
-    }
-
-
-    func updateMoneyMakeableLabel(seconds: Double) {
-        let moneyLeft: Double = hourlyRate * seconds / 3600.0
-        let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
-        moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
     }
 
 

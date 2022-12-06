@@ -10,6 +10,10 @@ import UIKit
 
 extension UIViewController {
 
+    func getWeekdaysArrBool() -> [Bool] {
+        return UD.value(forKey: Const.UDef.weekdaysIWorkOn) as! [Bool]
+    }
+
     func setThemeColorTo(myThemeColor: UIColor) {
         UIProgressView.appearance().progressTintColor = myThemeColor
         self.navigationController?.navigationBar.tintColor = myThemeColor
