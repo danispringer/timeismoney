@@ -37,8 +37,8 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
     enum WorkHoursStatus {
         case before
-        case after
         case during
+        case dayOff
     }
 
 
@@ -121,7 +121,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
     @objc func fetchWorkHours() {
-        print(getWeekdayIntFrom(date: Date()))
         let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
         let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
 
@@ -144,44 +143,51 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
     func getWeekdayIntFrom(date: Date) -> Int {
-        let weekday = Calendar.current.component(.weekday, from: Date())-1
+        let weekday = Calendar.current.component(.weekday, from: Date()) //-1
+        // TODO: readd -1
         // ☝️ so sunday is 0
         return weekday
     }
 
 
-    func isUpcomingStartTimeAWorkWeekday() -> Bool {
-        let tomorrow = Date().advanced(by: secondsInADay)
-
-        let tomorrowWeekday = getWeekdayIntFrom(date: tomorrow)
-        let workdaysArr = getWeekdaysArrBool()
-        return workdaysArr[tomorrowWeekday]
+    func tomorrow() -> Date {
+        return Calendar.current.date(byAdding: .weekday, value: 1, to: Date())!
     }
 
 
-    func isTodayWorkWeekday() -> Bool {
-        let currentWeekday = getWeekdayIntFrom(date: Date())
+    func isAWorkWeekdayOn(someDate: Date) -> Bool {
+        let someWeekday = getWeekdayIntFrom(date: someDate)
         let workdaysArr = getWeekdaysArrBool()
-        return workdaysArr[currentWeekday]
+        return workdaysArr[someWeekday]
     }
 
-    // TODO: refactor to is now work date
-    // if before or during workhours, it's relevant that today is/isn't a workday
-    // if after workhours, it's relevant that tomorrow is/isn't a workday
+
     func getWorkHoursStatus() -> WorkHoursStatus {
-        // TODO: if weekday is day off, return false
-        // unless upcoming morning is work weekday
 
         let now = Date()
-        let todayIsWorkday = isTodayWorkWeekday()
-        let tomorrowIsWorkday = isUpcomingStartTimeAWorkWeekday()
+        let todayIsWorkday = isAWorkWeekdayOn(someDate: now)
+        let tomorrowIsWorkday = isAWorkWeekdayOn(someDate: tomorrow())
 
-        if now >= startTime && now < endTime {
-            return .during
+        if (startTime...endTime).contains(now) { // now >= startTime && now < endTime
+            if todayIsWorkday {
+                return .during
+            } else if tomorrowIsWorkday {
+                return .before
+            } else {
+                return .dayOff
+            }
         } else if now < startTime {
-            return .before
+            if todayIsWorkday {
+                return .before
+            } else {
+                return .dayOff
+            }
         } else if now > endTime {
-            return .after
+            if tomorrowIsWorkday {
+                return .before
+            } else {
+                return .dayOff
+            }
         } else {
             fatalError()
         }
@@ -191,21 +197,24 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     @objc func tick() {
         switch getWorkHoursStatus() {
             case .before:
-                // TODO: change?
-                updateLabelsAfterHours()
+                updateLabelsIfTomorrowIsWorkday()
             case .during:
                 updateLabelsDuringWorkHours()
-            case .after:
-                // TODO: change?
-                updateLabelsAfterHours()
+            case .dayOff:
+                updateLabelsDuringDayOff()
         }
     }
 
 
-    func updateMoneyMakeableLabel(seconds: Double) {
-        let moneyLeft: Double = hourlyRate * seconds / 3600.0
-        let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
-        moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
+    func updateLabelsDuringDayOff() {
+        timeWorkableHelperLabel.text = " "
+        moneyHelperLabel.text = "Happy FIXMEWEEKDAY - enjoy your vacation"
+        let now = Date()
+
+        let secsDiff = endTime.timeIntervalSince1970 - now.timeIntervalSince1970
+        updateMoneyMakeableLabel(seconds: nil) // nil sets label to a space (" ")
+
+        timeWorkableLabel.text = " "
     }
 
 
@@ -221,17 +230,17 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     }
 
 
-    func updateLabelsAfterHours() {
+    func updateLabelsIfTomorrowIsWorkday() {
         timeWorkableHelperLabel.text = Const.UIMsg.timeToWorkStart
         moneyHelperLabel.text = Const.UIMsg.dailyOutsideWorkingHours
 
-        let secsFromStartToEndTime = endTime
+        let secsInFullWorkday = endTime
             .timeIntervalSince1970 - startTime.timeIntervalSince1970
 
-        guard secsFromStartToEndTime > 0 else {
+        guard secsInFullWorkday > 0 else {
             let alert = createAlert(alertReasonParam: .unknown)
 
-            appendTo(alert: alert, condition: "secsFromStartToEndTime > 0",
+            appendTo(alert: alert, condition: "secsInFullWorkday > 0",
                      someFunc: #function, someLine: #line)
 
             showViaGCD(caller: self, alert: alert) { shown in
@@ -242,7 +251,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             return
         }
 
-        updateMoneyMakeableLabel(seconds: secsFromStartToEndTime)
+        updateMoneyMakeableLabel(seconds: secsInFullWorkday)
 
         var secsTillWorkdayBegins = 0.0
 
@@ -278,6 +287,19 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         }
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsTillWorkdayBegins))
+    }
+
+
+    func updateMoneyMakeableLabel(seconds: Double?) {
+
+        guard let safeSeconds = seconds else {
+            moneyMakeableLabel.text = " "
+            return
+        }
+
+        let moneyLeft: Double = hourlyRate * safeSeconds / 3600.0
+        let moneyLeftFormatted = numberFormatterCurrency.string(from: moneyLeft as NSNumber)
+        moneyMakeableLabel.text = "\(moneyLeftFormatted!)"
     }
 
 
