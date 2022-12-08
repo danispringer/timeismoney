@@ -216,7 +216,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
     func updateLabelsDuringDayOff() {
         timeWorkableHelperLabel.text = " "
-        moneyHelperLabel.text = "Happy \(getWeekdayNameFromNow()) - enjoy your vacation"
+        moneyHelperLabel.text = "Happy \(getWeekdayNameFromNow())! Enjoy your vacation"
 
         updateMoneyMakeableLabel(seconds: nil) // nil sets label to a space (" ")
 
