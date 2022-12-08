@@ -280,7 +280,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                     button?.layer.cornerRadius = (button?.frame.width ?? 1)/2
                     button?.backgroundColor = weekdaysArr[myIndex] ? .systemGreen
                     : .clear
-                    button?.tintColor = .label
+                    button?.tintColor = weekdaysArr[myIndex] ? .white : .label
                     button?.addTarget(self, action: #selector(weekdaysChanged),
                                       for: .touchUpInside)
 
