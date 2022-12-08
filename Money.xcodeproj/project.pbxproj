@@ -22,6 +22,7 @@
 		339B82A72920B3BB0032061E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A62920B3BB0032061E /* Assets.xcassets */; };
 		339B82AA2920B3BB0032061E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 339B82A82920B3BB0032061E /* LaunchScreen.storyboard */; };
 		33BAE6AA293C14CC0041B9B1 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BAE6A9293C14CC0041B9B1 /* TutorialViewController.swift */; };
+		33C32C6B2941C6D500024992 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3372A67C293DC69A00277731 /* UIFont+Extensions.swift */; };
 		33C5BAE5292F6BA100F60F4C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331153122926261F0051C145 /* Constants.swift */; };
 		33D0E5532929B46500DA5FD4 /* SettingsTimesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D0E5522929B46500DA5FD4 /* SettingsTimesCell.swift */; };
 		33D0E5552929B4F600DA5FD4 /* SettingsHourlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D0E5542929B4F600DA5FD4 /* SettingsHourlyCell.swift */; };
@@ -310,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3377354B292699E000A91D6F /* MoneyScreenshots.swift in Sources */,
+				33C32C6B2941C6D500024992 /* UIFont+Extensions.swift in Sources */,
 				33C5BAE5292F6BA100F60F4C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
