@@ -85,7 +85,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
         let endTimeHourInt: Int = Int(endTimeH)!
         let endTimeMinInt: Int = Int(endTimeM)!
 
-        let now = Date()
+        let now = getNow()
 
         if aDatePicker.tag == 0 {
             aDatePicker.date = calendar.date(
@@ -178,6 +178,10 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
 
 
     @objc func weekdaysChanged(sender: UIButton) {
+
+        let now = getNow()
+        Calendar.current.dateComponents(in: TimeZone.current, from: now)
+
         var oldWeekdays = getWeekdaysArrBool()
         oldWeekdays[sender.tag].toggle()
         UD.set(oldWeekdays, forKey: Const.UDef.weekdaysIWorkOn)

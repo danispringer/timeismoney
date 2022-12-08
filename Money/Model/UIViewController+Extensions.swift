@@ -95,4 +95,9 @@ extension UIViewController {
         }
     }
 
+
+    func getNow() -> Date {
+        return Date()
+    }
+
 }

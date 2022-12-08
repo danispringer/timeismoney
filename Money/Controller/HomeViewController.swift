@@ -133,7 +133,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         let endTimeHourInt: Int = Int(endTimeH)!
         let endTimeMinInt: Int = Int(endTimeM)!
 
-        let now = Date()
+        let now = getNow()
 
         startTime = calendar.date(bySettingHour: startTimeHourInt,
                                   minute: startTimeMinInt, second: 0, of: now)!
@@ -142,21 +142,21 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     }
 
 
-    func getWeekdayIntFrom(date: Date) -> Int {
-        let weekday = Calendar.current.component(.weekday, from: Date()) //-1
-        // TODO: readd -1
+    func getWeekdayIntFrom(someDate: Date) -> Int {
+        let components = Calendar.current.dateComponents(in: NSTimeZone.default, from: someDate)
+        let weekday = components.weekday!-1
         // ☝️ so sunday is 0
         return weekday
     }
 
 
     func tomorrow() -> Date {
-        return Calendar.current.date(byAdding: .weekday, value: 1, to: Date())!
+        return Calendar.current.date(byAdding: .weekday, value: 1, to: getNow())!
     }
 
 
     func isAWorkWeekdayOn(someDate: Date) -> Bool {
-        let someWeekday = getWeekdayIntFrom(date: someDate)
+        let someWeekday = getWeekdayIntFrom(someDate: someDate)
         let workdaysArr = getWeekdaysArrBool()
         return workdaysArr[someWeekday]
     }
@@ -164,7 +164,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
     func getWorkHoursStatus() -> WorkHoursStatus {
 
-        let now = Date()
+        let now = getNow()
         let todayIsWorkday = isAWorkWeekdayOn(someDate: now)
         let tomorrowIsWorkday = isAWorkWeekdayOn(someDate: tomorrow())
 
@@ -209,9 +209,8 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     func updateLabelsDuringDayOff() {
         timeWorkableHelperLabel.text = " "
         moneyHelperLabel.text = "Happy FIXMEWEEKDAY - enjoy your vacation"
-        let now = Date()
+        let now = getNow()
 
-        let secsDiff = endTime.timeIntervalSince1970 - now.timeIntervalSince1970
         updateMoneyMakeableLabel(seconds: nil) // nil sets label to a space (" ")
 
         timeWorkableLabel.text = " "
@@ -221,7 +220,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     func updateLabelsDuringWorkHours() {
         timeWorkableHelperLabel.text = Const.UIMsg.timeToWorkEnd
         moneyHelperLabel.text = Const.UIMsg.dailyMakeableRemaining
-        let now = Date()
+        let now = getNow()
 
         let secsDiff = endTime.timeIntervalSince1970 - now.timeIntervalSince1970
         updateMoneyMakeableLabel(seconds: secsDiff)
@@ -255,18 +254,20 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         var secsTillWorkdayBegins = 0.0
 
-        guard Date() < startTime || Date() >= endTime else {
+        let now = getNow()
+
+        guard now < startTime || now >= endTime else {
             fetchWorkHours()
             return
         }
 
-        if Date() < startTime { // if before work (as opposed to after)
+        if now < startTime { // if before work (as opposed to after)
             secsTillWorkdayBegins = startTime
-                .timeIntervalSince1970 - Date().timeIntervalSince1970
-        } else if Date() >= endTime {
+                .timeIntervalSince1970 - now.timeIntervalSince1970
+        } else if now >= endTime {
             secsTillWorkdayBegins = startTime
                 .timeIntervalSince1970.advanced(by: secondsInADay)
-            - Date().timeIntervalSince1970
+            - now.timeIntervalSince1970
         } else {
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "else past guard", someFunc: #function,
@@ -310,7 +311,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         alert.message?.append("\n\(condition)")
         alert.message?.append("\ns: \(startTime!)")
         alert.message?.append("\ne: \(endTime!)")
-        alert.message?.append("\nn: \(Date())")
+        alert.message?.append("\nn: \(getNow())")
     }
 
 
@@ -492,7 +493,7 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         startTime: \(startTime!)
         endTime: \(endTime!)
-        now: \(Date())
+        now: \(getNow())
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         """, isHTML: false)
         return mailComposerVC
