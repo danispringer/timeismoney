@@ -261,6 +261,9 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
 
                 let weekdaysArr = getWeekdaysArrBool()
 
+                let weekdaysShortNamesArr: [String] = DateFormatter()
+                    .veryShortStandaloneWeekdaySymbols
+
                 for (myIndex, button) in [cell.sundayButton,
                                           cell.mondayButton,
                                           cell.tuesdayButton,
@@ -270,7 +273,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
                                           cell.saturdayButton].enumerated() {
                     button?.tag = myIndex
                     let anAttrTitle = NSAttributedString(
-                        string: Const.UIMsg.weekdaysNamesArr[myIndex],
+                        string: weekdaysShortNamesArr[myIndex],
                         attributes: Const.UIMsg.aWeekdayAttr)
                     button?.setAttributedTitle(anAttrTitle, for: .normal)
 
