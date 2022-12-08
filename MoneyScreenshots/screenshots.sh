@@ -33,7 +33,6 @@ languages=(
 # (options are "light" and "dark")
 appearances=(
     "light"
-    "dark"
 )
 
 # Save final screenshots into this folder (it will be created)
