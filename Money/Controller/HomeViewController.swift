@@ -152,7 +152,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
     func getWeekdayNameFromNow() -> String {
         let components = Calendar.current.dateComponents(in: NSTimeZone.default, from: getNow())
-        let someWeekday = components.weekday! // NO "-1" cuz weekdaySymbols start from 1
+        let someWeekday = components.weekday!-1
         let someWeekdayName = DateFormatter().weekdaySymbols[someWeekday]
         return someWeekdayName
     }
@@ -215,7 +215,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
     func updateLabelsDuringDayOff() {
-        timeWorkableHelperLabel.text = " "
+        timeWorkableHelperLabel.text = "Tip: Adjust workdays in Settings"
         moneyHelperLabel.text = "Happy \(getWeekdayNameFromNow())! Enjoy your vacation"
 
         updateMoneyMakeableLabel(seconds: nil) // nil sets label to a space (" ")
