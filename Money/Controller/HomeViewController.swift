@@ -216,8 +216,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             appendTo(alert: alert, condition: "",
                      someFunc: #function, someLine: #line)
 
-            showViaGCD(caller: self, alert: alert) { _ in
-            }
+            showViaGCD(caller: self, alert: alert) { _ in }
             return .dayOff
         }
     }
@@ -415,8 +414,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "safeURL = myURL", someFunc: #function,
                      someLine: #line)
-            showViaGCD(caller: self, alert: alert) { _ in
-            }
+            showViaGCD(caller: self, alert: alert) { _ in }
             return
         }
         UIApplication.shared.open(safeURL, options: [:], completionHandler: nil)
@@ -435,9 +433,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
                     alert.view.layoutIfNeeded()
                     self.appendTo(alert: alert, condition: "error == nil", someFunc: #function,
                                   someLine: #line)
-                    self.showViaGCD(caller: self, alert: alert) { _ in
-
-                    }
+                    self.showViaGCD(caller: self, alert: alert) { _ in }
                     return
                 }
             }
@@ -476,11 +472,7 @@ extension HomeViewController {
             appendTo(alert: alert, condition: "expected valid URL",
                      someFunc: #function, someLine: #line)
 
-            showViaGCD(caller: self, alert: alert) { shown in
-                if shown {
-                    self.timer.invalidate()
-                }
-            }
+            showViaGCD(caller: self, alert: alert) { _ in }
             return
         }
         UIApplication.shared.open(
@@ -539,8 +531,7 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
 
     func showSendMailErrorAlert() {
         let alert = createAlert(alertReasonParam: .emailError)
-        showViaGCD(caller: self, alert: alert) { _ in
-        }
+        showViaGCD(caller: self, alert: alert) { _ in }
     }
 
 
