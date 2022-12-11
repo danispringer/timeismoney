@@ -97,7 +97,12 @@ extension UIViewController {
 
 
     func getNow() -> Date {
-        return Date()
+        let now = Date()
+        if CommandLine.arguments.contains("--moneyScreenshots") {
+            // We are in testing mode, make arrangements if needed
+            return calendar.date(byAdding: .hour, value: 38, to: now)!
+        }
+        return now
     }
 
 }

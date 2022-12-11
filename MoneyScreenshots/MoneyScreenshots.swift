@@ -38,7 +38,7 @@ final class MoneyScreenshots: XCTestCase {
         XCTAssertTrue(app.buttons["Done"].firstMatch.waitForExistence(timeout: 5))
         app.buttons["Done"].firstMatch.tap()
 
-        XCTAssertTrue(app.staticTexts[Const.UIMsg.dailyOutsideWorkingHours].firstMatch
+        XCTAssertTrue(app.staticTexts[Const.UIMsg.dailyMakeableRemaining].firstMatch
             .waitForExistence(timeout: 5))
         takeScreenshot(named: "1-home")
 
