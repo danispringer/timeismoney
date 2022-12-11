@@ -176,7 +176,21 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         let todayIsWorkday = isAWorkWeekdayOn(someDate: now)
         let tomorrowIsWorkday = isAWorkWeekdayOn(someDate: tomorrow())
 
-        if (startTime...endTime).contains(now) { // now >= startTime && now < endTime
+        guard startTime < endTime else {
+            let alert = createAlert(alertReasonParam: .unknown)
+
+            appendTo(alert: alert, condition: "startTime < endTime",
+                     someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.timer.invalidate()
+                }
+            }
+            return .dayOff
+        }
+
+        if now >= startTime && now < endTime {
             if todayIsWorkday {
                 return .during
             } else if tomorrowIsWorkday {
@@ -197,7 +211,14 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
                 return .dayOff
             }
         } else {
-            fatalError()
+            let alert = createAlert(alertReasonParam: .unknown)
+
+            appendTo(alert: alert, condition: "",
+                     someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { _ in
+            }
+            return .dayOff
         }
     }
 
@@ -450,8 +471,17 @@ extension HomeViewController {
         //       You can find the App Store ID in your app's product URL
         guard let writeReviewURL = URL(string: Const.UIMsg.reviewLink)
         else {
-            fatalError("expected valid URL")
+            let alert = createAlert(alertReasonParam: .unknown)
 
+            appendTo(alert: alert, condition: "expected valid URL",
+                     someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.timer.invalidate()
+                }
+            }
+            return
         }
         UIApplication.shared.open(
             writeReviewURL,
