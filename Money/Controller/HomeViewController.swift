@@ -184,7 +184,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
             showViaGCD(caller: self, alert: alert) { shown in
                 if shown {
-                    self.timer.invalidate()
+                    self.invalTimerAndSetHelperLabel()
                 }
             }
             return .dayOff
@@ -271,7 +271,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
             showViaGCD(caller: self, alert: alert) { shown in
                 if shown {
-                    self.timer.invalidate()
+                    self.invalTimerAndSetHelperLabel()
                 }
             }
             return
@@ -302,7 +302,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
             showViaGCD(caller: self, alert: alert) { shown in
                 if shown {
-                    self.timer.invalidate()
+                    self.invalTimerAndSetHelperLabel()
                 }
             }
 
@@ -362,6 +362,14 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         is😎Visible = false
         settingsVC.delegate = self
         present(settingsVC, animated: true)
+    }
+
+
+    func invalTimerAndSetHelperLabel() {
+        self.timer.invalidate()
+        timeWorkableLabel.text = ""
+        moneyHelperLabel.text = " "
+        timeWorkableHelperLabel.text = "Tip: Adjust in-app Settings and restart app"
     }
 
 
