@@ -3,6 +3,7 @@ vertical_whitespace:
 
 line_length:
     warning: 96
+    ignores_urls: true
 
 disabled_rules:
   - file_length
