@@ -9,4 +9,4 @@
 - App saves your selected start and end times, working weekdays, and hourly rate, offline
 # JOIN THE DARK SIDE
 - App supports light and dark mode
-- View on App Store: click [here](https://apps.apple.com/us/developer/daniel-springer/id1402417666)
+- View on the App Store: click [here](https://apps.apple.com/us/developer/daniel-springer/id1402417666)
