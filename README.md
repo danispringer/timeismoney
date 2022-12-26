@@ -1,4 +1,4 @@
-# README
+# Motivator
 - Need more motivation to get out and work? This app is for you.
 - Simply enter your hourly rate and work hours, and the app will show you a live countdown for how much more you can make today.
 # GRANULAR CONTROL
