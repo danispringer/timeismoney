@@ -2,7 +2,7 @@
 //  MoneyScreenshots.swift
 //  MoneyScreenshots
 //
-//  Created by dani on 11/17/22.
+//  Created by Daniel Springer on 11/17/22.
 //
 
 import XCTest

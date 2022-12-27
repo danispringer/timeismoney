@@ -2,7 +2,7 @@
 //  SettingsHourlyCell.swift
 //  Money
 //
-//  Created by dani on 11/19/22.
+//  Created by Daniel Springer on 11/19/22.
 //
 
 import UIKit

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Money
 //
-//  Created by dani on 11/13/22.
+//  Created by Daniel Springer on 11/13/22.
 //
 
 import UIKit

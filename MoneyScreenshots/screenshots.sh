@@ -3,7 +3,7 @@
 #  screenshots.sh
 #  Money
 #
-#  Created by dani on 11/17/22.
+#  Created by Daniel Springer on 11/17/22.
 #
 
 # The Xcode project to create screenshots for
