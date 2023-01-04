@@ -100,7 +100,7 @@ extension UIViewController {
         let now = Date()
         if CommandLine.arguments.contains("--moneyScreenshots") {
             // We are in testing mode, make arrangements if needed
-            return calendar.date(byAdding: .hour, value: 38, to: now)!
+            return calendar.date(byAdding: .hour, value: 5, to: now)!
         }
         return now
     }
