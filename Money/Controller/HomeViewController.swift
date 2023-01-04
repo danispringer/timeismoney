@@ -133,12 +133,39 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         let endTimeHourInt: Int = Int(endTimeH)!
         let endTimeMinInt: Int = Int(endTimeM)!
 
-        let now = getNow()
+        let nextWorkingDate = calendar.date(byAdding: .day,
+                                            value: daysToNextWorkWeekday(), to: getNow())!
 
         startTime = calendar.date(bySettingHour: startTimeHourInt,
-                                  minute: startTimeMinInt, second: 0, of: now)!
+                                  minute: startTimeMinInt, second: 0, of: nextWorkingDate)!
         endTime = calendar.date(bySettingHour: endTimeHourInt,
-                                minute: endTimeMinInt, second: 0, of: now)!
+                                minute: endTimeMinInt, second: 0, of: nextWorkingDate)!
+    }
+
+
+    /// Count begins "Tomorrow". If "Tomorrow" is a workday, return 0.
+    func daysToNextWorkWeekday() -> Int {
+        let workdaysArr = getWeekdaysArrBool()
+        guard workdaysArr.contains(true) else {
+            return 0
+        }
+        let nowWeekday = getWeekdayIntFrom(someDate: getNow())
+        var daysToNextWorkWeekdayInt = 0
+
+        var newArr: [Bool] = []
+
+        newArr += workdaysArr[(nowWeekday+1)...]
+        newArr += workdaysArr[...(nowWeekday-1)]
+
+        for day in newArr {
+            if day {
+                return daysToNextWorkWeekdayInt
+            } else {
+                daysToNextWorkWeekdayInt += 1
+            }
+        }
+
+        return daysToNextWorkWeekdayInt
     }
 
 
@@ -194,9 +221,11 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             if todayIsWorkday {
                 return .during
             } else if tomorrowIsWorkday {
-                return .before
+                fatalError()
+                //                return .before
             } else {
-                return .dayOff
+                fatalError()
+                //                return .dayOff
             }
         } else if now < startTime {
             if todayIsWorkday {
@@ -205,11 +234,12 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
                 return .dayOff
             }
         } else if now > endTime {
-            if tomorrowIsWorkday {
-                return .before
-            } else {
-                return .dayOff
-            }
+            fatalError()
+            //            if tomorrowIsWorkday {
+            //                return .before
+            //            } else {
+            //                return .dayOff
+            //            }
         } else {
             let alert = createAlert(alertReasonParam: .unknown)
 
@@ -235,7 +265,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
     func updateLabelsDuringDayOff() {
-        timeWorkableHelperLabel.text = "Tip: Adjust workdays in Settings"
+        timeWorkableHelperLabel.text = "Day off: Adjust workdays in Settings"
         moneyHelperLabel.text = "Happy \(getWeekdayNameFromNow())! Enjoy your vacation"
 
         updateMoneyMakeableLabel(seconds: nil) // nil sets label to a space (" ")
@@ -283,19 +313,21 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         let now = getNow()
 
-        guard now < startTime || now >= endTime else {
-            fetchWorkHours()
-            return
-        }
+        //        guard now < startTime || now >= endTime else {
+        //            fetchWorkHours()
+        //            return
+        //        }
 
         if now < startTime { // if before work (as opposed to after)
             secsTillWorkdayBegins = startTime
                 .timeIntervalSince1970 - now.timeIntervalSince1970
         } else if now >= endTime {
-            secsTillWorkdayBegins = startTime
-                .timeIntervalSince1970.advanced(by: secondsInADay)
-            - now.timeIntervalSince1970
+            fatalError() // fetchWorkHours()?
+            //            secsTillWorkdayBegins = startTime
+            //                .timeIntervalSince1970.advanced(by: secondsInADay)
+            //            - now.timeIntervalSince1970
         } else {
+            // fetchWorkHours()?
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "else past guard", someFunc: #function,
                      someLine: #line)
@@ -369,7 +401,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         self.timer.invalidate()
         timeWorkableLabel.text = ""
         moneyHelperLabel.text = " "
-        timeWorkableHelperLabel.text = "Tip: Adjust in-app Settings and restart app"
+        timeWorkableHelperLabel.text = "Error: Adjust in-app Settings and restart app"
     }
 
 
@@ -455,10 +487,9 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
 protocol SettingsPresenter {
-
     func presentSettings()
-
 }
+
 
 protocol DeclaresVisibility {
     // swiftlint:disable identifier_name
@@ -468,7 +499,6 @@ protocol DeclaresVisibility {
 
 
 extension HomeViewController {
-
 
     func requestReview() {
         // Note: Replace the XXXXXXXXXX below with the App Store ID for your app
