@@ -154,7 +154,21 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         var newArr: [Bool] = []
 
-        newArr += workdaysArr[(nowWeekday+1)...]
+        var skipTodayBoolInt = 0
+
+        let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
+        let endTimeH = endTimeString.prefix(2)
+        let endTimeM = endTimeString.suffix(2)
+        let endTimeHourInt: Int = Int(endTimeH)!
+        let endTimeMinInt: Int = Int(endTimeM)!
+
+        if getNow() > calendar.date(bySettingHour: endTimeHourInt,
+                                    minute: endTimeMinInt,
+                                    second: 0, of: getNow())! {
+            skipTodayBoolInt = 1
+        }
+
+        newArr += workdaysArr[(nowWeekday+skipTodayBoolInt)...]
         newArr += workdaysArr[...(nowWeekday-1)]
 
         for day in newArr {
@@ -216,32 +230,24 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             return .dayOff
         }
 
-        if now >= startTime && now < endTime {
-            if todayIsWorkday {
-                return .during
-            } else {
-                let alert = createAlert(alertReasonParam: .unknown)
-
-                appendTo(alert: alert, condition: "",
-                         someFunc: #function, someLine: #line)
-
-                showViaGCD(caller: self, alert: alert) { _ in }
-                return .dayOff
-            }
+        if (startTime...endTime).contains(now) {
+            return .during
         } else if now < startTime {
             if todayIsWorkday {
                 return .before
             } else {
                 return .dayOff
             }
+        } else if now > endTime {
+            fetchWorkHours()
+            if now > endTime {
+                fetchWorkHours()
+                fatalError()
+            } else {
+                return getWorkHoursStatus()
+            }
         } else {
-            let alert = createAlert(alertReasonParam: .unknown)
-
-            appendTo(alert: alert, condition: "",
-                     someFunc: #function, someLine: #line)
-
-            showViaGCD(caller: self, alert: alert) { _ in }
-            return .dayOff
+            fatalError()
         }
     }
 
@@ -320,13 +326,11 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "", someFunc: #function,
                      someLine: #line)
-
             showViaGCD(caller: self, alert: alert) { shown in
                 if shown {
                     self.invalTimerAndSetHelperLabel()
                 }
             }
-
             return
         }
 
