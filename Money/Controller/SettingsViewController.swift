@@ -182,6 +182,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate,
         oldWeekdays[sender.tag].toggle()
         UD.set(oldWeekdays, forKey: Const.UDef.weekdaysIWorkOn)
         settingsTableView.reloadSections(IndexSet(integer: 2), with: .none)
+        NC.post(name: .hoursDidChange, object: nil)
     }
 
 

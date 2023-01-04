@@ -201,7 +201,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         let now = getNow()
         let todayIsWorkday = isAWorkWeekdayOn(someDate: now)
-        let tomorrowIsWorkday = isAWorkWeekdayOn(someDate: tomorrow())
 
         guard startTime < endTime else {
             let alert = createAlert(alertReasonParam: .unknown)
@@ -220,12 +219,14 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         if now >= startTime && now < endTime {
             if todayIsWorkday {
                 return .during
-            } else if tomorrowIsWorkday {
-                fatalError()
-                //                return .before
             } else {
-                fatalError()
-                //                return .dayOff
+                let alert = createAlert(alertReasonParam: .unknown)
+
+                appendTo(alert: alert, condition: "",
+                         someFunc: #function, someLine: #line)
+
+                showViaGCD(caller: self, alert: alert) { _ in }
+                return .dayOff
             }
         } else if now < startTime {
             if todayIsWorkday {
@@ -233,13 +234,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             } else {
                 return .dayOff
             }
-        } else if now > endTime {
-            fatalError()
-            //            if tomorrowIsWorkday {
-            //                return .before
-            //            } else {
-            //                return .dayOff
-            //            }
         } else {
             let alert = createAlert(alertReasonParam: .unknown)
 
@@ -255,7 +249,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     @objc func tick() {
         switch getWorkHoursStatus() {
             case .before:
-                updateLabelsIfTomorrowIsWorkday()
+                updateLabelsIfNextDayIsWorkday()
             case .during:
                 updateLabelsDuringWorkHours()
             case .dayOff:
@@ -286,7 +280,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     }
 
 
-    func updateLabelsIfTomorrowIsWorkday() {
+    func updateLabelsIfNextDayIsWorkday() {
         timeWorkableHelperLabel.text = Const.UIMsg.timeToWorkStart
         moneyHelperLabel.text = Const.UIMsg.dailyOutsideWorkingHours
 
@@ -319,17 +313,12 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         //        }
 
         if now < startTime { // if before work (as opposed to after)
-            secsTillWorkdayBegins = startTime
-                .timeIntervalSince1970 - now.timeIntervalSince1970
-        } else if now >= endTime {
-            fatalError() // fetchWorkHours()?
-            //            secsTillWorkdayBegins = startTime
-            //                .timeIntervalSince1970.advanced(by: secondsInADay)
-            //            - now.timeIntervalSince1970
+            secsTillWorkdayBegins = startTime.timeIntervalSince1970 -
+            now.timeIntervalSince1970
         } else {
             // fetchWorkHours()?
             let alert = createAlert(alertReasonParam: .unknown)
-            appendTo(alert: alert, condition: "else past guard", someFunc: #function,
+            appendTo(alert: alert, condition: "", someFunc: #function,
                      someLine: #line)
 
             showViaGCD(caller: self, alert: alert) { shown in
