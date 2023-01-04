@@ -328,10 +328,10 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         let now = getNow()
 
-        guard !(startTime...endTime).contains(now) else {
+        guard now < startTime || now >= endTime else {
             let alert = createAlert(alertReasonParam: .unknown)
 
-            appendTo(alert: alert, condition: "!(startTime...endTime).contains(now)",
+            appendTo(alert: alert, condition: "now < startTime || now >= endTime",
                      someFunc: #function, someLine: #line)
 
             showViaGCD(caller: self, alert: alert) { shown in
