@@ -328,15 +328,35 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         let now = getNow()
 
-        guard now < startTime || now >= endTime else {
-            fatalError()
+        guard !(startTime...endTime).contains(now) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+
+            appendTo(alert: alert, condition: "!(startTime...endTime).contains(now)",
+                     someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
         }
 
         secsTillWorkdayBegins = startTime.timeIntervalSince1970 -
         now.timeIntervalSince1970
 
         guard secsTillWorkdayBegins >= 0 else {
-            fatalError()
+            let alert = createAlert(alertReasonParam: .unknown)
+
+            appendTo(alert: alert, condition: "secsTillWorkdayBegins >= 0",
+                     someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
         }
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsTillWorkdayBegins))
