@@ -42,7 +42,7 @@ struct Const {
         static let appsLink = "https://apps.apple.com/developer/id1402417666"
         static let appVersion = "CFBundleShortVersionString"
         static let version = "v."
-        static let appName = "Motivator"
+        static let appName = "Motivator - Money Counter"
         static let reviewLink = "https://apps.apple.com/app/id6444535220?action=write-review"
         static let tutorial = "Tutorial"
 //        static let weekdaysNamesArr = ["S", "M", "T", "W", "T", "F", "S"]

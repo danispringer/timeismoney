@@ -533,7 +533,7 @@
 				DEVELOPMENT_TEAM = JMVGHP3288;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Money/Assets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Motivator;
+				INFOPLIST_KEY_CFBundleDisplayName = "Motivator - Money Counter";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -544,7 +544,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = io.danispringer.github.money;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -567,7 +567,7 @@
 				DEVELOPMENT_TEAM = JMVGHP3288;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Money/Assets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Motivator;
+				INFOPLIST_KEY_CFBundleDisplayName = "Motivator - Money Counter";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -578,7 +578,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = io.danispringer.github.money;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
