@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Feat: “Clock-in” option, and show how much you made so far (and how much
     //       more you can make?)
 
+    // https://medium.com/mindful-engineering/introducing-ios-14-widget-extension-1abaa198d183
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
