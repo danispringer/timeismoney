@@ -31,14 +31,14 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     let numberFormatterCurrency = NumberFormatter()
     let dateFormatterHM = DateFormatter()
     let dateFormatterHMS = DateFormatter()
-    var startTime: Date!
-    var endTime: Date!
+    var startDate: Date!
+    var endDate: Date!
     var hourlyRate: Double!
 
     enum WorkHoursStatus {
         case before
         case during
-        case dayOff
+//        case dayOff
     }
 
 
@@ -136,24 +136,22 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         let nextWorkingDate = calendar.date(byAdding: .day,
                                             value: daysToNextWorkWeekday(), to: getNow())!
 
-        startTime = calendar.date(bySettingHour: startTimeHourInt,
+        startDate = calendar.date(bySettingHour: startTimeHourInt,
                                   minute: startTimeMinInt, second: 0, of: nextWorkingDate)!
-        endTime = calendar.date(bySettingHour: endTimeHourInt,
+        endDate = calendar.date(bySettingHour: endTimeHourInt,
                                 minute: endTimeMinInt, second: 0, of: nextWorkingDate)!
     }
 
 
-    /// Count begins "Tomorrow". If "Tomorrow" is a workday, return 0.
     func daysToNextWorkWeekday() -> Int {
         let workdaysArr = getWeekdaysArrBool()
         guard workdaysArr.contains(true) else {
             return 0
         }
-        let nowWeekday = getWeekdayIntFrom(someDate: getNow())
+        let nowWeekdayInt = getWeekdayIntFrom(someDate: getNow())
         var daysToNextWorkWeekdayInt = 0
 
         var newArr: [Bool] = []
-
         var skipTodayBoolInt = 0
 
         let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
@@ -168,8 +166,8 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             skipTodayBoolInt = 1
         }
 
-        newArr += workdaysArr[(nowWeekday+skipTodayBoolInt)...]
-        newArr += workdaysArr[...(nowWeekday-1)]
+        newArr += workdaysArr[(nowWeekdayInt+skipTodayBoolInt)...]
+        newArr += workdaysArr[...(nowWeekdayInt-1)]
 
         for day in newArr {
             if day {
@@ -182,7 +180,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         if getNow() > calendar.date(bySettingHour: endTimeHourInt,
                                     minute: endTimeMinInt,
                                     second: 0, of: getNow())! {
-
             daysToNextWorkWeekdayInt += 1
         }
 
@@ -221,10 +218,10 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     func getWorkHoursStatus() -> WorkHoursStatus {
 
         let now = getNow()
-        let todayIsWorkday = isAWorkWeekdayOn(someDate: now)
-        let tomorrowIsWorkday = isAWorkWeekdayOn(someDate: tomorrow())
+//        let todayIsWorkday = isAWorkWeekdayOn(someDate: now)
+//        let tomorrowIsWorkday = isAWorkWeekdayOn(someDate: tomorrow())
 
-        guard startTime < endTime else {
+        guard startDate < endDate else {
             let alert = createAlert(alertReasonParam: .unknown)
 
             appendTo(alert: alert, condition: "startTime < endTime",
@@ -238,20 +235,20 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             return .before
         }
 
-        if (startTime...endTime).contains(now) {
+        if (startDate...endDate).contains(now) {
             return .during
-        } else if now < startTime {
-            if todayIsWorkday {
+        } else if now < startDate {
+//            if todayIsWorkday {
                 return .before
-            } else {
-                return .dayOff
-            }
-        } else if now > endTime {
-            if tomorrowIsWorkday {
+//            } else {
+//                return .dayOff // TODO: 2
+//            }
+        } else if now > endDate {
+//            if tomorrowIsWorkday {
                 return .before
-            } else {
-                return .dayOff
-            }
+//            } else {
+//                return .dayOff // TODO: 1
+//            }
         } else {
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "else",
@@ -267,25 +264,26 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
     @objc func tick() {
+        fetchWorkHours() // TODO: needed? causes issues?
         switch getWorkHoursStatus() {
             case .before:
                 updateLabelsIfNextDayIsWorkday()
             case .during:
                 updateLabelsDuringWorkHours()
-            case .dayOff:
-                updateLabelsDuringDayOff()
+//            case .dayOff:
+//                updateLabelsDuringDayOff()
         }
     }
 
 
-    func updateLabelsDuringDayOff() {
-        timeWorkableHelperLabel.text = "Day off: Adjust workdays in Settings"
-        moneyHelperLabel.text = "Happy \(getWeekdayNameFromNow())! Enjoy your vacation"
-
-        updateMoneyMakeableLabel(seconds: nil) // nil sets label to a space (" ")
-
-        timeWorkableLabel.text = " "
-    }
+//    func updateLabelsDuringDayOff() {
+//        timeWorkableHelperLabel.text = "Day off: Adjust workdays in Settings"
+//        moneyHelperLabel.text = "Happy \(getWeekdayNameFromNow())! Enjoy your vacation"
+//
+//        updateMoneyMakeableLabel(seconds: nil) // nil sets label to a space (" ")
+//
+//        timeWorkableLabel.text = " "
+//    }
 
 
     func updateLabelsDuringWorkHours() {
@@ -293,7 +291,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         moneyHelperLabel.text = Const.UIMsg.dailyMakeableRemaining
         let now = getNow()
 
-        let secsDiff = endTime.timeIntervalSince1970 - now.timeIntervalSince1970
+        let secsDiff = endDate.timeIntervalSince1970 - now.timeIntervalSince1970
         updateMoneyMakeableLabel(seconds: secsDiff)
 
         timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsDiff))
@@ -301,12 +299,11 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
     func updateLabelsIfNextDayIsWorkday() {
-        fetchWorkHours()
         timeWorkableHelperLabel.text = Const.UIMsg.timeToWorkStart
         moneyHelperLabel.text = Const.UIMsg.dailyOutsideWorkingHours
 
-        let secsInFullWorkday = endTime
-            .timeIntervalSince1970 - startTime.timeIntervalSince1970
+        let secsInFullWorkday = endDate
+            .timeIntervalSince1970 - startDate.timeIntervalSince1970
 
         guard secsInFullWorkday > 0 else {
             let alert = createAlert(alertReasonParam: .unknown)
@@ -328,7 +325,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         let now = getNow()
 
-        guard now < startTime || now >= endTime else {
+        guard now < startDate || now >= endDate else {
             let alert = createAlert(alertReasonParam: .unknown)
 
             appendTo(alert: alert, condition: "now < startTime || now >= endTime",
@@ -342,7 +339,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             return
         }
 
-        secsTillWorkdayBegins = startTime.timeIntervalSince1970 -
+        secsTillWorkdayBegins = startDate.timeIntervalSince1970 -
         now.timeIntervalSince1970
 
         guard secsTillWorkdayBegins >= 0 else {
@@ -381,9 +378,11 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         alert.message?.append("\n\n(Notes for the devs)")
         alert.message?.append("\n\(someFunc), \(someLine)")
         alert.message?.append("\n\(condition)")
-        alert.message?.append("\ns: \(startTime!)")
-        alert.message?.append("\ne: \(endTime!)")
-        alert.message?.append("\nn: \(getNow())")
+        alert.message?.append("\nstart: \(startDate!)")
+        alert.message?.append("\nend: \(endDate!)")
+        alert.message?.append("\nnow: \(getNow())")
+        alert.message?.append("daysToNextWorkWeekday: \(daysToNextWorkWeekday())")
+        alert.message?.append("getWorkHoursStatus: \(getWorkHoursStatus())")
     }
 
 
@@ -571,9 +570,11 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
         Hi, I have a question about your app:
         \n\n\n\n\n\n\n
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        startTime: \(startTime!)
-        endTime: \(endTime!)
+        startTime: \(startDate!)
+        endTime: \(endDate!)
         now: \(getNow())
+        daysToNextWorkWeekday: \(daysToNextWorkWeekday())
+        getWorkHoursStatus: \(getWorkHoursStatus())
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         """, isHTML: false)
         return mailComposerVC

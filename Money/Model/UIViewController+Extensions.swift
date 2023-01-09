@@ -62,7 +62,7 @@ extension UIViewController {
                 alertTitle = "An Error Occurred"
                 alertMessage = """
             Please take a screenshot of this error. Here is how to email it it us:
-            Tap on the top left "Info" button, then tap "\(Const.UIMsg.contact)", \
+            Tap on the top left "Help" button, then tap "\(Const.UIMsg.contact)", \
             and attach the screenshot to the email.
 
             TIP: Ensure you set the work hours correctly, then quit and relaunch the app \
