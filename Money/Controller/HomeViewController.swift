@@ -29,8 +29,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
     var timer = Timer()
     let numberFormatterCurrency = NumberFormatter()
-    let dateFormatterHM = DateFormatter()
-    let dateFormatterHMS = DateFormatter()
+    let myDateCompForm = DateComponentsFormatter()
     var startDate: Date!
     var endDate: Date!
     var hourlyRate: Double!
@@ -57,8 +56,8 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             selector: #selector(self.tick), userInfo: nil, repeats: true)
 
 
-        dateFormatterHM.dateFormat = "HH:mm"
-        dateFormatterHMS.dateFormat = "HH:mm:ss"
+//        dateFormatterHM.dateFormat = "HH:mm"
+//        dateFormatterHMS.dateFormat = "HH:mm:ss"
         numberFormatterCurrency.numberStyle = .currency
         numberFormatterCurrency.roundingMode = .down
 
@@ -294,7 +293,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         let secsDiff = endDate.timeIntervalSince1970 - now.timeIntervalSince1970
         updateMoneyMakeableLabel(seconds: secsDiff)
 
-        timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsDiff))
+        timeWorkableLabel.text = formTimerFrom(Int(secsDiff))
     }
 
 
@@ -356,7 +355,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             return
         }
 
-        timeWorkableLabel.text = secondsToHoursMinutesSeconds(Int(secsTillWorkdayBegins))
+        timeWorkableLabel.text = formTimerFrom(Int(secsTillWorkdayBegins))
     }
 
 
@@ -386,11 +385,16 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     }
 
 
-    func secondsToHoursMinutesSeconds(_ seconds: Int) -> String {
-        let hours = String(format: "%02d", seconds / 3600)
-        let mins = String(format: "%02d", (seconds % 3600) / 60)
-        let secs = String(format: "%02d", (seconds % 3600) % 60)
-        return "\(hours):\(mins):\(secs)"
+    func formTimerFrom(_ seconds: Int) -> String {
+
+        myDateCompForm.allowedUnits = [.day, .hour, .minute, .second]
+
+        return myDateCompForm.string(from: DateComponents(second: seconds)) ?? "oops"
+
+//        let hours = String(format: "%02d", seconds / 3600)
+//        let mins = String(format: "%02d", (seconds % 3600) / 60)
+//        let secs = String(format: "%02d", (seconds % 3600) % 60)
+//        return "\(hours):\(mins):\(secs)"
     }
 
 
