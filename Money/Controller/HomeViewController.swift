@@ -37,7 +37,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     enum WorkHoursStatus {
         case before
         case during
-//        case dayOff
     }
 
 
@@ -55,9 +54,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
             timeInterval: 1.0, target: self,
             selector: #selector(self.tick), userInfo: nil, repeats: true)
 
-
-//        dateFormatterHM.dateFormat = "HH:mm"
-//        dateFormatterHMS.dateFormat = "HH:mm:ss"
         numberFormatterCurrency.numberStyle = .currency
         numberFormatterCurrency.roundingMode = .down
 
@@ -217,8 +213,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     func getWorkHoursStatus() -> WorkHoursStatus {
 
         let now = getNow()
-//        let todayIsWorkday = isAWorkWeekdayOn(someDate: now)
-//        let tomorrowIsWorkday = isAWorkWeekdayOn(someDate: tomorrow())
 
         guard startDate < endDate else {
             let alert = createAlert(alertReasonParam: .unknown)
@@ -237,17 +231,9 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         if (startDate...endDate).contains(now) {
             return .during
         } else if now < startDate {
-//            if todayIsWorkday {
-                return .before
-//            } else {
-//                return .dayOff // TODO: 2
-//            }
+            return .before
         } else if now > endDate {
-//            if tomorrowIsWorkday {
-                return .before
-//            } else {
-//                return .dayOff // TODO: 1
-//            }
+            return .before
         } else {
             let alert = createAlert(alertReasonParam: .unknown)
             appendTo(alert: alert, condition: "else",
@@ -269,20 +255,8 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
                 updateLabelsIfNextDayIsWorkday()
             case .during:
                 updateLabelsDuringWorkHours()
-//            case .dayOff:
-//                updateLabelsDuringDayOff()
         }
     }
-
-
-//    func updateLabelsDuringDayOff() {
-//        timeWorkableHelperLabel.text = "Day off: Adjust workdays in Settings"
-//        moneyHelperLabel.text = "Happy \(getWeekdayNameFromNow())! Enjoy your vacation"
-//
-//        updateMoneyMakeableLabel(seconds: nil) // nil sets label to a space (" ")
-//
-//        timeWorkableLabel.text = " "
-//    }
 
 
     func updateLabelsDuringWorkHours() {
@@ -391,12 +365,22 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         myDateCompForm.unitsStyle = .abbreviated
         myDateCompForm.zeroFormattingBehavior = [.dropAll]
 
-        return myDateCompForm.string(from: DateComponents(second: seconds)) ?? "oops"
+        guard let mySafeString = myDateCompForm.string(
+            from: DateComponents(second: seconds)) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "let mySafeString = myDateCompForm.string",
+                someFunc: #function, someLine: #line)
 
-//        let hours = String(format: "%02d", seconds / 3600)
-//        let mins = String(format: "%02d", (seconds % 3600) / 60)
-//        let secs = String(format: "%02d", (seconds % 3600) % 60)
-//        return "\(hours):\(mins):\(secs)"
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return "error getting time"
+        }
+        return mySafeString
     }
 
 
