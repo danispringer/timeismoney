@@ -388,6 +388,8 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     func formTimerFrom(_ seconds: Int) -> String {
 
         myDateCompForm.allowedUnits = [.day, .hour, .minute, .second]
+        myDateCompForm.unitsStyle = .abbreviated
+        myDateCompForm.zeroFormattingBehavior = [.dropAll]
 
         return myDateCompForm.string(from: DateComponents(second: seconds)) ?? "oops"
 
