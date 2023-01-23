@@ -249,7 +249,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
     @objc func tick() {
-        fetchWorkHours() // TODO: needed? causes issues?
+        fetchWorkHours() // needed? causes issues?
         switch getWorkHoursStatus() {
             case .before:
                 updateLabelsIfNextDayIsWorkday()
