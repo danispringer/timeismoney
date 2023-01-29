@@ -1,5 +1,3 @@
-## Note: I'm rewriting this project from UIKit to SwiftUI. You can view the current/UIKit version here, and check out the in-progress/SwiftUI version [here](https://github.com/DaniSpringer/motivator)
-
 ![logo](https://github.com/DaniSpringer/timeismoney/blob/main/Money/Assets/Assets.xcassets/AppIcon.appiconset/money-icon.jpg?raw=true&sanitize=true)
 
 # Motivator
