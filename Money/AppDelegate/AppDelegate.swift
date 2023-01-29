@@ -9,7 +9,7 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    // Widgets
+    // TODO: Widgets
     // - Add Home Screen widget that shows daily make-able (or made, after check-in
     //   option is done)
     // - Later: Lock Screen widget - apple docs lock screen widget
