@@ -10,6 +10,12 @@
 		331153132926261F0051C145 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331153122926261F0051C145 /* Constants.swift */; };
 		3311531529264D0A0051C145 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3311531429264D0A0051C145 /* Notification+Extensions.swift */; };
 		331DB79A292DAE6B00A5CB80 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331DB799292DAE6B00A5CB80 /* UIViewController+Extensions.swift */; };
+		3327538829BF0DAF00FD3B21 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3327538729BF0DAF00FD3B21 /* WidgetKit.framework */; };
+		3327538A29BF0DAF00FD3B21 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3327538929BF0DAF00FD3B21 /* SwiftUI.framework */; };
+		3327538D29BF0DAF00FD3B21 /* ThingBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3327538C29BF0DAF00FD3B21 /* ThingBundle.swift */; };
+		3327538F29BF0DAF00FD3B21 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3327538E29BF0DAF00FD3B21 /* Thing.swift */; };
+		3327539129BF0DB100FD3B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3327539029BF0DB100FD3B21 /* Assets.xcassets */; };
+		3327539529BF0DB100FD3B21 /* ThingExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3327538529BF0DAF00FD3B21 /* ThingExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3372A67D293DC69B00277731 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3372A67C293DC69A00277731 /* UIFont+Extensions.swift */; };
 		3377354B292699E000A91D6F /* MoneyScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3377354A292699E000A91D6F /* MoneyScreenshots.swift */; };
 		3377355429269A3300A91D6F /* screenshots.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3377355329269A2A00A91D6F /* screenshots.sh */; };
@@ -29,6 +35,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3327539329BF0DB100FD3B21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 339B82922920B3B90032061E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3327538429BF0DAF00FD3B21;
+			remoteInfo = ThingExtension;
+		};
 		3377354E292699E000A91D6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 339B82922920B3B90032061E /* Project object */;
@@ -45,6 +58,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				3327539529BF0DB100FD3B21 /* ThingExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +70,13 @@
 		3311531429264D0A0051C145 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
 		33115316292670010051C145 /* Money.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Money.entitlements; sourceTree = "<group>"; };
 		331DB799292DAE6B00A5CB80 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		3327538529BF0DAF00FD3B21 /* ThingExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ThingExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3327538729BF0DAF00FD3B21 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		3327538929BF0DAF00FD3B21 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		3327538C29BF0DAF00FD3B21 /* ThingBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingBundle.swift; sourceTree = "<group>"; };
+		3327538E29BF0DAF00FD3B21 /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
+		3327539029BF0DB100FD3B21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3327539229BF0DB100FD3B21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3372A67C293DC69A00277731 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		33773548292699E000A91D6F /* MoneyScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3377354A292699E000A91D6F /* MoneyScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyScreenshots.swift; sourceTree = "<group>"; };
@@ -76,6 +97,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3327538229BF0DAF00FD3B21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3327538A29BF0DAF00FD3B21 /* SwiftUI.framework in Frameworks */,
+				3327538829BF0DAF00FD3B21 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33773545292699E000A91D6F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,6 +164,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3327538629BF0DAF00FD3B21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3327538729BF0DAF00FD3B21 /* WidgetKit.framework */,
+				3327538929BF0DAF00FD3B21 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3327538B29BF0DAF00FD3B21 /* Thing */ = {
+			isa = PBXGroup;
+			children = (
+				3327538C29BF0DAF00FD3B21 /* ThingBundle.swift */,
+				3327538E29BF0DAF00FD3B21 /* Thing.swift */,
+				3327539029BF0DB100FD3B21 /* Assets.xcassets */,
+				3327539229BF0DB100FD3B21 /* Info.plist */,
+			);
+			path = Thing;
+			sourceTree = "<group>";
+		};
 		33773549292699E000A91D6F /* MoneyScreenshots */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +198,8 @@
 			children = (
 				339B829C2920B3B90032061E /* Money */,
 				33773549292699E000A91D6F /* MoneyScreenshots */,
+				3327538B29BF0DAF00FD3B21 /* Thing */,
+				3327538629BF0DAF00FD3B21 /* Frameworks */,
 				339B829B2920B3B90032061E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -157,6 +209,7 @@
 			children = (
 				339B829A2920B3B90032061E /* Money.app */,
 				33773548292699E000A91D6F /* MoneyScreenshots.xctest */,
+				3327538529BF0DAF00FD3B21 /* ThingExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,6 +241,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3327538429BF0DAF00FD3B21 /* ThingExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3327539829BF0DB100FD3B21 /* Build configuration list for PBXNativeTarget "ThingExtension" */;
+			buildPhases = (
+				3327538129BF0DAF00FD3B21 /* Sources */,
+				3327538229BF0DAF00FD3B21 /* Frameworks */,
+				3327538329BF0DAF00FD3B21 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ThingExtension;
+			productName = ThingExtension;
+			productReference = 3327538529BF0DAF00FD3B21 /* ThingExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		33773547292699E000A91D6F /* MoneyScreenshots */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33773550292699E000A91D6F /* Build configuration list for PBXNativeTarget "MoneyScreenshots" */;
@@ -218,6 +288,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3327539429BF0DB100FD3B21 /* PBXTargetDependency */,
 			);
 			name = Money;
 			productName = Money;
@@ -231,10 +302,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1410;
 				ORGANIZATIONNAME = "Daniel Springer";
 				TargetAttributes = {
+					3327538429BF0DAF00FD3B21 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					33773547292699E000A91D6F = {
 						CreatedOnToolsVersion = 14.1;
 						TestTargetID = 339B82992920B3B90032061E;
@@ -259,11 +333,20 @@
 			targets = (
 				339B82992920B3B90032061E /* Money */,
 				33773547292699E000A91D6F /* MoneyScreenshots */,
+				3327538429BF0DAF00FD3B21 /* ThingExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3327538329BF0DAF00FD3B21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3327539129BF0DB100FD3B21 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33773546292699E000A91D6F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -307,6 +390,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3327538129BF0DAF00FD3B21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3327538F29BF0DAF00FD3B21 /* Thing.swift in Sources */,
+				3327538D29BF0DAF00FD3B21 /* ThingBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33773544292699E000A91D6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,6 +431,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3327539429BF0DB100FD3B21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3327538429BF0DAF00FD3B21 /* ThingExtension */;
+			targetProxy = 3327539329BF0DB100FD3B21 /* PBXContainerItemProxy */;
+		};
 		3377354F292699E000A91D6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 339B82992920B3B90032061E /* Money */;
@@ -366,6 +463,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3327539629BF0DB100FD3B21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JMVGHP3288;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Thing/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Thing;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Daniel Springer. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.danispringer.github.money-old.Thing";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3327539729BF0DB100FD3B21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JMVGHP3288;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Thing/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Thing;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Daniel Springer. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.danispringer.github.money-old.Thing";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		33773551292699E000A91D6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -593,6 +746,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3327539829BF0DB100FD3B21 /* Build configuration list for PBXNativeTarget "ThingExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3327539629BF0DB100FD3B21 /* Debug */,
+				3327539729BF0DB100FD3B21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		33773550292699E000A91D6F /* Build configuration list for PBXNativeTarget "MoneyScreenshots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
