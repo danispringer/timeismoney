@@ -9,21 +9,12 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
     // TODO: Widgets
-    // - Add Home Screen widget that shows daily make-able (or made, after check-in
-    //   option is done)
-    // - Later: Lock Screen widget - apple docs lock screen widget
-    // https://developer.apple.com/documentation/widgetkit/creating-lock-screen-widgets-and-watch-complications
-    // Later: Live Activity
-    // - tutorial: https://duckduckgo.com/?q=ios+14+widget+tutorial+swift&t=osx&ia=web
-    // - apple docs widget:
+    // - Add Home Screen widget that shows daily make-able
     // https://developer.apple.com/documentation/widgetkit/creating-a-widget-extension
     // Misc
     // Feat: add choice for weekdays I do work but less hours
-    // Feat: “Clock-in” option, and show how much you made so far (and how much
-    //       more you can make?)
-
-    // https://medium.com/mindful-engineering/introducing-ios-14-widget-extension-1abaa198d183
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
