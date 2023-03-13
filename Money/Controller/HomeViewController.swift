@@ -116,25 +116,154 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
 
     @objc func fetchWorkHours() {
-        let startTimeString: String = UD.string(forKey: Const.UDef.startTime)!
-        let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
+        guard let startTimeString: String = UD.string(forKey: Const.UDef.startTime) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let startTimeString",
+                someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
+
+        guard let endTimeString: String = UD.string(forKey: Const.UDef.endTime) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let endTimeString",
+                someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
 
         let startTimeH = startTimeString.prefix(2)
         let startTimeM = startTimeString.suffix(2)
         let endTimeH = endTimeString.prefix(2)
         let endTimeM = endTimeString.suffix(2)
-        let startTimeHourInt: Int = Int(startTimeH)!
-        let startTimeMinInt: Int = Int(startTimeM)!
-        let endTimeHourInt: Int = Int(endTimeH)!
-        let endTimeMinInt: Int = Int(endTimeM)!
 
-        let nextWorkingDate = calendar.date(byAdding: .day,
-                                            value: daysToNextWorkWeekday(), to: getNow())!
+        guard let startTimeHourInt: Int = Int(startTimeH) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let startTimeHourInt",
+                someFunc: #function, someLine: #line)
 
-        startDate = calendar.date(bySettingHour: startTimeHourInt,
-                                  minute: startTimeMinInt, second: 0, of: nextWorkingDate)!
-        endDate = calendar.date(bySettingHour: endTimeHourInt,
-                                minute: endTimeMinInt, second: 0, of: nextWorkingDate)!
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
+
+        guard let startTimeMinInt: Int = Int(startTimeM) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let startTimeMinInt",
+                someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
+
+        guard let endTimeHourInt: Int = Int(endTimeH) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let endTimeHourInt",
+                someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
+
+        guard let endTimeMinInt: Int = Int(endTimeM) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let endTimeMinInt",
+                someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
+
+        guard let nextWorkingDate = calendar.date(byAdding: .day,
+                                                  value: daysToNextWorkWeekday(),
+                                                  to: getNow()) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let nextWorkingDate",
+                someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
+
+        guard let safeStartDate = calendar.date(bySettingHour: startTimeHourInt,
+                                                minute: startTimeMinInt, second: 0,
+                                                of: nextWorkingDate) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let safeStartDate",
+                someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
+
+        guard let safeEndDate = calendar.date(bySettingHour: endTimeHourInt,
+                                              minute: endTimeMinInt, second: 0,
+                                              of: nextWorkingDate) else {
+            let alert = createAlert(alertReasonParam: .unknown)
+            appendTo(
+                alert: alert,
+                condition: "guard let safeEndDate",
+                someFunc: #function, someLine: #line)
+
+            showViaGCD(caller: self, alert: alert) { shown in
+                if shown {
+                    self.invalTimerAndSetHelperLabel()
+                }
+            }
+            return
+        }
+
+        startDate = safeStartDate
+        endDate = safeEndDate
     }
 
 

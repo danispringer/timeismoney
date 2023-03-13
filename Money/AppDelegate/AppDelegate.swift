@@ -10,7 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    // TODO: Widgets
+    // Widgets
     // - Add Home Screen widget that shows daily make-able
     // https://developer.apple.com/documentation/widgetkit/creating-a-widget-extension
     // Misc
