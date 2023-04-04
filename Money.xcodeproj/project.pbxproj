@@ -282,7 +282,7 @@
 			buildPhases = (
 				339B82962920B3B90032061E /* Sources */,
 				339B82982920B3B90032061E /* Resources */,
-				33F5090629232C1C00DB52AD /* Swiftlint Script Phase */,
+				33F5090629232C1C00DB52AD /* Swiftlint */,
 				33CBF7602924765B00DC716F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -368,7 +368,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33F5090629232C1C00DB52AD /* Swiftlint Script Phase */ = {
+		33F5090629232C1C00DB52AD /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -378,14 +378,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Swiftlint Script Phase";
+			name = Swiftlint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
