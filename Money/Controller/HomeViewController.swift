@@ -484,7 +484,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         alert.message?.append("\nend: \(endDate!)")
         alert.message?.append("\nnow: \(getNow())")
         alert.message?.append("daysToNextWorkWeekday: \(daysToNextWorkWeekday())")
-        alert.message?.append("getWorkHoursStatus: \(getWorkHoursStatus())")
     }
 
 
@@ -693,7 +692,6 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
         endTime: \(endDate!)
         now: \(getNow())
         daysToNextWorkWeekday: \(daysToNextWorkWeekday())
-        getWorkHoursStatus: \(getWorkHoursStatus())
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         """, isHTML: false)
         return mailComposerVC
