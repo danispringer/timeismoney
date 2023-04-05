@@ -483,7 +483,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         alert.message?.append("\nstart: \(startDate!)")
         alert.message?.append("\nend: \(endDate!)")
         alert.message?.append("\nnow: \(getNow())")
-        alert.message?.append("daysToNextWorkWeekday: \(daysToNextWorkWeekday())")
+        alert.message?.append("\ndaysToNextWorkWeekday: \(daysToNextWorkWeekday())")
     }
 
 
