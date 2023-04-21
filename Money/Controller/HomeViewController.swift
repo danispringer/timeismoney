@@ -30,8 +30,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     var timer = Timer()
     let numberFormatterCurrency = NumberFormatter()
     let myDateCompForm = DateComponentsFormatter()
-    var startDate: Date!
-    var endDate: Date!
     var hourlyRate: Double!
 
     enum WorkHoursStatus {
@@ -267,58 +265,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     }
 
 
-    func daysToNextWorkWeekday() -> Int {
-        let workdaysArr = getWeekdaysArrBool()
-        guard workdaysArr.contains(true) else {
-            return 0
-        }
-        let nowWeekdayInt = getWeekdayIntFrom(someDate: getNow())
-        var daysToNextWorkWeekdayInt = 0
-
-        var newArr: [Bool] = []
-        var skipTodayBoolInt = 0
-
-        let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
-        let endTimeH = endTimeString.prefix(2)
-        let endTimeM = endTimeString.suffix(2)
-        let endTimeHourInt: Int = Int(endTimeH)!
-        let endTimeMinInt: Int = Int(endTimeM)!
-
-        if getNow() > calendar.date(bySettingHour: endTimeHourInt,
-                                    minute: endTimeMinInt,
-                                    second: 0, of: getNow())! {
-            skipTodayBoolInt = 1
-        }
-
-        newArr += workdaysArr[(nowWeekdayInt+skipTodayBoolInt)...]
-        newArr += workdaysArr[...(nowWeekdayInt-1)]
-
-        for day in newArr {
-            if day {
-                break
-            } else {
-                daysToNextWorkWeekdayInt += 1
-            }
-        }
-
-        if getNow() > calendar.date(bySettingHour: endTimeHourInt,
-                                    minute: endTimeMinInt,
-                                    second: 0, of: getNow())! {
-            daysToNextWorkWeekdayInt += 1
-        }
-
-        return daysToNextWorkWeekdayInt
-    }
-
-
-    func getWeekdayIntFrom(someDate: Date) -> Int {
-        let components = Calendar.current.dateComponents(in: NSTimeZone.default, from: someDate)
-        let weekday = components.weekday!-1
-        // ☝️ so sunday is 0
-        return weekday
-    }
-
-
     func getWeekdayNameFromNow() -> String {
         let components = Calendar.current.dateComponents(in: NSTimeZone.default, from: getNow())
         let someWeekday = components.weekday!-1
@@ -477,8 +423,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
     func appendTo(alert: UIAlertController, condition: String,
                   someFunc: String, someLine: Int) {
-        alert.message?.append("\n\n(Notes for the devs)")
-        alert.message?.append("\n\(someFunc), \(someLine)")
+        alert.message?.append("\n\n\n\n\(someFunc), \(someLine)")
         alert.message?.append("\n\(condition)")
         alert.message?.append("\nstart: \(startDate!)")
         alert.message?.append("\nend: \(endDate!)")
@@ -658,57 +603,3 @@ private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(
         return Dictionary(uniqueKeysWithValues: input.map { key, value in
             (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
     }
-
-
-extension HomeViewController: MFMailComposeViewControllerDelegate {
-
-    func sendEmailTapped() {
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeViewController, animated: true, completion: nil)
-        } else {
-            self.showSendMailErrorAlert()
-        }
-    }
-
-
-    func configuredMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self // Extremely important to set the
-        // --mailComposeDelegate-- property, NOT the --delegate-- property
-
-        mailComposerVC.setToRecipients([Const.UIMsg.emailString])
-        let version: String? = Bundle.main.infoDictionary![Const.UIMsg.appVersion] as? String
-        var myTitle = Const.UIMsg.appName
-        if let safeVersion = version {
-            myTitle += " \(Const.UIMsg.version) \(safeVersion)"
-        }
-        mailComposerVC.setSubject(myTitle)
-        mailComposerVC.setMessageBody("""
-        Hi, I have a question about your app:
-        \n\n\n\n\n\n\n
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        startTime: \(startDate!)
-        endTime: \(endDate!)
-        now: \(getNow())
-        daysToNextWorkWeekday: \(daysToNextWorkWeekday())
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        """, isHTML: false)
-        return mailComposerVC
-    }
-
-
-    func showSendMailErrorAlert() {
-        let alert = createAlert(alertReasonParam: .emailError)
-        showViaGCD(caller: self, alert: alert) { _ in }
-    }
-
-
-    // MARK: MFMailComposeViewControllerDelegate
-
-    func mailComposeController(_ controller: MFMailComposeViewController,
-                               didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
-    }
-
-}

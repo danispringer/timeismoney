@@ -7,8 +7,111 @@
 
 
 import UIKit
+import MessageUI
 
-extension UIViewController {
+extension UIViewController: MFMailComposeViewControllerDelegate {
+
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the
+        // --mailComposeDelegate-- property, NOT the --delegate-- property
+
+        mailComposerVC.setToRecipients([Const.UIMsg.emailString])
+        let version: String? = Bundle.main.infoDictionary![Const.UIMsg.appVersion] as? String
+        var myTitle = Const.UIMsg.appName
+        if let safeVersion = version {
+            myTitle += " \(Const.UIMsg.version) \(safeVersion)"
+        }
+        mailComposerVC.setSubject(myTitle)
+        mailComposerVC.setMessageBody("""
+        Hi, I have a question about your app:
+        \n\n\n\n\n\n\n
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        startTime: \(startDate!)
+        endTime: \(endDate!)
+        now: \(getNow())
+        daysToNextWorkWeekday: \(daysToNextWorkWeekday())
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        """, isHTML: false)
+        return mailComposerVC
+    }
+
+
+    func showSendMailErrorAlert() {
+        let alert = createAlert(alertReasonParam: .emailError)
+        showViaGCD(caller: self as! HomeViewController, alert: alert) { _ in }
+    }
+
+
+    // MARK: MFMailComposeViewControllerDelegate
+
+    public func mailComposeController(_ controller: MFMailComposeViewController,
+                                      didFinishWith result: MFMailComposeResult,
+                                      error: Error?) {
+        controller.dismiss(animated: true)
+    }
+
+    func sendEmailTapped() {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+
+
+    func getWeekdayIntFrom(someDate: Date) -> Int {
+        let components = Calendar.current.dateComponents(in: NSTimeZone.default, from: someDate)
+        let weekday = components.weekday!-1
+        // ☝️ so sunday is 0
+        return weekday
+    }
+
+
+    func daysToNextWorkWeekday() -> Int {
+        let workdaysArr = getWeekdaysArrBool()
+        guard workdaysArr.contains(true) else {
+            return 0
+        }
+        let nowWeekdayInt = getWeekdayIntFrom(someDate: getNow())
+        var daysToNextWorkWeekdayInt = 0
+
+        var newArr: [Bool] = []
+        var skipTodayBoolInt = 0
+
+        let endTimeString: String = UD.string(forKey: Const.UDef.endTime)!
+        let endTimeH = endTimeString.prefix(2)
+        let endTimeM = endTimeString.suffix(2)
+        let endTimeHourInt: Int = Int(endTimeH)!
+        let endTimeMinInt: Int = Int(endTimeM)!
+
+        if getNow() > calendar.date(bySettingHour: endTimeHourInt,
+                                    minute: endTimeMinInt,
+                                    second: 0, of: getNow())! {
+            skipTodayBoolInt = 1
+        }
+
+        newArr += workdaysArr[(nowWeekdayInt+skipTodayBoolInt)...]
+        newArr += workdaysArr[...(nowWeekdayInt-1)]
+
+        for day in newArr {
+            if day {
+                break
+            } else {
+                daysToNextWorkWeekdayInt += 1
+            }
+        }
+
+        if getNow() > calendar.date(bySettingHour: endTimeHourInt,
+                                    minute: endTimeMinInt,
+                                    second: 0, of: getNow())! {
+            daysToNextWorkWeekdayInt += 1
+        }
+
+        return daysToNextWorkWeekdayInt
+    }
+
 
     func getWeekdaysArrBool() -> [Bool] {
         return UD.value(forKey: Const.UDef.weekdaysIWorkOn) as! [Bool]
@@ -45,9 +148,7 @@ extension UIViewController {
     }
 
 
-    func createAlert(alertReasonParam: AlertReason,
-                     levelIndex: Int = 0, points: Int = 0,
-                     secondsLeft: Int = 0, livesLeft: Int = 0) -> UIAlertController {
+    func createAlert(alertReasonParam: AlertReason) -> UIAlertController {
 
         var alertTitle = ""
         var alertMessage = ""
@@ -61,19 +162,19 @@ extension UIViewController {
             default:
                 alertTitle = "An Error Occurred"
                 alertMessage = """
-            Please take a screenshot of this error. Here is how to email it it us:
-            Tap on the top left "Help" button, then tap "\(Const.UIMsg.contact)", \
-            and attach the screenshot to the email.
-
-            TIP: Ensure you set the work hours correctly, then quit and relaunch the app \
-            to retry.
+            Please screenshot this and send it to be by tapping "\(Const.UIMsg.contact)"
             """
         }
 
         let alert = UIAlertController(title: alertTitle, message: alertMessage,
                                       preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel)
+        let alertAction = UIAlertAction(title: "Not now", style: .cancel)
         alert.addAction(alertAction)
+
+        let emailAction = UIAlertAction(title: Const.UIMsg.contact, style: .default) { _ in
+            self.sendEmailTapped()
+        }
+        alert.addAction(emailAction)
 
         return alert
     }
