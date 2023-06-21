@@ -265,26 +265,6 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     }
 
 
-    func getWeekdayNameFromNow() -> String {
-        let components = Calendar.current.dateComponents(in: NSTimeZone.default, from: getNow())
-        let someWeekday = components.weekday!-1
-        let someWeekdayName = DateFormatter().weekdaySymbols[someWeekday]
-        return someWeekdayName
-    }
-
-
-    func tomorrow() -> Date {
-        return Calendar.current.date(byAdding: .weekday, value: 1, to: getNow())!
-    }
-
-
-    func isAWorkWeekdayOn(someDate: Date) -> Bool {
-        let someWeekday = getWeekdayIntFrom(someDate: someDate)
-        let workdaysArr = getWeekdaysArrBool()
-        return workdaysArr[someWeekday]
-    }
-
-
     func getWorkHoursStatus() -> WorkHoursStatus {
 
         let now = getNow()

@@ -11,7 +11,6 @@ let UD: UserDefaults = UserDefaults.standard
 let NC = NotificationCenter.default
 // swiftlint:enable identifier_name
 let calendar = Calendar.current
-let secondsInADay: Double = 24 * 60 * 60
 
 var startDate: Date!
 var endDate: Date!
