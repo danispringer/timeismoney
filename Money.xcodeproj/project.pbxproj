@@ -386,7 +386,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nfile=\"unused.rb\"\nif [ -f \"$file\" ]\nthen\necho \"$file found.\"\nruby unused.rb xcode\nelse\necho \"unused.rb doesn't exist\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#file=\"unused.rb\"\n#if [ -f \"$file\" ]\n#then\n#echo \"$file found.\"\n#ruby unused.rb xcode\n#else\n#echo \"unused.rb doesn't exist\"\n#fi\n";
 		};
 		33F5090629232C1C00DB52AD /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
