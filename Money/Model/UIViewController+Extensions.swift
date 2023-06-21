@@ -183,7 +183,7 @@ extension UIViewController: MFMailComposeViewControllerDelegate {
     func showViaGCD(caller: HomeViewController, alert: UIAlertController,
                     completionHandler: ((Bool) -> Void)?) {
         DispatchQueue.main.async {
-            if caller.is😎Visible {
+            if caller.is😎Visible && caller.presentedViewController == nil {
                 self.present(alert, animated: true)
                 if let safeCompletionHandler = completionHandler {
                     safeCompletionHandler(true)
