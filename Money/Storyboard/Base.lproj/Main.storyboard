@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_72" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_72" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -118,7 +118,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyT-iu-BBo">
-                                                    <rect key="frame" x="73.333333333333343" y="9.3333333333333321" width="300.66666666666663" height="34.333333333333343"/>
+                                                    <rect key="frame" x="73.333333333333343" y="8.3333333333333357" width="300.66666666666663" height="36"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -323,7 +323,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsS-gh-LIH">
-                                <rect key="frame" x="16" y="148" width="398" height="649"/>
+                                <rect key="frame" x="16" y="148" width="398" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Here is how this app works:
 
@@ -345,7 +345,7 @@ This app is designed for anyone who gets paid hourly (not salary) ⏱️
 WHERE
 Wherever you go, the app will be right there with you ❤️
 
-Ready? Tap Settings to get started!</string>
+Ready to get motivated?</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -354,10 +354,10 @@ Ready? Tap Settings to get started!</string>
                                 </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Un-RC-Oc3">
-                                <rect key="frame" x="293" y="829" width="121" height="53"/>
+                                <rect key="frame" x="108.66666666666669" y="829" width="213" height="53"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Settings">
+                                <state key="normal" title="Take Me There">
                                     <color key="titleColor" systemColor="tintColor"/>
                                 </state>
                                 <connections>
@@ -371,11 +371,12 @@ Ready? Tap Settings to get started!</string>
                             <constraint firstItem="hsS-gh-LIH" firstAttribute="top" secondItem="a4j-Ye-kcm" secondAttribute="bottom" constant="32" id="3rK-NM-nA9"/>
                             <constraint firstItem="hsS-gh-LIH" firstAttribute="leading" secondItem="Q0f-b8-QBI" secondAttribute="leading" constant="16" id="43A-wd-I5t"/>
                             <constraint firstItem="Q0f-b8-QBI" firstAttribute="bottom" secondItem="3Un-RC-Oc3" secondAttribute="bottom" constant="16" id="4Ze-pP-ynJ"/>
+                            <constraint firstItem="3Un-RC-Oc3" firstAttribute="centerX" secondItem="Q0f-b8-QBI" secondAttribute="centerX" id="DBJ-7U-Nwd"/>
                             <constraint firstItem="Q0f-b8-QBI" firstAttribute="trailing" secondItem="hsS-gh-LIH" secondAttribute="trailing" constant="16" id="F2l-Kp-dCe"/>
                             <constraint firstItem="Q0f-b8-QBI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a4j-Ye-kcm" secondAttribute="trailing" constant="16" id="TcB-PT-Q9t"/>
                             <constraint firstItem="a4j-Ye-kcm" firstAttribute="leading" secondItem="Q0f-b8-QBI" secondAttribute="leading" constant="16" id="X4u-aH-alp"/>
-                            <constraint firstItem="Q0f-b8-QBI" firstAttribute="trailing" secondItem="3Un-RC-Oc3" secondAttribute="trailing" constant="16" id="ZhH-zf-fiY"/>
-                            <constraint firstItem="3Un-RC-Oc3" firstAttribute="top" secondItem="hsS-gh-LIH" secondAttribute="bottom" constant="32" id="alZ-VZ-HvH"/>
+                            <constraint firstItem="Q0f-b8-QBI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3Un-RC-Oc3" secondAttribute="trailing" constant="16" id="ZhH-zf-fiY"/>
+                            <constraint firstItem="3Un-RC-Oc3" firstAttribute="top" secondItem="hsS-gh-LIH" secondAttribute="bottom" constant="8" id="alZ-VZ-HvH"/>
                             <constraint firstItem="3Un-RC-Oc3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q0f-b8-QBI" secondAttribute="leading" constant="16" id="aoD-5J-Kt2"/>
                             <constraint firstItem="a4j-Ye-kcm" firstAttribute="top" secondItem="Q0f-b8-QBI" secondAttribute="top" constant="16" id="o4l-0g-Ton"/>
                         </constraints>
@@ -391,19 +392,19 @@ Ready? Tap Settings to get started!</string>
     </scenes>
     <resources>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
