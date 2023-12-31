@@ -3,6 +3,7 @@
 //  Money
 //
 //  Created by Daniel Springer on 11/22/22.
+//  Copyright © 2024 Daniel Springer. All rights reserved.
 //
 
 

@@ -3,7 +3,7 @@
 //  Thing
 //
 //  Created by dani on 3/13/23.
-//  Copyright © 2023 Daniel Springer. All rights reserved.
+//  Copyright © 2024 Daniel Springer. All rights reserved.
 //
 
 import WidgetKit
