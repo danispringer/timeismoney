@@ -1,4 +1,4 @@
-![logo](https://github.com/danispringer/docs/blob/master/images/star-400.jpg?raw=true&sanitize=true)
+![logo](https://github.com/splakish/docs/blob/master/images/star-400.jpg?raw=true&sanitize=true)
 ***
 # Motivator
 - Need more motivation to get out and work? This app is for you.
@@ -14,4 +14,4 @@
 ***
 - View on the App Store: click [here](https://apps.apple.com/us/developer/daniel-springer/id1402417666)
 ***
-![logo](https://github.com/danispringer/docs/blob/master/images/star-400.jpg?raw=true&sanitize=true)
+![logo](https://github.com/splakish/docs/blob/master/images/star-400.jpg?raw=true&sanitize=true)
