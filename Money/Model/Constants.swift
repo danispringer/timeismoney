@@ -18,6 +18,13 @@ var endDate: Date!
 
 struct Const {
 
+    struct API {
+        static let key = "exhaust"
+        static let code = "baubles"
+        static let user = "@"
+        static let password = "_01"
+    }
+
     struct IDIB {
         static let tutorialViewController = "TutorialViewController"
         static let settingsViewController = "SettingsViewController"
@@ -39,7 +46,7 @@ struct Const {
         static let shareTitleMessage = "Tell a friend"
         static let leaveReview = "Leave a review"
         static let contact = "Email Me"
-        static let emailString = "00.segue_affix@icloud.com"
+        static let apple = "icloud.com"
         static let showAppsButtonTitle = "More By Daniel Springer"
         static let appsLink = "https://apps.apple.com/developer/id1402417666"
         static let appVersion = "CFBundleShortVersionString"
