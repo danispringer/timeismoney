@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8DT-XO-5uY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8DT-XO-5uY">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="irZ-xl-10j">
-                                <rect key="frame" x="0.0" y="43" width="393" height="718.33333333333337"/>
+                                <rect key="frame" x="0.0" y="242" width="393" height="393"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="irZ-xl-10j" secondAttribute="height" multiplier="1:1" id="k4b-11-SUe"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Daniel Springer" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlo-f7-uFw">
                                 <rect key="frame" x="16" y="745.33333333333337" width="361" height="40.666666666666629"/>
@@ -27,13 +30,12 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xRf-FL-lKp"/>
-                        <color key="backgroundColor" red="0.396078431372549" green="0.76862745098039209" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.40784313725490196" green="0.80784313725490198" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="xRf-FL-lKp" firstAttribute="trailing" secondItem="Hlo-f7-uFw" secondAttribute="trailing" constant="16" id="3mp-ei-2bb"/>
                             <constraint firstItem="irZ-xl-10j" firstAttribute="leading" secondItem="xRf-FL-lKp" secondAttribute="leading" id="Jis-53-3Pi"/>
                             <constraint firstItem="xRf-FL-lKp" firstAttribute="trailing" secondItem="irZ-xl-10j" secondAttribute="trailing" id="KOD-a0-AeM"/>
-                            <constraint firstItem="xRf-FL-lKp" firstAttribute="top" secondItem="irZ-xl-10j" secondAttribute="top" constant="16" id="YxU-we-bIS"/>
-                            <constraint firstItem="Hlo-f7-uFw" firstAttribute="top" secondItem="irZ-xl-10j" secondAttribute="bottom" constant="-16" id="hyG-CB-fja"/>
+                            <constraint firstItem="irZ-xl-10j" firstAttribute="centerY" secondItem="xRf-FL-lKp" secondAttribute="centerY" id="PVd-Jc-Tam"/>
                             <constraint firstItem="xRf-FL-lKp" firstAttribute="bottom" secondItem="Hlo-f7-uFw" secondAttribute="bottom" constant="32" id="pqR-Zw-xHb"/>
                             <constraint firstItem="Hlo-f7-uFw" firstAttribute="leading" secondItem="xRf-FL-lKp" secondAttribute="leading" constant="16" id="tPl-2V-jFU"/>
                         </constraints>
@@ -45,6 +47,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch" width="1600" height="1600"/>
+        <image name="launch" width="1024" height="1024"/>
     </resources>
 </document>
