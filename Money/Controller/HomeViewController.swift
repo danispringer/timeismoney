@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
     @IBOutlet weak var timeWorkableHelperLabel: UILabel!
     @IBOutlet weak var helpButton: UIBarButtonItem!
     @IBOutlet weak var myToolbar: UIToolbar!
+    @IBOutlet weak var creditLabel: UILabel!
 
 
     // MARK: Properties
@@ -74,6 +75,8 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         myToolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         myToolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+
+        creditLabel.text = creditLabel.text!.uppercased()
     }
 
 
@@ -105,7 +108,9 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
 
         tutorialVC.delegate = self
 
-        present(tutorialVC, animated: true)
+        DispatchQueue.main.async {
+            self.present(tutorialVC, animated: true)
+        }
     }
 
 
@@ -449,7 +454,10 @@ class HomeViewController: UIViewController, SettingsPresenter, DeclaresVisibilit
         as! SettingsViewController
         is😎Visible = false
         settingsVC.delegate = self
-        present(settingsVC, animated: true)
+        DispatchQueue.main.async {
+            self.present(settingsVC, animated: true)
+        }
+
     }
 
 
